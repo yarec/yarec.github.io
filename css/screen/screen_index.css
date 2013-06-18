@@ -1,0 +1,110 @@
+body {
+	background-image: url("../../images/beebole-pattern.jpg");
+	background-position: center;
+	background-repeat: repeat;
+	background-attachment: fixed;
+
+}
+
+header {
+	padding: 0;
+}
+
+p{
+	font-size: 20px;
+}
+
+h2 {
+	font-weight: bold;	
+}
+
+h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, #secnav a {
+	color: #333;
+	#text-shadow: rgba(50, 50, 50, .3) 1px 1px 3px;
+	text-shadow: rgba(99, 99, 99, .3) 1px 1px 3px;
+}
+
+::selection {
+	background: #ccc;
+	color: #333;
+}
+
+.narrowcolumn {
+	background: white;
+}
+
+.col1 {
+	width: 15%;
+}
+.col2 {
+	width: 83%;
+}
+
+.arc {
+	font-size: 16px;
+	padding: 20px;
+	#background: #F2F2F2;
+	background-color: #708090;
+	border: 1px white solid;
+	#box-shadow: 0 1px 10px #58B1B9;
+    -moz-box-shadow:0px 2px 5px #58B1B9; -webkit-box-shadow:0px 2px 5px #58B1B9; box-shadow:0px 0px 5px #58B1B9;
+	text-shadow: 0 1px 1px white;
+}
+
+.inner {
+	#background-color: #F8F8F8;
+	background-color: #C7EDCC;
+	border: 1px #F2F3F3 solid;
+	padding: 20px;
+}
+
+footer {
+	background-color: transparent;
+}
+
+.pre:after{ content: "\2190"; }
+.nxt:before{ content: "\2192"; }
+.mid-btn-left, .mid-btn-right {
+    position: fixed;
+    bottom: 220px;
+    z-index: 999;
+    color: #0099ff;
+    margin: 30px;
+    padding: 40px;
+    text-align: left;
+	font-size: 30px;
+	font-weight: bold;	
+}
+.mid-btn-left { left: -170px; }
+.mid-btn-right { right: -170px; }
+
+.mid-btn-left a, .mid-btn-right a {
+    margin: 30px;
+    padding: 40px;
+	font-size: 30px;
+	font-weight: bold;	
+
+    -moz-box-shadow: 0px 0px 1px #0099ff;
+    -webkit-box-shadow: 0px 0px 1px #0099ff;
+    box-shadow: 0px 0px 1px #0099ff;
+
+	-webkit-border-radius: 85px;
+	-moz-border-radius: 85px;
+	border-radius: 85px;
+}
+
+.mid-menu-left {
+    position: fixed;
+    bottom: 480px;
+    z-index: 999;
+    color: gray;
+    padding: 40px;
+    text-align: left;
+	font-size: 15px;
+	font-weight: bold;	
+}
+
+.mid-menu-left a {
+    color: gray;
+	background-color: transparent;
+}

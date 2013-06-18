@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>centos-init-for-cm4.sh - Softidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- (en) Add your meta data here -->
+	<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type=text/javascript src="/js/jquery.js"></script>
+    <!--
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    -->
+	<script type=text/javascript src="/js/toTop.js"></script>
+	<script type=text/javascript src="/js/softidy.js"></script>
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left">
+    
+</div>
+
+<ul class="ym-skiplinks">
+	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<!--
+<header>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<h1>Softidy</h1>
+		</div>
+	</div>
+</header>
+-->
+<nav id="nav">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul >
+				<li><a href="/">HOME</a></li>
+				<li><a href="/tag">Tag</a></li>
+				<li><a href="/list">List</a></li>
+				<li><a href="/resouses">Resouses</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			<ul class="tags" >
+                
+                <li><a href="../../tag/-1"></a></li>
+                
+			</ul>
+			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
+				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                <input type="hidden" name="q" value="site:softidy.com">
+                <input class="ym-searchbutton" type="submit" value="Search" />
+			</form>
+		</div>
+	</div>
+</nav>
+<div id="main">
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<div class="ym-grid">
+			    <div class="ym-g20 ym-gl col1">
+			        <div class="ym-gbox">
+					</div>
+				</div>
+
+				<div class="ym-g80 ym-gr col2">
+					<section class="ym-grid linearize-level-1">
+						<div class="ym-g80 ym-gl narrowcolumn tpl">
+                            <article class="arc" aid="">
+    <a name="1536"></a>
+     
+    <center><h2>centos-init-for-cm4.sh</h2></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <pre>conf_net() {
+ipre=$1
+hostno=$2
+
+rm -f /etc/udev/rules.d/70-persistent-net.rules
+
+cat > /etc/sysconfig/network << EOF
+NETWORKING=yes
+HOSTNAME=n$hostno.ex.com
+GATEWAY=$ipre.1
+EOF
+
+cat > /etc/sysconfig/network-scripts/ifcfg-eth0 << EOF
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=static
+IPADDR=$ipre.10$hostno
+NETMASK=255.255.255.0
+EOF
+
+cat > /etc/resolv.conf << EOF
+nameserver $ipre.1
+EOF
+
+cat > /etc/hosts << EOF
+127.0.0.1       localhost
+$ipre.101 n1.ex.com n1
+$ipre.102 n2.ex.com n2
+$ipre.103 n3.ex.com n3
+$ipre.104 n4.ex.com n4
+$ipre.1 repo
+EOF
+}
+
+conf_yum() {
+rm /etc/yum.repos.d/*
+cat > /etc/yum.repos.d/local.repo << "EOF"
+[local-cm]
+baseurl=http://repo/cdh/cm/4
+gpgcheck=0
+
+[local-cdh]
+baseurl=http://repo/cdh/cdh/4
+gpgcheck=0
+
+[local-centos]
+baseurl=http://repo/cdh/centos
+gpgcheck=0
+EOF
+}
+
+turnoff_se() {
+chkconfig iptables off
+cat > /etc/selinux/config << "EOF"
+SELINUX=disabled
+SELINUXTYPE=targeted
+EOF
+}
+
+if [ -z "$1" ]; then
+    echo 'a host no needed!'
+else
+    turnoff_se
+    conf_yum
+    conf_net '192.168.18' $1
+
+    yum -y install perl openssh-clients postgresql-server bind-utils libxslt cyrus-sasl-gssapi parted vim wget
+    mv /usr/bin/host /usr/bin/host.bak
+
+    wget http://repo/cdh/cmi.bin
+    chmod +x cmi.bin
+    echo './cmi.bin --skip_repo_package=1' > inscm 
+    chmod +x inscm
+fi
+    </div>
+</article>
+
+						</div>
+
+						<aside class="ym-g20 ym-gr">
+							<div class="ym-gbox-right ym-clearfix">
+                            </div>
+                        </aside>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p><a href="http://www.yaml.de">YAML</a></p>
+		</div>
+	</div>
+</footer>
+
+<!-- full skip link functionality in webkit browsers -->
+<script src="/css/yaml/core/js/yaml-focusfix.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>

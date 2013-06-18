@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>php-hbase - Softidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- (en) Add your meta data here -->
+	<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type=text/javascript src="/js/jquery.js"></script>
+    <!--
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    -->
+	<script type=text/javascript src="/js/toTop.js"></script>
+	<script type=text/javascript src="/js/softidy.js"></script>
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left">
+    
+</div>
+
+<ul class="ym-skiplinks">
+	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<!--
+<header>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<h1>Softidy</h1>
+		</div>
+	</div>
+</header>
+-->
+<nav id="nav">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul >
+				<li><a href="/">HOME</a></li>
+				<li><a href="/tag">Tag</a></li>
+				<li><a href="/list">List</a></li>
+				<li><a href="/resouses">Resouses</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			<ul class="tags" >
+                
+                <li><a href="../../tag/-1"></a></li>
+                
+			</ul>
+			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
+				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                <input type="hidden" name="q" value="site:softidy.com">
+                <input class="ym-searchbutton" type="submit" value="Search" />
+			</form>
+		</div>
+	</div>
+</nav>
+<div id="main">
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<div class="ym-grid">
+			    <div class="ym-g20 ym-gl col1">
+			        <div class="ym-gbox">
+					</div>
+				</div>
+
+				<div class="ym-g80 ym-gr col2">
+					<section class="ym-grid linearize-level-1">
+						<div class="ym-g80 ym-gl narrowcolumn tpl">
+                            <article class="arc" aid="">
+    <a name="1538"></a>
+     
+    <center><h2>php-hbase</h2></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <pre>#!/usr/bin/env php
+
+<?php
+
+<<<EOF
+
+http://thrift.apache.org/docs/install/centos/
+
+yum -y install automake libtool flex bison pkgconfig gcc-c++ boost-devel zlib-devel
+yum -y install make openssl openssl-devel php-devel
+
+wget http://mirror.esocc.com/apache/thrift/0.9.0/thrift-0.9.0.tar.gz
+
+wget http://svn.apache.org/viewvc/hbase/tags/0.94.2/src/main/resources/org/apache/hadoop/hbase/thrift/Hbase.thrift?view=co Hbase.thrift
+
+thrift --gen php Hbase.thrift
+
+EOF;
+
+error_reporting(E_ERROR);
+
+require_once __DIR__.'/lib/Thrift/ClassLoader/ThriftClassLoader.php';
+use Thrift\ClassLoader\ThriftClassLoader;
+
+$loader = new ThriftClassLoader();
+$loader->registerNamespace('Thrift', __DIR__ . '/lib');
+$loader->registerDefinition('shared', 'gen-php-hbase');
+$loader->register();
+
+use Thrift\Protocol\TBinaryProtocol;
+use Thrift\Transport\TSocket;
+use Thrift\Transport\THttpClient;
+use Thrift\Transport\TBufferedTransport;
+use Thrift\Exception\TException;
+
+require_once __DIR__.'/gen-php-hbase/Hbase.php';
+require_once __DIR__.'/gen-php-hbase/Types.php';
+
+class Test {
+    var $client;
+    var $tableName = "student";
+    var $row_name = '2';
+
+    function run(){
+        try {
+
+            $socket = new TSocket('192.168.1.72', 9090);
+            $transport = new TBufferedTransport($socket, 1024, 1024);
+            $protocol = new TBinaryProtocol($transport);
+            $this->client = new HbaseClient($protocol);
+
+            $transport->open();
+
+            #$this->cr_table();
+            $this->show_tables();
+            $this->desc();
+            $this->mutate();
+            $this->get();
+            $this->getRow();
+
+            $transport->close();
+
+        } catch (TException $tx) {
+            print 'TException: '.$tx->getMessage()."\n";
+        }
+    }
+    function cr_table(){
+        $columns = array(
+            new ColumnDescriptor( array(  'name' => 'id:',  'maxVersions' => 10  ) ),
+            new ColumnDescriptor( array(  'name' => 'name:'  ) ),
+            new ColumnDescriptor( array(  'name' => 'score:' ) ),
+        );
+        try {
+            $this->client->createTable($this->tableName, $columns);
+        } catch (AlreadyExists $ae) {
+            echo( "WARN: {$ae->message}\n" );
+        }
+    }
+
+    function show_tables(){
+        $tables = $this->client->getTableNames();
+        sort($tables);
+        foreach ($tables as $name) {
+            echo( "  found: {$name}\n" );
+        }
+    }
+
+    function desc(){
+        $descriptors = $this->client->getColumnDescriptors($this->tableName);
+        asort($descriptors);
+        foreach ($descriptors as $col) {
+            echo( "  column: {$col->name}, maxVer: {$col->maxVersions}\n" );
+        }
+    }
+
+    function mutate(){
+        $row = '2';
+        $valid = "foobar-测试". rand();
+        $mutations = array(
+            new Mutation(array(  'column' => 'score',  'value' => $valid  )),
+        );
+        $this->client->mutateRow($this->tableName, $row, $mutations);
+    }
+
+    function get(){
+        $fam_col_name = 'score';
+        $arr = $this->client->get($this->tableName, $this->row_name, $fam_col_name);
+        // $arr = array  
+        foreach ($arr as $k => $v) {
+            // $k = TCell  
+            echo ("value = {$v->value} \n");
+            echo ("timestamp = {$v->timestamp} \n");
+        }
+    }
+
+    function getRow(){
+        $arr = $this->client->getRow($this->tableName, $this->row_name);
+        // $this->client->getRow return a array  
+        foreach ($arr as $k => $TRowResult) {
+            // $k = 0 ; non-use  
+            // $TRowResult = TRowResult  
+            var_dump($TRowResult);
+        }
+    }
+}
+
+$test = new Test();
+$test->run();
+
+?>
+
+    </div>
+</article>
+
+						</div>
+
+						<aside class="ym-g20 ym-gr">
+							<div class="ym-gbox-right ym-clearfix">
+                            </div>
+                        </aside>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p><a href="http://www.yaml.de">YAML</a></p>
+		</div>
+	</div>
+</footer>
+
+<!-- full skip link functionality in webkit browsers -->
+<script src="/css/yaml/core/js/yaml-focusfix.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>mutex - Softidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- (en) Add your meta data here -->
+	<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type=text/javascript src="/js/jquery.js"></script>
+    <!--
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    -->
+	<script type=text/javascript src="/js/toTop.js"></script>
+	<script type=text/javascript src="/js/softidy.js"></script>
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left">
+    
+</div>
+
+<ul class="ym-skiplinks">
+	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<!--
+<header>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<h1>Softidy</h1>
+		</div>
+	</div>
+</header>
+-->
+<nav id="nav">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul >
+				<li><a href="/">HOME</a></li>
+				<li><a href="/tag">Tag</a></li>
+				<li><a href="/list">List</a></li>
+				<li><a href="/resouses">Resouses</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			<ul class="tags" >
+                
+                <li><a href="../../tag/-1"></a></li>
+                
+			</ul>
+			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
+				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                <input type="hidden" name="q" value="site:softidy.com">
+                <input class="ym-searchbutton" type="submit" value="Search" />
+			</form>
+		</div>
+	</div>
+</nav>
+<div id="main">
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<div class="ym-grid">
+			    <div class="ym-g20 ym-gl col1">
+			        <div class="ym-gbox">
+					</div>
+				</div>
+
+				<div class="ym-g80 ym-gr col2">
+					<section class="ym-grid linearize-level-1">
+						<div class="ym-g80 ym-gl narrowcolumn tpl">
+                            <article class="arc" aid="">
+    <a name="1508"></a>
+     
+    <center><h2>mutex</h2></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <pre>#!/usr/bin/env python
+# encoding: utf8
+import threading
+import time
+import random
+
+class MyThread(threading.Thread):
+
+    def __init__(self,no):
+        threading.Thread.__init__(self)
+        self.no=no
+
+    def run(self):
+        for i in range(3):
+#            calc(self.no)
+            if mutex.acquire(1):
+                calc(self.no)
+                mutex.release()
+
+def calc(no):
+    global num
+    _num = num
+    time.sleep(random.randint(0,1)/1.8)
+    num = _num+1
+    msg = str(no) +' set num to '+str(num)
+    print msg
+
+
+num = 0
+mutex = threading.Lock()
+def test():
+    for i in range(5):
+        t = MyThread(i)
+        t.start()
+if __name__ == '__main__':
+    test()
+    </div>
+</article>
+
+						</div>
+
+						<aside class="ym-g20 ym-gr">
+							<div class="ym-gbox-right ym-clearfix">
+                            </div>
+                        </aside>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p><a href="http://www.yaml.de">YAML</a></p>
+		</div>
+	</div>
+</footer>
+
+<!-- full skip link functionality in webkit browsers -->
+<script src="/css/yaml/core/js/yaml-focusfix.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>
