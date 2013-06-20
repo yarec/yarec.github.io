@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>git-ins - Softidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base target="_blank" />
+    <meta name="Keywords" content="softidy,git-ins,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
+    <meta name="Description" content="git-ins - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left"></div>
+
+<ul class="ym-skiplinks">
+	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<nav id="nav">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul >
+				<li><a href="/">HOME</a></li>
+				<li><a href="/tag">Tag</a></li>
+				<li><a href="/list">List</a></li>
+				<li><a href="/resouses">Resouses</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
+				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                <input type="hidden" name="q" value="site:softidy.com">
+                <input class="ym-searchbutton" type="submit" value="Search" />
+			</form>
+		</div>
+	</div>
+</nav>
+
+<div id="main">
+    <div class="ym-wrapper">
+        <div class="ym-wbox">
+            <section class="ym-grid linearize-level-1">
+                <article class="arc" aid="">
+    <a name="441"></a>
+     
+    <center><h2>git-ins</h2></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>&nbsp;CentOS 安装 git （转载）</p>
+<div class="date" style="color: #999999; margin-top: 5px; margin-right: 0px; margin-bottom: 8px; margin-left: 0px; font-family: tahoma, arial, 宋体, sans-serif;">2010-08-26 15:12</div>
+<div style="border-top-width: 1px; border-top-style: solid; border-top-color: #bddaf2; margin-bottom: 5px; font-family: tahoma, arial, 宋体, sans-serif;">&nbsp;</div>
+<div id="blog_text" class="cnt" style="color: #333333; font-size: 14px; line-height: 1.5; font-family: tahoma, arial, 宋体, sans-serif;">
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; padding: 0px;">首先安装Git依赖的一些包.&nbsp;<br style="padding: 0px; margin: 0px;" /><code style="font-family: 'courier new', courier, monospace; padding: 0px; margin: 0px;"><br style="padding: 0px; margin: 0px;" /><span style="padding: 0px; margin: 0px; font-family: 新宋体;">yum -y install tk zlib-devel openssl-devel &nbsp;perl cpio &nbsp;expat-devel &nbsp;gettext-devel gettext&nbsp;</span></code></p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; padding: 0px;">接下来,如果你已经安装过Curl了,那么跳过这一步,没有的话,就装一下.<br style="padding: 0px; margin: 0px;" /><code style="font-family: 'courier new', courier, monospace; padding: 0px; margin: 0px;"><br style="padding: 0px; margin: 0px;" /><span style="padding: 0px; margin: 0px; font-family: 新宋体;">wget http://curl.haxx.se/download/curl-7.18.0.tar.gz<br style="padding: 0px; margin: 0px;" />tar xzvf curl-7.18.0.tar.gz<br style="padding: 0px; margin: 0px;" />cd curl-7.18.0<br style="padding: 0px; margin: 0px;" />./configure<br style="padding: 0px; margin: 0px;" />make<br style="padding: 0px; margin: 0px;" />make install<br style="padding: 0px; margin: 0px;" /></span></code></p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; padding: 0px;">确定一下ld.so.conf文件里有/usr/local/lib,这个是为git-http-push准备的.<br style="padding: 0px; margin: 0px;" /><code style="font-family: 'courier new', courier, monospace; padding: 0px; margin: 0px;"><br style="padding: 0px; margin: 0px;" /><span style="padding: 0px; margin: 0px; font-family: 新宋体;">vi /etc/ld.so.conf<br style="padding: 0px; margin: 0px;" />#插入下面的代码<br style="padding: 0px; margin: 0px;" />/usr/local/lib<br style="padding: 0px; margin: 0px;" /></span></code><br style="padding: 0px; margin: 0px;" />保存文件,接着运行:<br style="padding: 0px; margin: 0px;" /><code style="font-family: 'courier new', courier, monospace; padding: 0px; margin: 0px;"><br style="padding: 0px; margin: 0px;" /><span style="padding: 0px; margin: 0px; font-family: 新宋体;">/sbin/ldconfig<br style="padding: 0px; margin: 0px;" /></span></code></p>
+<p style="margin-top: 0px; margin-right: 0px; margin-bottom: 22px; margin-left: 0px; padding: 0px;">最好,我们下载Git并安装它<br style="padding: 0px; margin: 0px;" /><code style="font-family: 'courier new', courier, monospace; padding: 0px; margin: 0px;">wget https://github.com/git/git/archive/master.zip<br style="padding: 0px; margin: 0px;" /><span style="padding: 0px; margin: 0px; font-family: 新宋体;">wget http://www.codemonkey.org.uk/projects/git-snapshots/git/git-latest.tar.gz<br style="padding: 0px; margin: 0px;" />tar xzvf git-latest.tar.gz<br style="padding: 0px; margin: 0px;" />cd git-{date}<br style="padding: 0px; margin: 0px;" />autoconf<br style="padding: 0px; margin: 0px;" />./configure --with-curl=/usr/local<br style="padding: 0px; margin: 0px;" />make<br style="padding: 0px; margin: 0px;" />make install<br style="padding: 0px; margin: 0px;" /></span></code><br style="padding: 0px; margin: 0px;" />这就是所有的安装步骤,不算是太麻烦吧.</p>
+</div>
+    </div>
+</article>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+<footer>
+	<div class="ym-wrapper">
+        <div class="ym-grid ">
+            <div class="ym-g20 ym-gl"> | </div>
+            <div class="ym-g60 ym-gl"> 
+                <div class="ym-wbox">
+                    <h4><var>Friends:</var></h4>
+                    <tt>
+                        <ul>
+                            <li><a href="http://blog.sina.com.cn/u/1310483170">太极之春</a></li>
+                            <li><a href="http://codingmatch.me">敲代码的火柴</a></li>
+                        </ul>
+                    </tt>
+                </div>
+            </div>
+            <div class="ym-g20 ym-gl"> | </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/css/yaml/core/js/yaml-focusfix.js"></script>
+</body>
+</html>
+<script src="/js/jquery.js"></script>
+<script src="/js/toTop.js"></script>
+<script src="/js/softidy.js"></script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>

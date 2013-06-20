@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>ra.awk - Softidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base target="_blank" />
+    <meta name="Keywords" content="softidy,ra.awk,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
+    <meta name="Description" content="ra.awk - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left"></div>
+
+<ul class="ym-skiplinks">
+	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+</ul>
+
+<nav id="nav">
+	<div class="ym-wrapper">
+		<div class="ym-hlist">
+			<ul >
+				<li><a href="/">HOME</a></li>
+				<li><a href="/tag">Tag</a></li>
+				<li><a href="/list">List</a></li>
+				<li><a href="/resouses">Resouses</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
+				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                <input type="hidden" name="q" value="site:softidy.com">
+                <input class="ym-searchbutton" type="submit" value="Search" />
+			</form>
+		</div>
+	</div>
+</nav>
+
+<div id="main">
+    <div class="ym-wrapper">
+        <div class="ym-wbox">
+            <section class="ym-grid linearize-level-1">
+                <article class="arc" aid="">
+    <a name="1452"></a>
+     
+    <center><h2>ra.awk</h2></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <pre> awk 'BEGIN{
+print "Enter log file:";
+getline logs;
+#logs="/var/log/nginx/access.log-20101008";
+OFMT="%.3f";
+while(getline < logs)
+{
+    split($7,atmp,"?");
+    aListNum[atmp[1]]+=1;
+    aListTime[atmp[1]]+=$NF;
+    ilen++;
+}
+close(logs);
+print "\r\ntotal:",ilen,"\r\n======================================\r\n";
+for(k in aListNum)
+{
+    print k,aListNum[k],aListTime[k]/aListNum[k] | "sort -r -n -k3";
+}
+}'
+    </div>
+</article>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+<footer>
+	<div class="ym-wrapper">
+        <div class="ym-grid ">
+            <div class="ym-g20 ym-gl"> | </div>
+            <div class="ym-g60 ym-gl"> 
+                <div class="ym-wbox">
+                    <h4><var>Friends:</var></h4>
+                    <tt>
+                        <ul>
+                            <li><a href="http://blog.sina.com.cn/u/1310483170">太极之春</a></li>
+                            <li><a href="http://codingmatch.me">敲代码的火柴</a></li>
+                        </ul>
+                    </tt>
+                </div>
+            </div>
+            <div class="ym-g20 ym-gl"> | </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/css/yaml/core/js/yaml-focusfix.js"></script>
+</body>
+</html>
+<script src="/js/jquery.js"></script>
+<script src="/js/toTop.js"></script>
+<script src="/js/softidy.js"></script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>
