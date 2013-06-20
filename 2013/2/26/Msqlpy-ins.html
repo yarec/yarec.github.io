@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Chrome豆沙绿 - Softidy.com</title>
+	<title>msqlpy-ins - Softidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="softidy,Chrome豆沙绿,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
-    <meta name="Description" content="Chrome豆沙绿 - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
+    <meta name="Keywords" content="softidy,msqlpy-ins,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
+    <meta name="Description" content="msqlpy-ins - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
 
@@ -61,25 +61,27 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    <a name="1506"></a>
+    <a name="1525"></a>
      
-    <center><h2>Chrome豆沙绿</h2></center>
+    <center><h2>msqlpy-ins</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p><span style="font-size: large;"><strong>修改Chrome浏览器默认背景颜色为豆沙绿护眼色</strong></span></p>
-<p><span style="font-size: large;"><strong>&nbsp;</strong></span></p>
-<div><span style="font-size: large;">&nbsp; &nbsp; 对于程序员和长期使用电脑的朋友来说，设置豆沙绿是保护眼睛的一种方法，这里介绍Chrome 浏览器下设置浅绿色背景方法：</span></div>
-<div><span style="font-size: large;">&nbsp;</span></div>
-<div><span style="font-size: large;">1、找到 Chrome 浏览器安装目录下的 Custom.css 样式文件（此文件默认为空）</span></div>
-<div><span style="font-size: large;">2、添加以下代码到 Custom.css 样式文件并保存即可</span></div>
-<div>
-<pre>html, body {background-color: #C7EDCC!important;}<br /><br /></pre>
-</div>
-<div><span style="font-size: large;">文件所在路径：</span></div>
-<ul>
-<li><span style="font-size: large;">win7: &nbsp; ~\AppData\Local\Google\Chrome\User Data\Default\User StyleSheets</span></li>
-<li><span style="font-size: large;">xp &nbsp; : &nbsp;&nbsp;~\Local Settings\Application Data\Google\Chrome</span></li>
-<li><span style="font-size: large;">linux: &nbsp;~/.config/google-chrome/Default/User StyleSheets</span></li>
-</ul>
+        <p>python库:</p>
+<p>wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz<br />tar zxvf setuptools-0.6c11.tar.gz<br />cd setuptools-0.6c11<br />python setup.py build<br />python setup.py install</p>
+<p>sudo apt-get install python-dev <br />yum install python-devel</p>
+<p><span style="font-size: 10px;">yum 段错误：</span></p>
+<p style="margin-left: 30px;">解决：</p>
+<p style="margin-left: 30px;">ln -sf libz.so.1.2.3 libz.so<br /><span style="font-size: 10px;">ln -sf libz.so.1.2.3 libz.so.1</span></p>
+<p style="margin-left: 30px;">恢复：</p>
+<p style="margin-left: 30px;">ln -sf libz.so.1.2.5 libz.so<br /><span style="font-size: 10px;">ln -sf libz.so.1.2.5 libz.so.1</span></p>
+<p><span style="font-size: 10px;">wget http://superb-dca2.dl.sourceforge.net/project/mysql-python/mysql-python/1.2.3/MySQL-python-1.2.3.tar.gz</span></p>
+<p>tar zxvf MySQL-python-1.2.3.tar.gz<br />cd MySQL-python-1.2.3<br />python setup.py build<br />python setup.py install</p>
+<p>&nbsp;</p>
+<p>#!/usr/bin/env python<br /># encoding: utf8<br />import MySQLdb</p>
+<p>conn=MySQLdb.connect(host="localhost",user="root",passwd="123456",db="test",port=3306)<br /><span style="font-size: 10px;">cur =conn.cursor()</span></p>
+<p>cnt = cur.execute('(select 1) union (select 2) union (select 3)')</p>
+<p>res=cur.fetchmany(2)<br />for r in res:<br />&nbsp; &nbsp; print r</p>
+<p>cur.close()<br />conn.commit()</p>
+<p>&nbsp;</p>
     </div>
 </article>
 

@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title>Chrome豆沙绿 - Softidy.com</title>
+	<title>cp.sh - Softidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="softidy,Chrome豆沙绿,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
-    <meta name="Description" content="Chrome豆沙绿 - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
+    <meta name="Keywords" content="softidy,cp.sh,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
+    <meta name="Description" content="cp.sh - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
 
@@ -61,25 +61,50 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    <a name="1506"></a>
+    <a name="1464"></a>
      
-    <center><h2>Chrome豆沙绿</h2></center>
+    <center><h2>cp.sh</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p><span style="font-size: large;"><strong>修改Chrome浏览器默认背景颜色为豆沙绿护眼色</strong></span></p>
-<p><span style="font-size: large;"><strong>&nbsp;</strong></span></p>
-<div><span style="font-size: large;">&nbsp; &nbsp; 对于程序员和长期使用电脑的朋友来说，设置豆沙绿是保护眼睛的一种方法，这里介绍Chrome 浏览器下设置浅绿色背景方法：</span></div>
-<div><span style="font-size: large;">&nbsp;</span></div>
-<div><span style="font-size: large;">1、找到 Chrome 浏览器安装目录下的 Custom.css 样式文件（此文件默认为空）</span></div>
-<div><span style="font-size: large;">2、添加以下代码到 Custom.css 样式文件并保存即可</span></div>
-<div>
-<pre>html, body {background-color: #C7EDCC!important;}<br /><br /></pre>
-</div>
-<div><span style="font-size: large;">文件所在路径：</span></div>
-<ul>
-<li><span style="font-size: large;">win7: &nbsp; ~\AppData\Local\Google\Chrome\User Data\Default\User StyleSheets</span></li>
-<li><span style="font-size: large;">xp &nbsp; : &nbsp;&nbsp;~\Local Settings\Application Data\Google\Chrome</span></li>
-<li><span style="font-size: large;">linux: &nbsp;~/.config/google-chrome/Default/User StyleSheets</span></li>
-</ul>
+        <pre>#!/bin/bash
+trap 'exit_fun' 2
+
+usage(){
+        echo "Usage: `basename $0` \"src file\" \"dst file\""
+        exit 1
+}
+
+exit_fun(){
+        echo -e "\033[?25h"
+        kill -9 $(ps -ef|awk '/ [c]p /{print $2}') &>/dev/null
+        exit 1
+}
+
+
+[ "$#" -ne "2" ] && usage
+[ -d "$2" ] && k=${2%%/}/`basename $1` || k=$2
+
+fromsize=`ls -s $1|cut -d" " -f1`
+cp $1 $k &
+start=`date +%s`
+sleep 0.2
+echo -ne "\033[?25l"
+while :;do
+        tosize=`ls -s $k|cut -d" " -f1`
+        x=`echo "$tosize $fromsize"|awk '{print int($1*100/$2)}'`
+        [ $x -eq 99 ] && x=100
+        echo -n "["
+        for((i=0;i<x;i=$i+2));do echo -n "=";done
+        echo -n ">"
+        for((j=i;j<=99;j=$j+2));do echo -n " ";done
+        now=$[`date +%s` - $start]
+        [ $now -eq 0 ] && now=1
+        avg=$[$tosize/$now/1024]
+        printf "]  %4s%%  %4sM/s" $i $avg
+        [ $x -ge 100 ] && break
+        sleep 0.1
+        echo -ne "\r"
+done
+echo -e "\033[?25h"
     </div>
 </article>
 

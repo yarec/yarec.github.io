@@ -5,7 +5,7 @@ $(function() {
 			speed : 1000
 		};
 		var options = $.extend(defaults,options);
-		$("body").prepend('<p id="back-top"> <a href="###"><span></span>Back to Top</a> </p>');
+		$("body").prepend('<p id="back-top"> <a href="###" onclick="return false;"><span></span>Back to Top</a> </p>');
 
 		var $toTop = $(this);
 		var $top = $("#back-top");

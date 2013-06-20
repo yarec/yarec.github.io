@@ -7,8 +7,11 @@
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- (en) Add your meta data here -->
-	<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
+    <base target="_blank" />
+    <meta name="Keywords" content="softidy,零基础构建编译器,程序,代码,开源,编译器,解释器,太极,八卦掌,武术" />
+    <meta name="Description" content="零基础构建编译器 - softidy, 分享学习与成长, 积累想法，见识未知世界。" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
 
 	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
 	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
@@ -21,36 +24,19 @@
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<script type=text/javascript src="/js/jquery.js"></script>
-    <!--
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    -->
-	<script type=text/javascript src="/js/toTop.js"></script>
-	<script type=text/javascript src="/js/softidy.js"></script>
 </head>
 <body>
 
 
 
 
-<div id="left" class="mid-menu-left">
-    
-</div>
+<div id="left" class="mid-menu-left"></div>
 
 <ul class="ym-skiplinks">
 	<li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
 	<li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
 </ul>
 
-<!--
-<header>
-	<div class="ym-wrapper">
-		<div class="ym-wbox">
-			<h1>Softidy</h1>
-		</div>
-	</div>
-</header>
--->
 <nav id="nav">
 	<div class="ym-wrapper">
 		<div class="ym-hlist">
@@ -61,12 +47,6 @@
 				<li><a href="/resouses">Resouses</a></li>
 				<li><a href="/about">About</a></li>
 			</ul>
-            <!--
-			<ul class="tags" >
-                
-                
-			</ul>
-            -->
 			<form class="ym-searchform" action="http://google.com/search" method="get" accept-charset="utf-8">
 				<input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
                 <input type="hidden" name="q" value="site:softidy.com">
@@ -75,26 +55,19 @@
 		</div>
 	</div>
 </nav>
-<div id="main">
-	<div class="ym-wrapper">
-		<div class="ym-wbox">
-			<div class="ym-grid">
-			    <div class="ym-g20 ym-gl col1">
-			        <div class="ym-gbox">
-					</div>
-				</div>
 
-				<div class="ym-g80 ym-gr col2">
-					<section class="ym-grid linearize-level-1">
-						<div class="ym-g80 ym-gl narrowcolumn tpl">
-                            <article class="arc" aid="">
+<div id="main">
+    <div class="ym-wrapper">
+        <div class="ym-wbox">
+            <section class="ym-grid linearize-level-1">
+                <article class="arc" aid="">
     <a name="1557"></a>
      
     <center><h2>零基础构建编译器</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p><span style="font-size: large;">&nbsp; &nbsp; &nbsp; 作为MIT计算机科学学科入门课程基础的<a href="http://mitpress.mit.edu/sicp/">SICP</a>，在前言中说到“设计这门课程的基础是我们的一种信念，‘计算机科学’并不是一种科学，而且其重要性与计算机本身并无太大关系”。开篇强调和更正一些普遍的错误看法有助于对后面内容的正确理解。本文标题“零基础构建编译器”也必须说明一下，以避免理解上的分歧。首先，“零基础”的含义不是没有任何编写编译器知识和经验，正确的含义是不依赖其它已经存在的语言，如：c、asm 或者其它任何一门语言。看来标题名字起的不好，会带来好多麻烦啊。产生歧义这种事情并不只存在于自然语言，在编写程序时，如果使用了“++i”这种“简洁”语法，歧义就很容易产生。对于语义明确的原则在此不再赘述。现在起一个稍微好一点的名字吧，“<a href="http://homepage.ntlworld.com/edmund.grimley-evans/bcompiler.html">Bootstrapping a simple compiler from nothing</a>”。这是Edmund GRIMLEY EVANS的文章，本文大部分内容也都是源于此。<br>&nbsp; &nbsp; &nbsp; 现在进入正题，已经存在的不使用其它语言的编译器有很多，它们的编译器都是用自己来写的。比如，c编译器用c写，c++编译器用c++写。英文名子叫“<a href="http://en.wikipedia.org/wiki/Self-hosting">Self-hosting</a>”，解释是“a compiler that can compile its own source code”，即“一个能编译自己源代码的编译器”。也有大量的没有这一特性的语言，如perl5, python, ruby等，其中perl5的下一版perl6将支持这一功能。那么不依赖其它语言要如何开始呢？以源代码的方式去写程序需要一个前题：这种程序的编译器已经存在。从源代码到可执行程序的转换过程，必须通过一个已经编译好的编译器才能完成。似乎现在陷入了一个鸡生蛋、蛋生鸡的难题。所以别无选择，只有一个方法可以实现——以机器语言为起点。计算机在发明的初期，所有的程序都是以这种方式实现的，那时候使用的工具是<a href="http://zh.wikipedia.org/wiki/%E6%89%93%E5%AD%94%E5%8D%A1">打孔卡</a>。我们现在可以使用更高级的工具：十六进制编辑器（vim，emacs等）。<br>&nbsp; &nbsp; &nbsp; 用机器语言写程序，可想而知，当程序有一定规模以后会复杂的没有人可以维护。所以机器语言在这里的职责仅仅是一个起步的方法，是火箭点火的那个小装置。通过一步步的演进，最终达到想实现的编译器。其中每一个阶段都实现一个编译器，作为下一级编译器的基础语言。<br>hex1:<br>这是第一个起步阶段的语言。<br>其语法为：<br>注释：以"#" 开头，直到行末<br>代码：/([0-9a-f]{2})*/<br>可执行程序以16进制打开（vim hex1 :%!xxd）看到如下内容：</span></p>
-<p style="margin-left: 30px;"><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000000: 7f45 4c46 0101 0100 0000 0000 0000 0000 .ELF............</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000010: 0200 0300 0100 0000 5480 0408 3400 0000 ........T...4...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000020: 0000 0000 0000 0000 3400 2000 0100 0000 ........4. .....</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000030: 0000 0000 0100 0000 0000 0000 0080 0408 ................</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000040: 0080 0408 bf00 0000 bf00 0000 0500 0000 ................</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000050: 0010 0000 e825 0000 00c1 e004 50e8 1c00 .....%......P...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000060: 0000 0104 24e8 0300 0000 58eb e731 db43 ....$.....X..1.C</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000070: 8d4c 2404 89da b804 0000 00cd 80c3 e81f .L$.............</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000080: 0000 0083 f823 750c e815 0000 0083 f80a .....#u.........</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000090: 75f6 ebea 83e8 307c e583 f830 7c03 83e8 u.....0|...0|...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000a0: 27c3 6a00 31db 89e1 89da 42b8 0300 0000 '.j.1.....B.....</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000b0: cd80 85c0 7402 58c3 31c0 89c3 40cd 80 &nbsp; ....t.X.1...@..</span></p>
-<p><span style="font-size: large;">&nbsp; &nbsp; &nbsp; 上面第6行开始为真正的代码部分，之前的为elf header（linux程序的头信息）。这个头用于描述此程序的相关信息，提供给操作系统以加载此程序到内存。如果想要让程序运行于win32系统，那么这个头就得换成pe header。有了以上的内容，我们完全可以在没有编译器的情况下用编辑器制作出这个可执行程序。以vim为例：</span><br><span style="font-size: large;">打开一个空文件hex1: vim hex1</span><br><span style="font-size: large;">复制以上全部内容到vim</span><br><span style="font-size: large;">在vim中执行 :%!xxd -r 以恢复为二进制</span><br><span style="font-size: large;">保存退出 :wq</span><br><span style="font-size: large;"><a href="http://softidy.com/2013/6/9/Hex1.he.html">源码在此</a>， 如果去掉注释部分，和上面看到的应该是一样的。<br>将源码保存为hex1.he<br>现在就可以测试这个编译器了。<br>执行 ./hex1 &lt; hex1.he &gt; hex1.out<br>执行 diff hex1 hex1.out 可以验证编译出的结果和用vim直接制作的程序是一样的。<br>到此， 起步的编译程序已经有了， 接下来就可以用这个编译器开始构建具有新语法的下一级的程序。</span></p>
+        <p><span style="font-size: large;">&nbsp; &nbsp; &nbsp; 作为MIT计算机科学学科入门课程基础的<a href="http://mitpress.mit.edu/sicp/">SICP</a>，在前言中说到&ldquo;设计这门课程的基础是我们的一种信念，&lsquo;计算机科学&rsquo;并不是一种科学，而且其重要性与计算机本身并无太大关系&rdquo;。开篇强调和更正一些普遍的错误看法有助于对后面内容的正确理解。本文标题&ldquo;零基础构建编译器&rdquo;也必须说明一下，以避免理解上的分歧。首先，&ldquo;零基础&rdquo;的含义不是没有任何编写编译器知识和经验，正确的含义是不依赖其它已经存在的语言，如：c、asm 或者其它任何一门语言。看来标题名字起的不好，会带来好多麻烦啊。产生歧义这种事情并不只存在于自然语言，在编写程序时，如果使用了&ldquo;++i&rdquo;这种&ldquo;简洁&rdquo;语法，歧义就很容易产生。对于语义明确的原则在此不再赘述。现在起一个稍微好一点的名字吧，&ldquo;<a href="http://homepage.ntlworld.com/edmund.grimley-evans/bcompiler.html">Bootstrapping a simple compiler from nothing</a>&rdquo;。这是Edmund GRIMLEY EVANS的文章，本文大部分内容也都是源于此。<br />&nbsp; &nbsp; &nbsp; 现在进入正题，已经存在的不使用其它语言的编译器有很多，它们的编译器都是用自己来写的。比如，c编译器用c写，c++编译器用c++写。英文名子叫&ldquo;<a href="http://en.wikipedia.org/wiki/Self-hosting">Self-hosting</a>&rdquo;，解释是&ldquo;a compiler that can compile its own source code&rdquo;，即&ldquo;一个能编译自己源代码的编译器&rdquo;。也有大量的没有这一特性的语言，如perl5, python, ruby等，其中perl5的下一版perl6将支持这一特性。那么不依赖其它语言要如何开始呢？以源代码的方式去写程序需要一个前题：这种程序的编译器已经存在。从源代码到可执行程序的转换过程，必须通过一个已经编译好的编译器才能完成。似乎现在陷入了一个鸡生蛋、蛋生鸡的难题。所以别无选择，只有一个方法可以实现&mdash;&mdash;以机器语言为起点。计算机在发明的初期，所有的程序都是以这种方式实现的，那时候使用的工具是<a href="http://zh.wikipedia.org/wiki/%E6%89%93%E5%AD%94%E5%8D%A1">打孔卡</a>。我们现在可以使用更高级的工具：十六进制编辑器（vim，emacs等）。<br />&nbsp; &nbsp; &nbsp; 用机器语言写程序，可想而知，当程序有一定规模以后会复杂的没有人可以维护。所以机器语言在这里的职责仅仅是一个起步的方法，是火箭点火的那个小装置。通过一步步的演进，最终达到想实现的编译器。其中每一个阶段都实现一个编译器，作为下一级编译器的基础语言。<br />hex1:<br />这是第一个起步阶段的语言。<br />其语法为：<br />注释：以"#" 开头，直到行末<br />代码：/([0-9a-f]{2})*/<br />可执行程序以16进制打开（vim hex1 :%!xxd）看到如下内容：</span></p>
+<p style="margin-left: 30px;"><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000000: 7f45 4c46 0101 0100 0000 0000 0000 0000 .ELF............</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000010: 0200 0300 0100 0000 5480 0408 3400 0000 ........T...4...</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000020: 0000 0000 0000 0000 3400 2000 0100 0000 ........4. .....</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000030: 0000 0000 0100 0000 0000 0000 0080 0408 ................</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000040: 0080 0408 bf00 0000 bf00 0000 0500 0000 ................</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000050: 0010 0000 e825 0000 00c1 e004 50e8 1c00 .....%......P...</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000060: 0000 0104 24e8 0300 0000 58eb e731 db43 ....$.....X..1.C</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000070: 8d4c 2404 89da b804 0000 00cd 80c3 e81f .L$.............</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000080: 0000 0083 f823 750c e815 0000 0083 f80a .....#u.........</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000090: 75f6 ebea 83e8 307c e583 f830 7c03 83e8 u.....0|...0|...</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000a0: 27c3 6a00 31db 89e1 89da 42b8 0300 0000 '.j.1.....B.....</span><br /><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000b0: cd80 85c0 7402 58c3 31c0 89c3 40cd 80 &nbsp; ....t.X.1...@..</span></p>
+<p><span style="font-size: large;">&nbsp; &nbsp; &nbsp; 上面第6行开始为真正的代码部分，之前的为elf header（linux程序的头信息）。这个头用于描述此程序的相关信息，提供给操作系统以加载此程序到内存。如果想要让程序运行于win32系统，那么这个头就得换成pe header。有了以上的内容，我们完全可以在没有编译器的情况下用编辑器制作出这个可执行程序。以vim为例：</span><br /><span style="font-size: large;">打开一个空文件hex1: vim hex1</span><br /><span style="font-size: large;">复制以上全部内容到vim</span><br /><span style="font-size: large;">在vim中执行 :%!xxd -r 以恢复为二进制</span><br /><span style="font-size: large;">保存退出 :wq</span><br /><span style="font-size: large;"><a href="http://softidy.com/2013/6/9/Hex1.he.html">源码在此</a>， 如果去掉注释部分，和上面看到的应该是一样的。<br />将源码保存为hex1.he<br />现在就可以测试这个编译器了。<br />执行 ./hex1 &lt; hex1.he &gt; hex1.out<br />执行 diff hex1 hex1.out 可以验证编译出的结果和用vim直接制作的程序是一样的。<br />到此， 起步的编译程序已经有了， 接下来就可以用这个编译器开始构建具有新语法的下一级的程序。</span></p>
 <p><span style="font-size: large;">&nbsp;</span></p>
 <p><span style="font-size: large;">&nbsp;</span></p>
 <p><span style="font-size: large;">&nbsp;</span></p>
@@ -102,34 +75,39 @@
     </div>
 </article>
 
-						</div>
-
-						<aside class="ym-g20 ym-gr">
-							<div class="ym-gbox-right ym-clearfix">
-                            </div>
-                        </aside>
-					</section>
-				</div>
-			</div>
-		</div>
-	</div>
+            </section>
+        </div>
+    </div>
 </div>
+
 <footer>
 	<div class="ym-wrapper">
-        <center>
-		<div class="ym-wbox">
-			<p><a href="http://codingmatch.me">敲代码的火柴</a></p>
-		</div>
-        </center>
-	</div>
+        <div class="ym-grid ">
+            <div class="ym-g20 ym-gl"> | </div>
+            <div class="ym-g60 ym-gl"> 
+                <div class="ym-wbox">
+                    <h4><var>Friends:</var></h4>
+                    <tt>
+                        <ul>
+                            <li><a href="http://blog.sina.com.cn/u/1310483170">太极之春</a></li>
+                            <li><a href="http://codingmatch.me">敲代码的火柴</a></li>
+                        </ul>
+                    </tt>
+                </div>
+            </div>
+            <div class="ym-g20 ym-gl"> | </div>
+        </div>
+    </div>
 </footer>
 
-<!-- full skip link functionality in webkit browsers -->
 <script src="/css/yaml/core/js/yaml-focusfix.js"></script>
 </body>
 </html>
+<script src="/js/jquery.js"></script>
+<script src="/js/toTop.js"></script>
+<script src="/js/softidy.js"></script>
 
 <script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
 </script>
