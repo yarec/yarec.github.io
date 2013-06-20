@@ -33,12 +33,6 @@ h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, #secnav a {
 	background: white;
 }
 
-.col1 {
-	width: 15%;
-}
-.col2 {
-	width: 83%;
-}
 
 .arc {
 	font-size: 16px;
@@ -107,4 +101,15 @@ footer {
 .mid-menu-left a {
     color: gray;
 	background-color: transparent;
+}
+
+#nav{
+    position: fixed;
+    top:0;
+    width: 100%;
+}
+
+#main {
+    margin-top: 60px;
+    padding: 0 180px 0 180px;
 }

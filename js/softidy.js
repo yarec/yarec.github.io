@@ -97,7 +97,10 @@ function setLeftPosition(){
 }
 
 $(function(){
-    $(window).toTop({ showHeight : 100, speed : 500 });
+
+    $(window).toTop({ showHeight : 100, speed : 100 });
+
+    /*
     $("article center h2").each(function(){
         var aid = $(this).parent().parent().attr('aid');
         var name = $(this).html();
@@ -106,6 +109,5 @@ $(function(){
         $("#left").append(a);
         setLeftPosition();
     });
-
-
+    */
 });
