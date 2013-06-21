@@ -1,0 +1,4 @@
+rm -r js css images/
+cp -r /upg/planbox/root/static/softidy/css/ .
+cp -r /upg/planbox/root/static/softidy/js/ .
+cp -r /upg/planbox/root/static/softidy/images/ .

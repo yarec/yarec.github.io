@@ -43,6 +43,7 @@
 	kbd,
 	samp,
 	var,
+	td,
 	tt {
 		font-family:Consolas, "Lucida Console", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier;
 	}

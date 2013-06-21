@@ -96,18 +96,59 @@ function setLeftPosition(){
     left.css("top",winHeight/2-leftHeight/2);
 }
 
+function path() {
+    var args = arguments,
+        result = []
+            ;
+
+    for(var i = 0; i < args.length; i++)
+        result.push(args[i].replace('%', '/syntaxhighlighter/scripts/'));
+
+    return result
+};
+
 $(function(){
 
     $(window).toTop({ showHeight : 100, speed : 100 });
 
+    SyntaxHighlighter.autoloader.apply(null, path(
+            'applescript            %shBrushAppleScript.js',
+            'actionscript3 as3      %shBrushAS3.js',
+            'bash shell             %shBrushBash.js',
+            'coldfusion cf          %shBrushColdFusion.js',
+            'cpp c                  %shBrushCpp.js',
+            'c# c-sharp csharp      %shBrushCSharp.js',
+            'css                    %shBrushCss.js',
+            'delphi pascal          %shBrushDelphi.js',
+            'diff patch pas         %shBrushDiff.js',
+            'erl erlang             %shBrushErlang.js',
+            'groovy                 %shBrushGroovy.js',
+            'java                   %shBrushJava.js',
+            'jfx javafx             %shBrushJavaFX.js',
+            'js jscript javascript  %shBrushJScript.js',
+            'perl pl                %shBrushPerl.js',
+            'php                    %shBrushPhp.js',
+            'text plain             %shBrushPlain.js',
+            'py python              %shBrushPython.js',
+            'ruby rails ror rb      %shBrushRuby.js',
+            'sass scss              %shBrushSass.js',
+            'scala                  %shBrushScala.js',
+            'sql                    %shBrushSql.js',
+            'vb vbnet               %shBrushVb.js',
+            'xml xhtml xslt html    %shBrushXml.js'
+                ));
+    SyntaxHighlighter.config.bloggerMode = true;
+    SyntaxHighlighter.config.class_name = 'highlight_class';
+    SyntaxHighlighter.all();
+
     /*
-    $("article center h2").each(function(){
-        var aid = $(this).parent().parent().attr('aid');
-        var name = $(this).html();
-        name = substr(name , 20);
-        var a = "<li><a href='#"+aid+"' >"+ name + "</a></li>";
-        $("#left").append(a);
-        setLeftPosition();
-    });
-    */
+       $("article center h2").each(function(){
+       var aid = $(this).parent().parent().attr('aid');
+       var name = $(this).html();
+       name = substr(name , 20);
+       var a = "<li><a href='#"+aid+"' >"+ name + "</a></li>";
+       $("#left").append(a);
+       setLeftPosition();
+       });
+       */
 });
