@@ -15,9 +15,9 @@
  * Dual licensed under the MIT and GPL licenses.
  */
 .syntaxhighlighter {
-#  overflow: hidden;
-#  word-break: break-all;
-#  word-wrap: break-word;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
   background-color: white !important;
 }
 .syntaxhighlighter .line.alt1 {
