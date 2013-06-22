@@ -1,3 +1,19 @@
+<url>
+  <loc>http://softidy.com/</loc>
+  <lastmod>2013-06-22</lastmod>
+</url>
+<url>
+  <loc>http://softidy.com/tag</loc>
+  <lastmod>2013-06-22</lastmod>
+</url>
+<url>
+  <loc>http://softidy.com/list</loc>
+  <lastmod>2013-06-22</lastmod>
+</url>
+<url>
+  <loc>http://softidy.com/resouses</loc>
+  <lastmod>2013-06-22</lastmod>
+</url>
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -104,20 +120,4 @@
   <loc>http://softidy.com/2012/10/16/Cp.sh.html</loc>
   <lastmod>2013-06-22</lastmod>
 </url>        
-<url>
-  <loc>http://softidy.com/</loc>
-  <lastmod>2013-06-22</lastmod>
-</url>
-<url>
-  <loc>http://softidy.com/tag</loc>
-  <lastmod>2013-06-22</lastmod>
-</url>
-<url>
-  <loc>http://softidy.com/list</loc>
-  <lastmod>2013-06-22</lastmod>
-</url>
-<url>
-  <loc>http://softidy.com/resouses</loc>
-  <lastmod>2013-06-22</lastmod>
-</url>     
 </urlset>
