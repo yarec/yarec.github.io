@@ -54,49 +54,49 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1464"></a>
-    MongoDB::Timestamp=HASH(0x52741ec) 
+    2013-06-20 
     <center><h2>cp.sh</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <pre>#!/bin/bash
-trap 'exit_fun' 2
+trap &#39;exit_fun&#39; 2
 
 usage(){
-        echo "Usage: `basename $0` \"src file\" \"dst file\""
+        echo &quot;Usage: `basename $0` \&quot;src file\&quot; \&quot;dst file\&quot;&quot;
         exit 1
 }
 
 exit_fun(){
-        echo -e "\033[?25h"
-        kill -9 $(ps -ef|awk '/ [c]p /{print $2}') &>/dev/null
+        echo -e &quot;\033[?25h&quot;
+        kill -9 $(ps -ef|awk &#39;/ [c]p /{print $2}&#39;) &amp;&gt;/dev/null
         exit 1
 }
 
 
-[ "$#" -ne "2" ] && usage
-[ -d "$2" ] && k=${2%%/}/`basename $1` || k=$2
+[ &quot;$#&quot; -ne &quot;2&quot; ] &amp;&amp; usage
+[ -d &quot;$2&quot; ] &amp;&amp; k=${2%%/}/`basename $1` || k=$2
 
-fromsize=`ls -s $1|cut -d" " -f1`
-cp $1 $k &
+fromsize=`ls -s $1|cut -d&quot; &quot; -f1`
+cp $1 $k &amp;
 start=`date +%s`
 sleep 0.2
-echo -ne "\033[?25l"
+echo -ne &quot;\033[?25l&quot;
 while :;do
-        tosize=`ls -s $k|cut -d" " -f1`
-        x=`echo "$tosize $fromsize"|awk '{print int($1*100/$2)}'`
-        [ $x -eq 99 ] && x=100
-        echo -n "["
-        for((i=0;i<x;i=$i+2));do echo -n "=";done
-        echo -n ">"
-        for((j=i;j<=99;j=$j+2));do echo -n " ";done
+        tosize=`ls -s $k|cut -d&quot; &quot; -f1`
+        x=`echo &quot;$tosize $fromsize&quot;|awk &#39;{print int($1*100/$2)}&#39;`
+        [ $x -eq 99 ] &amp;&amp; x=100
+        echo -n &quot;[&quot;
+        for((i=0;i&lt;x;i=$i+2));do echo -n &quot;=&quot;;done
+        echo -n &quot;&gt;&quot;
+        for((j=i;j&lt;=99;j=$j+2));do echo -n &quot; &quot;;done
         now=$[`date +%s` - $start]
-        [ $now -eq 0 ] && now=1
+        [ $now -eq 0 ] &amp;&amp; now=1
         avg=$[$tosize/$now/1024]
-        printf "]  %4s%%  %4sM/s" $i $avg
-        [ $x -ge 100 ] && break
+        printf &quot;]  %4s%%  %4sM/s&quot; $i $avg
+        [ $x -ge 100 ] &amp;&amp; break
         sleep 0.1
-        echo -ne "\r"
+        echo -ne &quot;\r&quot;
 done
-echo -e "\033[?25h"
+echo -e &quot;\033[?25h&quot;
     </div>
 </article>
 

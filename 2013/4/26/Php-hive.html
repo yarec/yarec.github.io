@@ -54,20 +54,20 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1540"></a>
-    MongoDB::Timestamp=HASH(0x5273f44) 
+    2013-06-04 
     <center><h2>php-hive</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <pre>#!/usr/bin/env php
 
-<?php
+&lt;?php
 
-<<<EOF
+&lt;&lt;&lt;EOF
 work on hiveserver(1)
 
 gen-thrift: 
 http://blog.csdn.net/hzcyclone/article/details/7708327
 svn co http://svn.apache.org/repos/asf/hive/tags/release-0.10.0
-find ./ -name "*.thrift" | xargs -I{} cp {} thrift
+find ./ -name &quot;*.thrift&quot; | xargs -I{} cp {} thrift
 cp thrift-src/fb303.thrift thrift
 thrift -r --gen php hive_metastore.thrift
 thrift -r --gen php hive_service.thrift
@@ -79,23 +79,23 @@ hive --service hiveserver -v -p 10001
 
 EOF;
 
-$GLOBALS['THRIFT_ROOT'] = 'libs/';
-require_once $GLOBALS['THRIFT_ROOT'] . 'packages/hive_service/ThriftHive.php';
-require_once $GLOBALS['THRIFT_ROOT'] . 'transport/TSocket.php';
-require_once $GLOBALS['THRIFT_ROOT'] . 'protocol/TBinaryProtocol.php';
+$GLOBALS[&#39;THRIFT_ROOT&#39;] = &#39;libs/&#39;;
+require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;packages/hive_service/ThriftHive.php&#39;;
+require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;transport/TSocket.php&#39;;
+require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;protocol/TBinaryProtocol.php&#39;;
 
-$transport = new TSocket('192.168.1.72', 10001);
+$transport = new TSocket(&#39;192.168.1.72&#39;, 10001);
 $protocol = new TBinaryProtocol($transport);
 $client = new ThriftHiveClient($protocol);
-$transport->open();
+$transport-&gt;open();
 
-#$client->execute('SELECT * from sample_07 limit 3');
-$client->execute('show tables');
-var_dump($client->fetchAll());
+#$client-&gt;execute(&#39;SELECT * from sample_07 limit 3&#39;);
+$client-&gt;execute(&#39;show tables&#39;);
+var_dump($client-&gt;fetchAll());
 
-var_dump($client->getClusterStatus());
+var_dump($client-&gt;getClusterStatus());
 
-$transport->close();
+$transport-&gt;close();
     </div>
 </article>
 

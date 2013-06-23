@@ -54,28 +54,28 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1452"></a>
-    MongoDB::Timestamp=HASH(0x512491c) 
+    2013-06-20 
     <center><h2>ra.awk</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre> awk 'BEGIN{
-print "Enter log file:";
+        <pre> awk &#39;BEGIN{
+print &quot;Enter log file:&quot;;
 getline logs;
-#logs="/var/log/nginx/access.log-20101008";
-OFMT="%.3f";
-while(getline < logs)
+#logs=&quot;/var/log/nginx/access.log-20101008&quot;;
+OFMT=&quot;%.3f&quot;;
+while(getline &lt; logs)
 {
-    split($7,atmp,"?");
+    split($7,atmp,&quot;?&quot;);
     aListNum[atmp[1]]+=1;
     aListTime[atmp[1]]+=$NF;
     ilen++;
 }
 close(logs);
-print "\r\ntotal:",ilen,"\r\n======================================\r\n";
+print &quot;\r\ntotal:&quot;,ilen,&quot;\r\n======================================\r\n&quot;;
 for(k in aListNum)
 {
-    print k,aListNum[k],aListTime[k]/aListNum[k] | "sort -r -n -k3";
+    print k,aListNum[k],aListTime[k]/aListNum[k] | &quot;sort -r -n -k3&quot;;
 }
-}'
+}&#39;
     </div>
 </article>
 

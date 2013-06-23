@@ -54,40 +54,40 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1451"></a>
-    MongoDB::Timestamp=HASH(0x5273b14) 
+    2013-06-20 
     <center><h2>stream.awk</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>awk 'BEGIN{
-OFMT="%.3f";
-devf="/proc/net/dev";
-while(("cat "devf) | getline)
+        <pre>awk &#39;BEGIN{
+OFMT=&quot;%.3f&quot;;
+devf=&quot;/proc/net/dev&quot;;
+while((&quot;cat &quot;devf) | getline)
 {
-    if($0 ~ /:/ && ($10+0) > 0)
+    if($0 ~ /:/ &amp;&amp; ($10+0) &gt; 0)
     {
-        split($1,tarr,":");
+        split($1,tarr,&quot;:&quot;);
         net[tarr[1]]=$10+tarr[2];
         print tarr[1],$10+tarr[2];
     }
 }
 close(devf);
-while((system("sleep 1 ")) >=0)
+while((system(&quot;sleep 1 &quot;)) &gt;=0)
 {
-    system("clear");
-    while( getline < devf )
+    system(&quot;clear&quot;);
+    while( getline &lt; devf )
     {
-        if($0 ~ /:/ && ($10+0) > 0)
+        if($0 ~ /:/ &amp;&amp; ($10+0) &gt; 0)
             {
-                split($1,tarr,":");
+                split($1,tarr,&quot;:&quot;);
                 if(tarr[1] in net)
                 {
-                    print tarr[1],":",($10+tarr[2]-net[tarr[1]])*8/1024,"kb/s";
+                    print tarr[1],&quot;:&quot;,($10+tarr[2]-net[tarr[1]])*8/1024,&quot;kb/s&quot;;
                     net[tarr[1]]=$10+tarr[2];
                 }       
             }    
     }
     close(devf);
 }
-}'
+}&#39;
     </div>
 </article>
 

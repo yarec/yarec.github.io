@@ -54,14 +54,14 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1538"></a>
-    MongoDB::Timestamp=HASH(0x527461c) 
+    2013-06-04 
     <center><h2>php-hbase</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <pre>#!/usr/bin/env php
 
-<?php
+&lt;?php
 
-<<<EOF
+&lt;&lt;&lt;EOF
 
 http://thrift.apache.org/docs/install/centos/
 
@@ -78,13 +78,13 @@ EOF;
 
 error_reporting(E_ERROR);
 
-require_once __DIR__.'/lib/Thrift/ClassLoader/ThriftClassLoader.php';
+require_once __DIR__.&#39;/lib/Thrift/ClassLoader/ThriftClassLoader.php&#39;;
 use Thrift\ClassLoader\ThriftClassLoader;
 
 $loader = new ThriftClassLoader();
-$loader->registerNamespace('Thrift', __DIR__ . '/lib');
-$loader->registerDefinition('shared', 'gen-php-hbase');
-$loader->register();
+$loader-&gt;registerNamespace(&#39;Thrift&#39;, __DIR__ . &#39;/lib&#39;);
+$loader-&gt;registerDefinition(&#39;shared&#39;, &#39;gen-php-hbase&#39;);
+$loader-&gt;register();
 
 use Thrift\Protocol\TBinaryProtocol;
 use Thrift\Transport\TSocket;
@@ -92,90 +92,90 @@ use Thrift\Transport\THttpClient;
 use Thrift\Transport\TBufferedTransport;
 use Thrift\Exception\TException;
 
-require_once __DIR__.'/gen-php-hbase/Hbase.php';
-require_once __DIR__.'/gen-php-hbase/Types.php';
+require_once __DIR__.&#39;/gen-php-hbase/Hbase.php&#39;;
+require_once __DIR__.&#39;/gen-php-hbase/Types.php&#39;;
 
 class Test {
     var $client;
-    var $tableName = "student";
-    var $row_name = '2';
+    var $tableName = &quot;student&quot;;
+    var $row_name = &#39;2&#39;;
 
     function run(){
         try {
 
-            $socket = new TSocket('192.168.1.72', 9090);
+            $socket = new TSocket(&#39;192.168.1.72&#39;, 9090);
             $transport = new TBufferedTransport($socket, 1024, 1024);
             $protocol = new TBinaryProtocol($transport);
-            $this->client = new HbaseClient($protocol);
+            $this-&gt;client = new HbaseClient($protocol);
 
-            $transport->open();
+            $transport-&gt;open();
 
-            #$this->cr_table();
-            $this->show_tables();
-            $this->desc();
-            $this->mutate();
-            $this->get();
-            $this->getRow();
+            #$this-&gt;cr_table();
+            $this-&gt;show_tables();
+            $this-&gt;desc();
+            $this-&gt;mutate();
+            $this-&gt;get();
+            $this-&gt;getRow();
 
-            $transport->close();
+            $transport-&gt;close();
 
         } catch (TException $tx) {
-            print 'TException: '.$tx->getMessage()."\n";
+            print &#39;TException: &#39;.$tx-&gt;getMessage().&quot;\n&quot;;
         }
     }
     function cr_table(){
         $columns = array(
-            new ColumnDescriptor( array(  'name' => 'id:',  'maxVersions' => 10  ) ),
-            new ColumnDescriptor( array(  'name' => 'name:'  ) ),
-            new ColumnDescriptor( array(  'name' => 'score:' ) ),
+            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;id:&#39;,  &#39;maxVersions&#39; =&gt; 10  ) ),
+            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;name:&#39;  ) ),
+            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;score:&#39; ) ),
         );
         try {
-            $this->client->createTable($this->tableName, $columns);
+            $this-&gt;client-&gt;createTable($this-&gt;tableName, $columns);
         } catch (AlreadyExists $ae) {
-            echo( "WARN: {$ae->message}\n" );
+            echo( &quot;WARN: {$ae-&gt;message}\n&quot; );
         }
     }
 
     function show_tables(){
-        $tables = $this->client->getTableNames();
+        $tables = $this-&gt;client-&gt;getTableNames();
         sort($tables);
         foreach ($tables as $name) {
-            echo( "  found: {$name}\n" );
+            echo( &quot;  found: {$name}\n&quot; );
         }
     }
 
     function desc(){
-        $descriptors = $this->client->getColumnDescriptors($this->tableName);
+        $descriptors = $this-&gt;client-&gt;getColumnDescriptors($this-&gt;tableName);
         asort($descriptors);
         foreach ($descriptors as $col) {
-            echo( "  column: {$col->name}, maxVer: {$col->maxVersions}\n" );
+            echo( &quot;  column: {$col-&gt;name}, maxVer: {$col-&gt;maxVersions}\n&quot; );
         }
     }
 
     function mutate(){
-        $row = '2';
-        $valid = "foobar-测试". rand();
+        $row = &#39;2&#39;;
+        $valid = &quot;foobar-&aelig;&micro;&#139;&egrave;&macr;&#149;&quot;. rand();
         $mutations = array(
-            new Mutation(array(  'column' => 'score',  'value' => $valid  )),
+            new Mutation(array(  &#39;column&#39; =&gt; &#39;score&#39;,  &#39;value&#39; =&gt; $valid  )),
         );
-        $this->client->mutateRow($this->tableName, $row, $mutations);
+        $this-&gt;client-&gt;mutateRow($this-&gt;tableName, $row, $mutations);
     }
 
     function get(){
-        $fam_col_name = 'score';
-        $arr = $this->client->get($this->tableName, $this->row_name, $fam_col_name);
+        $fam_col_name = &#39;score&#39;;
+        $arr = $this-&gt;client-&gt;get($this-&gt;tableName, $this-&gt;row_name, $fam_col_name);
         // $arr = array  
-        foreach ($arr as $k => $v) {
+        foreach ($arr as $k =&gt; $v) {
             // $k = TCell  
-            echo ("value = {$v->value} \n");
-            echo ("timestamp = {$v->timestamp} \n");
+            echo (&quot;value = {$v-&gt;value} \n&quot;);
+            echo (&quot;timestamp = {$v-&gt;timestamp} \n&quot;);
         }
     }
 
     function getRow(){
-        $arr = $this->client->getRow($this->tableName, $this->row_name);
-        // $this->client->getRow return a array  
-        foreach ($arr as $k => $TRowResult) {
+        $arr = $this-&gt;client-&gt;getRow($this-&gt;tableName, $this-&gt;row_name);
+        // $this-&gt;client-&gt;getRow return a array  
+        foreach ($arr as $k =&gt; $TRowResult) {
             // $k = 0 ; non-use  
             // $TRowResult = TRowResult  
             var_dump($TRowResult);
@@ -184,9 +184,9 @@ class Test {
 }
 
 $test = new Test();
-$test->run();
+$test-&gt;run();
 
-?>
+?&gt;
 
     </div>
 </article>

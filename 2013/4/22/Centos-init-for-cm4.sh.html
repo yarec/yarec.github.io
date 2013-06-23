@@ -54,7 +54,7 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1536"></a>
-    MongoDB::Timestamp=HASH(0x527419c) 
+    2013-06-04 
     <center><h2>centos-init-for-cm4.sh</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <pre>conf_net() {
@@ -63,13 +63,13 @@ hostno=$2
 
 rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-cat > /etc/sysconfig/network << EOF
+cat &gt; /etc/sysconfig/network &lt;&lt; EOF
 NETWORKING=yes
 HOSTNAME=n$hostno.ex.com
 GATEWAY=$ipre.1
 EOF
 
-cat > /etc/sysconfig/network-scripts/ifcfg-eth0 << EOF
+cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth0 &lt;&lt; EOF
 DEVICE=eth0
 ONBOOT=yes
 BOOTPROTO=static
@@ -77,12 +77,12 @@ IPADDR=$ipre.10$hostno
 NETMASK=255.255.255.0
 EOF
 
-cat > /etc/resolv.conf << EOF
+cat &gt; /etc/resolv.conf &lt;&lt; EOF
 nameserver $ipre.1
 EOF
 
-cat > /etc/hosts << EOF
-127.0.0.1       localhost
+cat &gt; /etc/hosts &lt;&lt; EOF
+127.0.0.1 &Acirc;&nbsp; &Acirc;&nbsp; &Acirc;&nbsp; localhost
 $ipre.101 n1.ex.com n1
 $ipre.102 n2.ex.com n2
 $ipre.103 n3.ex.com n3
@@ -93,7 +93,7 @@ EOF
 
 conf_yum() {
 rm /etc/yum.repos.d/*
-cat > /etc/yum.repos.d/local.repo << "EOF"
+cat &gt; /etc/yum.repos.d/local.repo &lt;&lt; &quot;EOF&quot;
 [local-cm]
 baseurl=http://repo/cdh/cm/4
 gpgcheck=0
@@ -110,25 +110,25 @@ EOF
 
 turnoff_se() {
 chkconfig iptables off
-cat > /etc/selinux/config << "EOF"
+cat &gt; /etc/selinux/config &lt;&lt; &quot;EOF&quot;
 SELINUX=disabled
 SELINUXTYPE=targeted
 EOF
 }
 
-if [ -z "$1" ]; then
-    echo 'a host no needed!'
+if [ -z &quot;$1&quot; ]; then
+    echo &#39;a host no needed!&#39;
 else
     turnoff_se
     conf_yum
-    conf_net '192.168.18' $1
+    conf_net &#39;192.168.18&#39; $1
 
     yum -y install perl openssh-clients postgresql-server bind-utils libxslt cyrus-sasl-gssapi parted vim wget
     mv /usr/bin/host /usr/bin/host.bak
 
     wget http://repo/cdh/cmi.bin
     chmod +x cmi.bin
-    echo './cmi.bin --skip_repo_package=1' > inscm 
+    echo &#39;./cmi.bin --skip_repo_package=1&#39; &gt; inscm 
     chmod +x inscm
 fi
     </div>
