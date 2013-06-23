@@ -54,7 +54,7 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1557"></a>
-     
+    2013-06-22 
     <center><h2>零基础构建编译器</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>&nbsp; &nbsp; &nbsp; 作为MIT计算机科学学科入门课程基础的<a href="http://mitpress.mit.edu/sicp/">SICP</a>，在前言中说到“设计这门课程的基础是我们的一种信念，‘计算机科学’并不是一种科学，而且其重要性与计算机本身并无太大关系”。开篇强调和更正一些普遍的错误看法有助于对后面内容的正确理解。本文标题“零基础构建编译器”也必须说明一下，以避免理解上的分歧。首先，“零基础”的含义不是没有任何编写编译器知识和经验，正确的含义是不依赖其它已经存在的语言，如：c、asm 或者其它任何一门语言。看来标题名字起的不好，会带来好多麻烦啊。产生歧义这种事情并不只存在于自然语言，在编写程序时，如果使用了“++i”这种“简洁”语法，歧义就很容易产生。对于语义明确的原则在此不再赘述。现在起一个稍微好一点的名字吧，“<a href="http://homepage.ntlworld.com/edmund.grimley-evans/bcompiler.html">Bootstrapping a simple compiler from nothing</a>”。这是Edmund GRIMLEY EVANS的文章，本文大部分内容也都是源于此。<br>&nbsp; &nbsp; &nbsp; 现在进入正题，已经存在的不使用其它语言的编译器有很多，它们的编译器都是用自己来写的。比如，c编译器用c写，c++编译器用c++写。英文名子叫“<a href="http://en.wikipedia.org/wiki/Self-hosting">Self-hosting</a>”，解释是“a compiler that can compile its own source code”，即“一个能编译自己源代码的编译器”。也有大量的没有这一特性的语言，如perl5, python, ruby等，其中perl5的下一版perl6将支持这一特性。那么不依赖其它语言要如何开始呢？以源代码的方式去写程序需要一个前题：这种程序的编译器已经存在。从源代码到可执行程序的转换过程，必须通过一个已经编译好的编译器才能完成。似乎现在陷入了一个鸡生蛋、蛋生鸡的难题。所以别无选择，只有一个方法可以实现——以机器语言为起点。计算机在发明的初期，所有的程序都是以这种方式实现的，那时候使用的工具是<a href="http://zh.wikipedia.org/wiki/%E6%89%93%E5%AD%94%E5%8D%A1">打孔卡</a>。我们现在可以使用更高级的工具：十六进制编辑器（vim，emacs等）。<br>&nbsp; &nbsp; &nbsp; 用机器语言写程序，可想而知，当程序有一定规模以后会复杂的没有人可以维护。所以机器语言在这里的职责仅仅是一个起步的方法，是火箭点火的那个小装置。通过一步步的演进，最终达到想实现的编译器。其中每一个阶段都实现一个编译器，作为下一级编译器的基础语言。<br>hex1:<br>这是第一个起步阶段的语言。<br>其语法为：<br>注释：以"#" 开头，直到行末<br>代码：/([0-9a-f]{2})*/<br>可执行程序以16进制打开（vim hex1 :%!xxd）看到如下内容：</p>
