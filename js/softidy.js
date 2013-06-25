@@ -115,6 +115,7 @@ $(function(){
             'applescript            %shBrushAppleScript.js',
             'actionscript3 as3      %shBrushAS3.js',
             'bash shell             %shBrushBash.js',
+            'clj Clojure clojure    %shBrushClojure.js',
             'coldfusion cf          %shBrushColdFusion.js',
             'cpp c                  %shBrushCpp.js',
             'c# c-sharp csharp      %shBrushCSharp.js',
@@ -133,6 +134,7 @@ $(function(){
             'ruby rails ror rb      %shBrushRuby.js',
             'sass scss              %shBrushSass.js',
             'scala                  %shBrushScala.js',
+            'scheme Scheme scm      %shBrushScheme.js',
             'sql                    %shBrushSql.js',
             'vb vbnet               %shBrushVb.js',
             'xml xhtml xslt html    %shBrushXml.js'

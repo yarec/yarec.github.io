@@ -54,7 +54,7 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1565"></a>
-    2013-06-22 
+    2013-06-24 
     <center><h2>test</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <p><span style="font-size: xx-large; color: #ff0000;">测试</span></p>
@@ -165,6 +165,24 @@ $test = new Test();
 $test-&gt;run();
 
 ?&gt;</pre>
+<p><span style="font-size: x-large; color: #ff0000;">clojure:</span></p>
+<pre class="brush: clojure; fontsize: 100; first-line: 1; toolbar: false; ">(define (square x) (* x x))
+&nbsp;
+&nbsp;(define (average x y)
+&nbsp;&nbsp;&nbsp;(/ (+ x y) 2))
+&nbsp;
+&nbsp;(define (sqrt x)
+&nbsp;&nbsp;&nbsp;(define (good-enough? guess)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt; (abs (- (square guess) x)) 0.001))
+&nbsp;&nbsp;&nbsp;(define (improve guess)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(average guess (/ x guess)))
+&nbsp;&nbsp;&nbsp;(define (sqrt-iter guess)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if (good-enough? guess)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;guess
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sqrt-iter (improve guess))))
+&nbsp;&nbsp;&nbsp;(sqrt-iter 1.0))
+&nbsp;&nbsp;&nbsp;
+&nbsp;(sqrt 9)</pre>
     </div>
 </article>
 
