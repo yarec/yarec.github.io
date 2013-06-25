@@ -127,7 +127,7 @@ footer {
 	font-size: 16px;
 }
 #nav #nav_inner{
-    width: 980px;
+    max-width: 980px;
     margin: 0 auto;
 }
 
@@ -175,7 +175,8 @@ footer {
 
 #main {
     margin-top: 60px;
-    padding: 0 180px 0 180px;
+    max-width: 780px;
+    margin: 0 auto;
 }
 
 .container {

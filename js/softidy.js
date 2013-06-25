@@ -134,7 +134,7 @@ $(function(){
             'ruby rails ror rb      %shBrushRuby.js',
             'sass scss              %shBrushSass.js',
             'scala                  %shBrushScala.js',
-            'scheme Scheme scm      %shBrushScheme.js',
+            'scheme                 %shBrushScheme.js',
             'sql                    %shBrushSql.js',
             'vb vbnet               %shBrushVb.js',
             'xml xhtml xslt html    %shBrushXml.js'
