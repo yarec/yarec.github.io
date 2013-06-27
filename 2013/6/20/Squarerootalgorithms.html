@@ -54,17 +54,17 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1564"></a>
-    2013-06-25 
+    2013-06-27 
     <center><h2>平方根求值算法</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>题目：对于 x<sup>2</sup> = y ，y = 2，求x的值。</p>
-<p>牛顿迭代法：以下面的三个步骤计算下去，猜想值g会逐渐逼近真实值。</p>
+        <p>题目：求方程 x<sup>2</sup> = S 的正数解</p>
+<p><a href="http://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9#.E7.89.9B.E9.A0.93.E6.B3.95">牛顿法</a>：求S的平方根，先假设X<sub>0</sub> = 1，然后根据以下公式求出X<sub>1</sub>，再将X<sub>1</sub>代入公式右边，继续求出X<sub>2</sub> ...，通过有效次迭代后即可求出S的平方根，X<sub>n+1</sub>：<br /><br /><img src="http://upload.wikimedia.org/math/0/0/3/003535c020460a6f6657c696cbbb8d89.png" alt="" width="137" height="35" /><br /><br />当S=2时，</p>
 <table border="1" cellspacing="0" cellpadding="5">
 <tbody>
 <tr>
-<td>猜想值g</td>
-<td>中间值 q＝y/g</td>
-<td>下一个猜想值 ng=(q+g)/y</td>
+<td>猜想值x</td>
+<td>中间值S/x<sub>n</sub></td>
+<td>下一个猜想值X<sub>n+1</sub></td>
 </tr>
 <tr>
 <td>1</td>
@@ -88,46 +88,104 @@
 </tr>
 </tbody>
 </table>
-<p>程序实现：</p>
-<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">function sqrt_iter(g, x) {
-    if (good_enough(g, x)) {
+<p>程序实现：<br /><br />Js 版本</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">function sqrt_iter(g, y) { 
+    if (Math.abs(g*g - y) &lt; 0.000000001) { 
         return g;
-    } else {
-        return sqrt_iter(improve(g, x), x);
-    }
-}                                                                                                                      
- 
-function good_enough(g, y) {
-    return Math.abs(g*g - y) &lt; 0.001;
+    } else { 
+        return sqrt_iter( (g + y / g)/2, y );  
+    } 
 }
- 
-function improve(g, y) {
-    return (g + y / g)/2;
-}
- 
-function sqrt(y) {
+function sqrt(y) { 
     return sqrt_iter(1.0, y);
 }
- 
-alert(sqrt(9));</pre>
-<p>&nbsp;</p>
+console.log(sqrt(9));</pre>
+<p>scm版本</p>
 <pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (square x) (* x x))
-
- (define (average x y)
+(define (average x y)
    (/ (+ x y) 2))
+(define (sqrt x)
+  (define (good-enough? guess)
+    (&lt; (abs (- (square guess) x)) 0.001))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
+(sqrt 9)</pre>
+<p>fixed-point版本</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [23,29]; toolbar: false; ">;公共部分
+(define (square x) (* x x))
+(define tolerance 0.00001)
+(define (fixed-point f first-guess)
+&nbsp;&nbsp;(define (close-enough? v1 v2)
+&nbsp;&nbsp;&nbsp;&nbsp;(&lt; (abs (- v1 v2)) tolerance))
+&nbsp;&nbsp;(define (try guess)
+&nbsp;&nbsp;&nbsp;&nbsp;(let ((next (f guess)))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if (close-enough? guess next)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;next
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(try next))))
+&nbsp;&nbsp;(try first-guess))
+;(fixed-point cos 1.0)
+(define (fixed-point-of-transform g transform guess)
+  (fixed-point (transform g) guess))
 
- (define (sqrt x)
-   (define (good-enough? guess)
-     (&lt; (abs (- (square guess) x)) 0.001))
-   (define (improve guess)
-     (average guess (/ x guess)))
-   (define (sqrt-iter guess)
-     (if (good-enough? guess)
-       guess
-       (sqrt-iter (improve guess))))
-   (sqrt-iter 1.0))
-  
- (sqrt 9)</pre>
+;----------------------------
+(define (average x y)
+&nbsp;&nbsp;&nbsp;(/ (+ x y) 2))
+(define (average-damp f)
+&nbsp;&nbsp;(lambda (x) (average x (f x))))
+
+;平方根既是：搜寻 y-&gt;x/y 在平均阻尼下的不动点
+(define&nbsp;(sqrt&nbsp;x) 
+&nbsp;&nbsp;(fixed-point-of-transform&nbsp;(lambda&nbsp;(y)&nbsp;(/&nbsp;x&nbsp;y))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;average-damp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0))
+
+;立方根既是：搜寻 y-&gt;x/(y*y) 在平均阻尼下的不动点
+(define&nbsp;(cube-root&nbsp;x) 
+&nbsp;&nbsp;(fixed-point-of-transform&nbsp;(lambda&nbsp;(y)&nbsp;(/&nbsp;x&nbsp;(square y)))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;average-damp
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0))
+;(sqrt 9)
+(cube-root 27)</pre>
+<p>Newton's method</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [27]; toolbar: false; ">;公共部分
+(define (square x) (* x x))
+(define tolerance 0.00001)
+(define (fixed-point f first-guess)
+  (define (close-enough? v1 v2)
+    (&lt; (abs (- v1 v2)) tolerance))
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (close-enough? guess next)
+          next
+          (try next))))
+  (try first-guess))
+;(fixed-point cos 1.0)
+(define (fixed-point-of-transform g transform guess)
+  (fixed-point (transform g) guess))
+
+;----------------------------
+(define dx 0.00001)
+(define (deriv g)
+  (lambda (x)
+    (/ (- (g (+ x dx)) (g x))
+       dx)))
+(define (newton-transform g)
+  (lambda (x)
+    (- x (/ (g x) ((deriv g) x)))))
+ 
+;平方根既是：用牛顿法搜寻 y-&gt;y*y-x 的牛顿变换的实例
+(define&nbsp;(sqrt&nbsp;x)
+&nbsp;&nbsp;(fixed-point-of-transform&nbsp;(lambda&nbsp;(y)&nbsp;(-&nbsp;(square&nbsp;y)&nbsp;x))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newton-transform
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0))
+(sqrt 9)</pre>
+<p><br />过程抽象：</p>
+<p>形式过程与计算过程<br />形式过程，指用某一种语言（自然语言或程序语言）描述出的计算模型。<br />计算过程，指一个解释器（人，解释程序）对某一计算模型执行计算的实际步骤。<br /><br />上面Js版本描述了一个模型，即<a href="http://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9#.E7.89.9B.E9.A0.93.E6.B3.95">牛顿法</a>的递归函数。<br />scm版本与Js版类似，只不过这个版本抽象出了几个更基本的函数。<br />多了这一层的抽象，对于解平方根只起到了一个语义清晰的作用，某些时候这种做法会导致性能的降低。<br />然而对一个复杂系统来说，其内部可以有成千上万的模型，对于这种复杂度的控制，抽象是最有效的工具。<br />通过抽象，将基本的模型组织成高级的模型，再用高级模型再组织成更高级的模型，这样在高层次思考问题时复杂度就降低了。<br />优秀的程序设计者应该能够对系统的复杂度充分了解，并设计出具有适当抽象层次的程序模型结构。<br />fixed-point版本使用了更多的抽象层次，sqrt &gt;&nbsp;fixed-point-of-transform&nbsp;&gt; fixed-point &gt; average-damp &gt; average 。<br />Newton's method以另外一个模型来构建这一功能，sqrt &gt;&nbsp;fixed-point-of-transform &gt; fixed-point &gt; newton-transform &gt; deriv<br /><br /></p>
     </div>
 </article>
 
@@ -178,7 +236,7 @@ alert(sqrt(9));</pre>
 <script src="/js/jquery.js"></script>
 <script src="/js/toTop.js"></script>
 <script src="/js/softidy.js"></script>
-<link href="/syntaxhighlighter/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+<link href="/syntaxhighlighter/styles/shThemeDjango.css" rel="stylesheet" type="text/css" />
 <script src="/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
 <script src="/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
 
