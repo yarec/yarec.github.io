@@ -51,13 +51,12 @@ jQuery(document).ready(function($, undefined) {
             
         }
     }, {
-        greetings: 'BiwaScheme Interpreter version ' + BiwaScheme.Version +
-                   '\nCopyright (C) 2007-2010 Yutaka HARA and the BiwaScheme team',
+        greetings: 'BiwaScheme Interpreter version ' + BiwaScheme.Version,
         width: 800,
         height: 500,
         name: 'biwa',
         exit: false,
-        prompt: 'biwascheme>'
+        prompt: 'scm>'
     });
 
     // run trace mode

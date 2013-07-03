@@ -176,6 +176,7 @@ footer {
 #main {
     max-width: 780px;
     margin: 60px auto 0;
+	color: #333;
 }
 
 .container {
