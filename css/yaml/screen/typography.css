@@ -462,9 +462,9 @@
 		border-right:1px solid #ccc;
 	}
 
-	/* highlight row on mouse over */
+	/* highlight row on mouse over 
 	tbody tr:hover th,
 	tbody tr:hover td {
 		background:#f8f8f8;
-	}
+	}*/
 }
