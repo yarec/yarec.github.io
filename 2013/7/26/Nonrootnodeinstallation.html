@@ -4,13 +4,13 @@
 	<meta charset="utf-8"/>
     
     
-    <title>scheme资源列表 | SofTidy.com</title>
+    <title>非root安装node | SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="scheme资源列表" />
+    <meta name="Keywords" content="非root安装node" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -56,42 +56,41 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    <a name="1562"></a>
-    2013-07-18 
-    <center><h2>scheme资源列表</h2></center>
+    <a name="1586"></a>
+    2013-07-26 
+    <center><h2>非root安装node</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>&nbsp; &nbsp; &nbsp; &nbsp;Scheme 语言是 Lisp 的一个现代变种、方言，诞生于1975年，由 MIT 的 Gerald J. Sussman and Guy L. Steele Jr. 完成<br>&nbsp; &nbsp; &nbsp; &nbsp;Scheme语言的规范很短，总共只有50页，甚至连Common Lisp 规范的索引的长度都不到，但是却被称为是现代编程语言王国的皇后。它与以前和以后的 Lisp 实现版本都存在一些差异，但是却易学易用。</p>
-<p>在线社区：</p>
-<ul>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.schemers.org/">schemers.org</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://groups.csail.mit.edu/mac/projects/scheme/">mit scheme</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://lisp.org.cn/">lisp.org.cn</a></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div><span style="font-family: arial;">方言：</span></div>
-<div>
-<ul>
-<li><span style="font-size: medium;"><a href="http://racket-lang.org/"><span style="font-family: arial;">racket</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/guile/"><span style="font-family: arial;">guile</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.scheme.com/"><span style="font-family: arial;">chez</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.canonical.org/~kragen/sw/urscheme/"><span style="font-family: arial;">urscheme</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/kawa/"><span style="font-family: arial;">kawa</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.biwascheme.org/"><span style="font-family: arial;">biwaschrme</span></a></span></li>
-<li><span style="font-size: medium;"><a href="https://github.com/schani/jscreme"><span style="font-family: arial;">jscreme</span></a></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div>学习资源：</div>
-<div>
-<ul>
-<li><span style="font-family: arial; font-size: medium;">little schemer (<a href="https://github.com/pkrumins/the-little-schemer">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">SICP</a>&nbsp;(<a href="http://mitpress.mit.edu/sicp/code/index.html">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.scheme.com/tspl4/">TLSP4</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-1.html">Teach Yourself Scheme in Fixnum Days</a></span></li>
-<li><span style="font-size: medium;"><a href="http://practical-scheme.net/wiliki/schemexref.cgi?RRS">RRS</a></span></li>
-<li><span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Scheme_(programming_language)">wikipedia</a></span></li>
-</ul>
-</div>
-</div>
+        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
+cd node
+mkdir ~/opt
+export PREFIX=~/opt; ./configure
+make
+make install
+echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+<p>&nbsp;测试一下：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
+v0.11.5-pre
+$ npm -v
+1.3.4</pre>
+<p>再测试一下webapp，以下代码保存到app.js</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
+server = http.createServer(function (req, res) {
+res.writeHeader(200, {"Content-Type": "text/plain"});
+res.end("Hello Node");
+})
+server.listen(3000);</pre>
+<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
+<p>试用Express:</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">npm install -g express
+mkdir site &amp;&amp; cd site
+express .
+cd . &amp;&amp; npm install
+node app.js</pre>
+<p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
+<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
+<p>&nbsp;</p>
     </div>
 </article>
 
@@ -102,8 +101,8 @@
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1562';
-            var disqus_url = 'http://softidy.com/2013/6/18/Schemeresourcelist.html';
+            var disqus_identifier = '1586';
+            var disqus_url = 'http://softidy.com/2013/7/26/Nonrootnodeinstallation.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

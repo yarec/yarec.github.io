@@ -812,15 +812,15 @@ code .at_rule { color: #088; }
 .hero-item.has-example a {
   font-size: 13px;
   font-weight: bold;
-  background: #D26;
-  color: white;
+  background: lightgray;
+  color: black;
   display: block;
   border-radius: 10px 10px 8px 8px;
 }
 
 .hero-item.has-example a:hover {
-  background: #A2C;
-  color: white;
+  background: lightgray;
+  color: darkgray;
 }
 
 .hero-item.has-example img {

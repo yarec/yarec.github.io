@@ -2,9 +2,13 @@ SyntaxHighlighter.brushes.Scheme = function()
 {
         // Contributed by Travis Whitton
 
-        var syntax = 'lambda if set! cond and or let letrec begin do delay quasiquote let-syntax letrec-syntax syntax-rules define-syntax define ';
+        var syntax = 'quote atom eq cons car cdr cond';
+        syntax += ' null ';
+        syntax += ' lambda if else set! not and or let letrec begin do delay quasiquote';
+        syntax += ' let-syntax letrec-syntax syntax-rules define-syntax define';
 
-        var fun = 'display procedure? apply map for-each force call-with-current-continuation values call-with-values dynamic-wind ';
+        var fun = ' display newline procedure? apply map for-each force';
+        fun += ' call-with-current-continuation values call-with-values dynamic-wind ';
 
         var funcs = syntax + fun
                     

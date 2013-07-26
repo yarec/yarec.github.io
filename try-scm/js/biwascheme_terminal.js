@@ -44,7 +44,7 @@ jQuery(document).ready(function($, undefined) {
                 term.error(e.message);
                 throw(e);
             }
-            term.set_prompt('biwascheme>');
+            term.set_prompt('scm>');
             code_to_evaluate = '';
         } else {
             term.set_prompt('...            ');
