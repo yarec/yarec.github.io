@@ -4,13 +4,13 @@
 	<meta charset="utf-8"/>
     
     
-    <title>msqlpy-ins | SofTidy.com</title>
+    <title>mysql_cmd | SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="msqlpy-ins" />
+    <meta name="Keywords" content="mysql_cmd" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -56,46 +56,26 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    <a name="1525"></a>
-    2013-08-07 
-    <center><h2>msqlpy-ins</h2></center>
+    <a name="349"></a>
+    2013-08-08 
+    <center><h2>mysql_cmd</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>python库:</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz
-tar zxvf setuptools-0.6c11.tar.gz
-cd setuptools-0.6c11
-python setup.py build
-python setup.py install
-
-sudo apt-get install python-dev 
-yum install python-devel</pre>
-<p><span style="font-size: 10px;">yum 段错误：<br /></span><span style="font-size: 10px;">解决：<br /></span></p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">ln -sf libz.so.1.2.3 libz.so
-ln -sf libz.so.1.2.3 libz.so.1</pre>
-<p>恢复：</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">ln -sf libz.so.1.2.5 libz.so
-ln -sf libz.so.1.2.5 libz.so.1</pre>
-<p><span style="font-size: 10px;">fix "mysql_config: not found": &nbsp;</span></p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">sudo apt-get install libmysqld-dev libmysqlclient-dev</pre>
-<p>&nbsp;</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">wget http://superb-dca2.dl.sourceforge.net/project/mysql-python/mysql-python/1.2.3/MySQL-python-1.2.3.tar.gz
-tar zxvf MySQL-python-1.2.3.tar.gz
-cd MySQL-python-1.2.3
-python setup.py build
-python setup.py install</pre>
-<p>&nbsp;</p>
-<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env python
-# encoding: utf8
-import MySQLdb
-conn=MySQLdb.connect(host="localhost",user="root",passwd="123456",db="test",port=3306)
-cur =conn.cursor()
-cnt = cur.execute('(select 1) union (select 2) union (select 3)')
-res=cur.fetchmany(2)
-for r in res:
-    print r
-cur.close()
-conn.commit()</pre>
-<p>&nbsp;</p>
+        <h3>导入导出：</h3>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">mysql -u root -ptmppassword sugarcrm &lt; /tmp/sugarcrm.sql
+mysqldump -uroot -p123456 db_manager gougou_logs &gt; /tmp/gougou_logs.sql;</pre>
+<pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">select * from test into outfile 'a.txt';</pre>
+<h3>两种表复制语句：</h3>
+<p>1.<span style="font-family: Verdana;">INSERT INTO SELECT语句</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;语句形式为：</p>
+<pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">Insert into Table2(field1,field2,...) select value1,value2,... from Table1</pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: Verdana;">要求目标表Table2必须存在，由于目标表Table2已经存在，所以我们除了插入源表Table1的字段外，还可以插入常量。</span></p>
+<p>2.<span style="font-family: Verdana;">SELECT INTO FROM语句</span></p>
+<p>&nbsp;&nbsp; &nbsp; &nbsp; 语句形式为：</p>
+<pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">SELECT vale1, value2 into Table2 from Table1</pre>
+<p>&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;<span style="font-family: Verdana;">要求目标表Table2不存在，<span>因为在插入时会自动创建表Table2，并将Table1中指定字段数据复制到Table2中</span>。</span></p>
+<h3><strong><span style="font-family: Verdana;">mysql忘记密码:</span></strong></h3>
+<p>&nbsp;mysqld-nt (或mysqld.exe) --skip-grant-tables<br />[mysqld]字段加入： skip-grant-tables&nbsp;</p>
+<pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">update user set password=password("520") where user="root";</pre>
     </div>
 </article>
 
@@ -106,8 +86,8 @@ conn.commit()</pre>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1525';
-            var disqus_url = 'http://softidy.com/2013/2/26/Msqlpy-ins.html';
+            var disqus_identifier = '349';
+            var disqus_url = 'http://softidy.com/2010/11/26/Mysql_cmd.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
