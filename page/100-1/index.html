@@ -56,6 +56,88 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1605">
+    创建：2013-08-26  更新：2013-08-26
+    <center><h2><a href="http://softidy.com/2013/8/26/Theshellshortcuttobuildandconfigure.html">shell快捷建和配置</a></h2></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h2 class="entry-title public">&nbsp;快捷键：</h2>
+<h3 style="margin-left: 30px;">编辑命令</h3>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + a ：移到命令行首</li>
+<li>Ctrl + e ：移到命令行尾</li>
+<li>Ctrl + f ：按字符前移（右向）</li>
+<li>Ctrl + b ：按字符后移（左向）</li>
+<li>Alt + f ：按单词前移（右向）</li>
+<li>Alt + b ：按单词后移（左向）</li>
+<li>Ctrl + xx：在命令行首和光标之间移动</li>
+<li>Ctrl + u ：从光标处删除至命令行首</li>
+<li>Ctrl + k ：从光标处删除至命令行尾</li>
+<li>Ctrl + w ：从光标处删除至字首</li>
+<li>Alt + d ：从光标处删除至字尾</li>
+<li>Ctrl + d ：删除光标处的字符</li>
+<li>Ctrl + h ：删除光标前的字符</li>
+<li>Ctrl + y ：粘贴至光标后</li>
+<li>Alt + c ：从光标处更改为首字母大写的单词</li>
+<li>Alt + u ：从光标处更改为全部大写的单词</li>
+<li>Alt + l ：从光标处更改为全部小写的单词</li>
+<li>Ctrl + t ：交换光标处和之前的字符</li>
+<li>Alt + t ：交换光标处和之前的单词</li>
+<li>Alt + Backspace：与 Ctrl + w&nbsp;</li>
+</ul>
+</li>
+</ul>
+<h3 style="margin-left: 30px;">重新执行命令</h3>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + r：逆向搜索命令历史</li>
+<li>Ctrl + g：从历史搜索模式退出</li>
+<li>Ctrl + p：历史中的上一条命令</li>
+<li>Ctrl + n：历史中的下一条命令</li>
+<li>Alt + .：使用上一条命令的最后一个参数</li>
+</ul>
+</li>
+</ul>
+<h3 style="margin-left: 30px;">控制命令</h3>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + l：清屏</li>
+<li>Ctrl + o：执行当前命令，并选择上一条命令</li>
+<li>Ctrl + s：阻止屏幕输出</li>
+<li>Ctrl + q：允许屏幕输出</li>
+<li>Ctrl + c：终止命令</li>
+<li>Ctrl + z：挂起命令</li>
+</ul>
+</li>
+</ul>
+<h3 style="margin-left: 30px;">Bang (!) 命令</h3>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>!!：执行上一条命令</li>
+<li>!blah：执行最近的以 blah 开头的命令，如 !ls</li>
+<li>!blah:p：仅打印输出，而不执行</li>
+<li>!$：上一条命令的最后一个参数，与 Alt + . 相同</li>
+<li>!$:p：打印输出 !$ 的内容</li>
+<li>!*：上一条命令的所有参数</li>
+<li>!*:p：打印输出 !* 的内容</li>
+<li>^blah：删除上一条命令中的 blah</li>
+<li>^blah^foo：将上一条命令中的 blah 替换为 foo</li>
+<li>^blah^foo^：将上一条命令中所有的 blah 都替换为 foo</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h2 class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/milkbikis/powerline-shell">powerline-shell</a></strong></h2>
+<p style="margin-left: 30px;">function powerline_precmd() {<br />&nbsp; export PS1="$(~/powerline-shell.py $? --cwd-only --mode compatible --shell zsh)"<br />}<br /><br />function install_powerline_precmd() {<br />for s in "${precmd_functions[@]}"; do<br />if [ "$s" = "powerline_precmd" ]; then<br />return<br />fi<br />done&nbsp;<br />precmd_functions+=(powerline_precmd)<br />}&nbsp;<br /><br />install_powerline_precmd</p>
+        <br/><a href="http://softidy.com">http://softidy.com</a>
+        <a href="http://softidy.com/2013/8/26/Theshellshortcuttobuildandconfigure.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1593">
     创建：2013-08-06  更新：2013-08-22
     <center><h2><a href="http://softidy.com/2013/8/6/Knowledgediscovery(turn).html">知识发现（转）</a></h2></center> 
@@ -334,53 +416,6 @@ node app.js</pre>
 <p>　　无形无象，全身透空。应物自然，西山悬謦。虎吼猿鸣，泉清河静。翻江播海，尽性立命。</p>
         <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="http://softidy.com/2013/7/4/TaiChiclassics.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1570">
-    创建：2013-06-28  更新：2013-07-05
-    <center><h2><a href="http://softidy.com/2013/6/28/Abstractandprogramdesign.html">抽象与程序设计</a></h2></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>需要复合过程和复合数据的原因是为了提高在设计程序时所位于的概念层次，提高设计的模块性，增强语言的表达能力。<br /><span style="font-size: xx-large;">数据是什么？</span><br />&nbsp; &nbsp; &nbsp; 有理数的定义：由构造函数make-rat和选择函数numer、denom提供了有理数的构造和对分子、分母的获取，并且满足下面条件：<br />对于任意整数n和任意非零整数d，如果x是(make-rat n d)，那么：(numer x)/(denom x) = n/d&nbsp;<br />&nbsp; &nbsp; &nbsp; scm实现如下:</p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define make-rat cons)
-(define numer car)
-(define denom cdr)</pre>
-<p>&nbsp; &nbsp; &nbsp; 通过这段代码可以看出，有理数的实现直接转接到scheme语言的三个基本过程cons、car、cdr。这三个过程是scheme构建复合数据的基础。由于有理数的定义和cons等过程的含义相吻合，所以直接改个名子就ok了。<br />&nbsp; &nbsp; &nbsp; 序对的过程性表示：</p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [1,8,10]; toolbar: false; ">(define (cons x y)
-  (define (dispatch m)
-    (cond ((= m 0) x)
-          ((= m 1) y)
-          (else (error "Argument not 0 or 1 -- CONS" m))))
-  dispatch)
-
-(define (car z) (z 0))
-
-(define (cdr z) (z 1))</pre>
-<p>cons反回的并不是一个数据结构，而是一个过程。这种方式提供了一种表示复合数据的能力，在程序设计中扮演着一种核心角色，有关的程序设计风格通常称为消息传递。<br /><span style="font-size: xx-large;">有理数的相关操作：</span></p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (add-rat x y)
-  (make-rat (+ (* (numer x) (denom y))
-               (* (numer y) (denom x)))
-            (* (denom x) (denom y))))
-
-(define (sub-rat x y)
-  (make-rat (- (* (numer x) (denom y))
-               (* (numer y) (denom x)))
-            (* (denom x) (denom y))))
-
-(define (mul-rat x y)
-  (make-rat (* (numer x) (numer y))
-            (* (denom x) (denom y))))
-
-(define (div-rat x y)
-  (make-rat (* (numer x) (denom y))
-            (* (denom x) (numer y))))
-
-(define (equal-rat? x y)
-  (= (* (numer x) (denom y))
-     (* (numer y) (denom x))))</pre>
-<p>对有理数提供加、减、乘、除、相等？操作给应用程序，这样应用程序就可以在一个高层有理数概念上去构建程序。<br /><img src="http://mitpress.mit.edu/sicp/full-text/book/ch2-Z-G-6.gif" alt="" width="339" height="235" /><br />这就是数据抽象带来的好处，只要高层的add-rat、make-rat等不变，对于具体是怎么实现的可以不用关心。</p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
-        <a href="http://softidy.com/2013/6/28/Abstractandprogramdesign.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

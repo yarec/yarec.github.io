@@ -56,6 +56,53 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1570">
+    创建：2013-06-28  更新：2013-07-05
+    <center><h2><a href="http://softidy.com/2013/6/28/Abstractandprogramdesign.html">抽象与程序设计</a></h2></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>需要复合过程和复合数据的原因是为了提高在设计程序时所位于的概念层次，提高设计的模块性，增强语言的表达能力。<br /><span style="font-size: xx-large;">数据是什么？</span><br />&nbsp; &nbsp; &nbsp; 有理数的定义：由构造函数make-rat和选择函数numer、denom提供了有理数的构造和对分子、分母的获取，并且满足下面条件：<br />对于任意整数n和任意非零整数d，如果x是(make-rat n d)，那么：(numer x)/(denom x) = n/d&nbsp;<br />&nbsp; &nbsp; &nbsp; scm实现如下:</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define make-rat cons)
+(define numer car)
+(define denom cdr)</pre>
+<p>&nbsp; &nbsp; &nbsp; 通过这段代码可以看出，有理数的实现直接转接到scheme语言的三个基本过程cons、car、cdr。这三个过程是scheme构建复合数据的基础。由于有理数的定义和cons等过程的含义相吻合，所以直接改个名子就ok了。<br />&nbsp; &nbsp; &nbsp; 序对的过程性表示：</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [1,8,10]; toolbar: false; ">(define (cons x y)
+  (define (dispatch m)
+    (cond ((= m 0) x)
+          ((= m 1) y)
+          (else (error "Argument not 0 or 1 -- CONS" m))))
+  dispatch)
+
+(define (car z) (z 0))
+
+(define (cdr z) (z 1))</pre>
+<p>cons反回的并不是一个数据结构，而是一个过程。这种方式提供了一种表示复合数据的能力，在程序设计中扮演着一种核心角色，有关的程序设计风格通常称为消息传递。<br /><span style="font-size: xx-large;">有理数的相关操作：</span></p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (add-rat x y)
+  (make-rat (+ (* (numer x) (denom y))
+               (* (numer y) (denom x)))
+            (* (denom x) (denom y))))
+
+(define (sub-rat x y)
+  (make-rat (- (* (numer x) (denom y))
+               (* (numer y) (denom x)))
+            (* (denom x) (denom y))))
+
+(define (mul-rat x y)
+  (make-rat (* (numer x) (numer y))
+            (* (denom x) (denom y))))
+
+(define (div-rat x y)
+  (make-rat (* (numer x) (denom y))
+            (* (denom x) (numer y))))
+
+(define (equal-rat? x y)
+  (= (* (numer x) (denom y))
+     (* (numer y) (denom x))))</pre>
+<p>对有理数提供加、减、乘、除、相等？操作给应用程序，这样应用程序就可以在一个高层有理数概念上去构建程序。<br /><img src="http://mitpress.mit.edu/sicp/full-text/book/ch2-Z-G-6.gif" alt="" width="339" height="235" /><br />这就是数据抽象带来的好处，只要高层的add-rat、make-rat等不变，对于具体是怎么实现的可以不用关心。</p>
+        <br/><a href="http://softidy.com">http://softidy.com</a>
+        <a href="http://softidy.com/2013/6/28/Abstractandprogramdesign.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1564">
     创建：2013-06-20  更新：2013-06-28
     <center><h2><a href="http://softidy.com/2013/6/20/Squarerootalgorithms.html">平方根求值算法</a></h2></center> 
