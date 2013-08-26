@@ -41,7 +41,7 @@
             <li><a href="/tag">Tag</a></li>
             <li><a href="/list">List</a></li>
             <li><a href="/plus">Plus</a></li>
-            <li><a href="/resouses">Resouses</a></li>
+            <li><a href="/resouses">utils</a></li>
             <li><a href="/about">About</a></li>
         </ul>
         <form action="http://google.com/search" method="get" accept-charset="utf-8">
@@ -57,7 +57,7 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="349"></a>
-    2013-08-08 
+    2013-08-09 
     <center><h2>mysql_cmd</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <h3>导入导出：</h3>
@@ -76,6 +76,24 @@ mysqldump -uroot -p123456 db_manager gougou_logs &gt; /tmp/gougou_logs.sql;</pre
 <h3><strong><span style="font-family: Verdana;">mysql忘记密码:</span></strong></h3>
 <p>&nbsp;mysqld-nt (或mysqld.exe) --skip-grant-tables<br />[mysqld]字段加入： skip-grant-tables&nbsp;</p>
 <pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">update user set password=password("520") where user="root";</pre>
+<h3>mysql复制表结构、复制数据、表改名：</h3>
+<pre class="brush: sql; fontsize: 100; first-line: 1; toolbar: false; ">CREATE TABLE `ipm_coupon_entry_copy` like ipm_coupon_entry
+
+insert into ipm_coupon_entry_copy 
+select * from ipm_coupon_entry 
+group by shop_id,coupon_name,url
+
+ALTER TABLE `ipm_coupon_entry`
+RENAME TO `ipm_coupon_entry_bak`;
+
+ALTER TABLE `ipm_coupon_entry_copy`
+RENAME TO `ipm_coupon_entry`;</pre>
+<p>时间转换：</p>
+<pre class="brush: applescript; fontsize: 100; first-line: 1; toolbar: false; ">SELECT FROM_UNIXTIME( 1249488000, '%Y-%m-%d %H:%i:%s' );
+SELECT UNIX_TIMESTAMP('2009-08-06');</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
     </div>
 </article>
 

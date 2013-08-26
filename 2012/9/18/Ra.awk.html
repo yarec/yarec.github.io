@@ -41,7 +41,7 @@
             <li><a href="/tag">Tag</a></li>
             <li><a href="/list">List</a></li>
             <li><a href="/plus">Plus</a></li>
-            <li><a href="/resouses">Resouses</a></li>
+            <li><a href="/resouses">utils</a></li>
             <li><a href="/about">About</a></li>
         </ul>
         <form action="http://google.com/search" method="get" accept-charset="utf-8">
@@ -57,10 +57,10 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1452"></a>
-    2013-06-20 
+    2013-08-22 
     <center><h2>ra.awk</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre> awk &#39;BEGIN{
+        <pre>awk &#39;BEGIN{
 print &quot;Enter log file:&quot;;
 getline logs;
 #logs=&quot;/var/log/nginx/access.log-20101008&quot;;
@@ -78,6 +78,34 @@ for(k in aListNum)
 {
     print k,aListNum[k],aListTime[k]/aListNum[k] | &quot;sort -r -n -k3&quot;;
 }
+}&#39;
+
+awk &#39;BEGIN{
+        #print &quot;Enter log file:&quot;;
+        getline logs;
+        #logs=&quot;up.shtml&quot;;
+        OFMT=&quot;%.3f&quot;;
+        while(getline &lt; logs)
+        {
+                split($7,atmp,&quot;?&quot;);
+                split(atmp[2],params,&quot;&amp;&quot;);
+                for(i in params){
+                        if ( params[i] ~ /^cv=.*$/){
+                                cv = params[i];
+                        }
+                        if ( params[i] ~ /^pf=.*$/){
+                                pf = params[i];
+                        }
+                }
+                aListNum[cv,pf]+=1;
+                ilen++;
+        }
+        close(logs);
+
+        print ilen;
+        for(k in aListNum) {
+                print k,aListNum[k]| &quot;sort -r -n -k2&quot;;
+        }
 }&#39;
     </div>
 </article>
