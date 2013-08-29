@@ -58,7 +58,7 @@
                 <article class="arc" aid="">
     <a name="1594"></a>
     2013-08-07 
-    <center><h2>cmd_svn</h2></center>
+    <center><h3>cmd_svn</h3></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <p><span style="font-size: large;">一、复制修改且未提交的文件到　/tmp/tt　目录下：</span></p>
 <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">svn st|sed -e '/^?.*$/d'|sed -e 's/^[MA]/cp --parents/g'|sed -e 's/$/ \/tmp\/tt/' | sh</pre>
