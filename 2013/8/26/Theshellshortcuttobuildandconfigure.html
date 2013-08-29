@@ -4,13 +4,13 @@
 	<meta charset="utf-8"/>
     
     
-    <title>shell快捷建和配置 | SofTidy.com</title>
+    <title>shell常用命令-快捷键-配置 | SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="shell快捷建和配置" />
+    <meta name="Keywords" content="shell常用命令-快捷键-配置" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -57,10 +57,12 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1605"></a>
-    2013-08-26 
-    <center><h2>shell快捷建和配置</h2></center>
+    2013-08-27 
+    <center><h2>shell常用命令-快捷键-配置</h2></center>
     <div class="ym-gbox-left ym-clearfix inner" >
-        <h2 class="entry-title public">&nbsp;快捷键：</h2>
+        <h2 class="entry-title public">常用命令：</h2>
+<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*</p>
+<h2 class="entry-title public">快捷键：</h2>
 <h3 style="margin-left: 30px;">编辑命令</h3>
 <ul>
 <li style="list-style-type: none;">
@@ -132,7 +134,21 @@
 </ul>
 <p>&nbsp;</p>
 <h2 class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/milkbikis/powerline-shell">powerline-shell</a></strong></h2>
-<p style="margin-left: 30px;">function powerline_precmd() {<br />&nbsp; export PS1="$(~/powerline-shell.py $? --cwd-only --mode compatible --shell zsh)"<br />}<br /><br />function install_powerline_precmd() {<br />for s in "${precmd_functions[@]}"; do<br />if [ "$s" = "powerline_precmd" ]; then<br />return<br />fi<br />done&nbsp;<br />precmd_functions+=(powerline_precmd)<br />}&nbsp;<br /><br />install_powerline_precmd</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">    function powerline_precmd() {
+      export PS1="$(~/powerline-shell.py $? --cwd-only --mode compatible --shell zsh
+    }
+
+    function install_powerline_precmd() {
+      for s in "${precmd_functions[@]}"; do
+        if [ "$s" = "powerline_precmd" ]; then
+          return
+        fi
+      done
+      precmd_functions+=(powerline_precmd)
+    }
+
+    install_powerline_precmd</pre>
+<h2 class="entry-title public">&nbsp;</h2>
     </div>
 </article>
 
@@ -183,7 +199,7 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/toTop.js"></script>
 <script src="/js/softidy.js"></script>
-<link href="/syntaxhighlighter/styles/shThemeDjango.css" rel="stylesheet" type="text/css" />
+<link href="/syntaxhighlighter/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
 <script src="/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
 <script src="/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
 
