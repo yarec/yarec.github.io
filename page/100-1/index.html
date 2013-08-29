@@ -66,7 +66,6 @@
 <p style="margin-left: 30px;">Continuation-passing style(CPS)是指将控制流(Control flow)<sup><a class="footref" name="fnr.1" href="http://blog.csdn.net/cnnzp/article/details/7832106#fn.1"></a></sup>显式的当做参数传递的编程风格。 函数的返回不在通过return语句，而是将返回值当做参数，调用控制流。<br />CPS风格的函数都会有一个额外的参数k，显式的表示了continuation（可以理解成控制流的流向，what comes next）。当CPS函数需要返回的时候，调用k，并将返回值作为k的参数。</p>
 <h3>２、CPS程序与普通程序相比有如下明显的不同：</h3>
 <p style="margin-left: 30px;">CPS函数都有一个额外的参数&nbsp;<em>k</em>&nbsp;，表示控制流。函数需要返回，必须显式的调用&nbsp;<em>k</em>&nbsp;.<br />在函数的末尾调用了另外一个函数，这种调用称为尾调用，tail call。相应的在尾部递归调用，称之为尾递归，tail recursion。&nbsp;<strong>CPS所有函数都是尾调用。</strong></p>
-<p style="margin-left: 30px;">&nbsp;</p>
 <h3>３、具有突出表现的场景</h3>
 <p style="margin-left: 30px;">使用CPS最初主要用于<span style="color: #ff0000;">编译高级语言</span>时一种中间代码表示，有了这种中间代码，编译器的复杂度大大降低。<br />现在发现CPS在<span style="color: #ff0000;">异步编程</span>里，<span style="color: #ff0000;">分布式编程</span>里大显身手。</p>
 <h3>４、CPS风格代码也有自己的缺点：</h3>
