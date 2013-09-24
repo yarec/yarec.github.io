@@ -4,13 +4,13 @@
 	<meta charset="utf-8"/>
     
     
-    <title>list | SofTidy.com</title>
+    <title>半衰期公式 | SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base target="_blank" />
-    <meta name="Keywords" content="list |" />
+    <meta name="Keywords" content="半衰期公式" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -55,78 +55,45 @@
     <div class="ym-wrapper">
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
-                <article class="arc" >
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-09-24
-            <a href="/2013/9/16/Thehalf-lifeofformula.html"> <h3> <center>半衰期公式</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-08-29
-            <a href="/2013/8/28/CPS(Continuation-Passing-Style).html"> <h3> <center>CPS（Continuation-Passing-Style）</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-09-24
-            <a href="/2013/8/26/Theshellshortcuttobuildandconfigure.html"> <h3> <center>shell常用命令-快捷键-配置</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-08-29
-            <a href="/2013/8/6/Knowledgediscovery(turn).html"> <h3> <center>知识发现（转）</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-26
-            <a href="/2013/7/26/Nonrootnodeinstallation.html"> <h3> <center>非root安装node</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-15
-            <a href="/2013/7/15/EightQueen's-sicp.html"> <h3> <center>八皇后-sicp</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-10
-            <a href="/2013/7/9/TouchMusic-midnightblues.html"> <h3> <center>触动音乐-午夜怨曲</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-05
-            <a href="/2013/7/5/PlanBox-box.html"> <h3> <center>PlanBox-计划盒子</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-08-29
-            <a href="/2013/7/4/TaiChiclassics.html"> <h3> <center>太极经典</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-05
-            <a href="/2013/6/28/Abstractandprogramdesign.html"> <h3> <center>抽象与程序设计</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-06-28
-            <a href="/2013/6/20/Squarerootalgorithms.html"> <h3> <center>平方根求值算法</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-09-23
-            <a href="/2013/6/18/Schemeresourcelist.html"> <h3> <center>scheme资源列表</center> </h3> </a>
-        </div>
-    
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-06-22
-            <a href="/2013/6/9/Zerobasistoconstructthecompiler.html"> <h3> <center>零基础构建编译器</center> </h3> </a>
-        </div>
-    
+                <article class="arc" aid="">
+    <a name="1619"></a>
+    2013-09-24 
+    <center><h3>半衰期公式</h3></center>
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>半衰期定义：半衰期是指某種特定物質的浓度经过某种反应降低到剩下初始时一半所消耗的時間，半衰期是研究反应动力学的一个容易测定的重要参数，数学上可以证明，只有一级反应的半衰期是恒定的数值，且知悉一个一级反应的半衰期便可以计算出该反应的所有动力学参数，所以人们通常只关心一级反应的半衰期。常见的一级反应有：放射性核素的衰变、一级化学反应、药物在体内的吸收和代谢等。(from wiki)</p>
+<p>半衰期的公式：m=M*(1/2)<sup>(t/T)</sup> <br />　　　　　即：T= t/log(m/M, 0.5)</p>
+<p style="margin-left: 30px;">其中M为反应前原子核质量，m为反应后原子核质量，t为反应时间，T为半衰期。</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (m M t T)
+  (* M (expt 0.5 (/ t T))))
+(define (T m M t)
+  (let ([loga 
+         (lambda (n base) 
+           (/ (log n) (log base)))])
+  (/ t (loga (/ m M) 0.5))))
+
+(T 25 100 20)
+(m 100 20 10)</pre>
+    </div>
 </article>
 
             </section>
         </div>
 
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'softidy';
+            var disqus_identifier = '1619';
+            var disqus_url = 'http://softidy.com/2013/9/16/Thehalf-lifeofformula.html';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         
     </div>
 </div>
