@@ -57,11 +57,20 @@
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
     <a name="1605"></a>
-    2013-09-24 
+    2013-09-26 
     <center><h3>shell常用命令-快捷键-配置</h3></center>
     <div class="ym-gbox-left ym-clearfix inner" >
         <h3 class="entry-title public">常用命令：</h3>
-<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*<br />列出文件大小并排序：du -sh *|sort -h -r</p>
+<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*<br />列出文件大小并排序：du -sh *|sort -h -r<br />基于日期循环：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">function dojob {
+  echo $1
+}
+b=$1
+e=$2
+while [ $b -le $e ]; do
+  dojob $b
+  b=`date -d "$b UTC +1 day" +"%Y%m%d"`
+done</pre>
 <h3 class="entry-title public">快捷键：</h3>
 <h4 style="margin-left: 30px;">编辑命令</h4>
 <ul>
