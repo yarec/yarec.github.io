@@ -56,8 +56,20 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1622">
+    创建：2013-09-28  更新：2013-09-28
+    <center><h3><a href="http://softidy.com/2013/9/28/Windowsmultiuserremotedesktop.html">windows多用户远程桌面</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>软件名称： Universal Termsrv.dll Patch (远程桌面多用户同时连接数破解通用补丁)<br />操作系统： Windows XP SP2 SP3; Vista SP1 SP2/Windows 7, 32bit(x86)/64bit(x64)<br />原理：　　破解 termsrv.dll, 解除远程桌面多用户同时连接（会话）数限制。<br />下载：　　<a href="http://yunpan.cn/QGiiFPBQ866ut">http://yunpan.cn/QGiiFPBQ866ut</a></p>
+<p>由于 Windows XP/Vista 的许可限制，在一台电脑上同一时间只允许一个用户登录（会话）。<br />如果有第二个用户通过远程桌面服务登录本机，那么在此之前本地已登录的用户、或远程已登录的用户将被踢出。<br />本补丁的功能就是去除这个限制，允许多人多用户同时并行访问登录XP/Vista，拥有一个终端服务器的功能。<br />通用补丁，适合所有语言的Windows！</p>
+<p>说明：<br />1, 请根据你的系统以管理员运行对应的程序：右键点程序，选择以管理员身份运行。<br />&nbsp; &nbsp; 32位系统请运行 UniversalTermsrvPatch-x86.exe;<br />&nbsp; &nbsp; 64位系统请运行 UniversalTermsrvPatch-x64.exe。<br />　 注：1重启生效，2备份文件： \windows\system32\termsrv.dll.backup。<br />2, 导入相应注册表文件，vista及以后的版本导入vista.reg，xp导入xp.reg<br />3, 用户必须拥有"Remote Desktop Users"或&ldquo;Administrators&rdquo;组的权限。</p>
+        <br/><a href="http://softidy.com">http://softidy.com</a>
+        <a href="http://softidy.com/2013/9/28/Windowsmultiuserremotedesktop.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1621">
-    创建：2013-09-27  更新：2013-09-27
+    创建：2013-09-27  更新：2013-09-28
     <center><h3><a href="http://softidy.com/2013/9/27/NetworkdatapacketsunderWindowsmonitoringandinterceptiontechnology.html">Windows下网络数据包的监听和拦截技术</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <div class="main_l_content_title">
@@ -66,8 +78,8 @@
 <div class="main_l_content_note">2009-08-09 15:46 &nbsp;来源:watchstor.com &nbsp; &nbsp;<a href="http://tech.watchstor.com/storage-network-115067.htm#pinglun"><br /></a></div>
 <div class="main_l_content_note1">
 <ul>
-<li><span class="fa">摘要：</span>本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。</li>
-<li><span class="fa">标签：</span><a href="http://www.watchstor.com/php/search.php?keyword=%CD%F8%C2%E7%CA%FD%BE%DD%B0%FC%C0%B9%BD%D8%BC%BC%CA%F5" target="_blank">网络数据包拦截技术</a></li>
+<li>摘要：本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。</li>
+<li>标签：<a href="http://www.watchstor.com/php/search.php?keyword=%CD%F8%C2%E7%CA%FD%BE%DD%B0%FC%C0%B9%BD%D8%BC%BC%CA%F5" target="_blank">网络数据包拦截技术</a></li>
 </ul>
 </div>
 <div class="main_l_content_main">
@@ -376,143 +388,6 @@ node app.js</pre>
 <p>&nbsp;</p>
         <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="http://softidy.com/2013/7/26/Nonrootnodeinstallation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1581">
-    创建：2013-07-15  更新：2013-07-15
-    <center><h3><a href="http://softidy.com/2013/7/15/EightQueen's-sicp.html">八皇后-sicp</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p><a href="http://zh.wikipedia.org/wiki/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98">八皇后问题</a>：</p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [28]; toolbar: false; ">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;一些实现基本功能的函数
-;函数accumulate：在list各元素上累积运算------------------
-(define (accumulate op initial seq)
-  (if (null? seq)
-    initial
-    (op (car seq) (accumulate op initial (cdr seq)))))
-
-;函数filter：list元素过滤
-(define (filter predicate sequence)
-  (cond ((null? sequence) '())
-        ((predicate (car sequence))
-         (cons (car sequence) (filter predicate (cdr sequence))))
-        (else (filter predicate (cdr sequence)))))
-
-;函数flatmap
-(define (flatmap proc seq)
-  (accumulate append '() (map proc seq)))
-
-;函数enumerate-interval：产生list
-(define (enumerate-interval low high)
-  (if (&gt; low high)
-    '()
-    (cons low (enumerate-interval (+ low 1) high))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;程序主要框架
-(define (queens board-size)
-  (define (queen-rows k)
-    (if (= k 0)
-      (list empty-board)
-      (filter
-        (lambda (positions) (safe? k positions))
-        ;根据K值，过滤掉不符合条件的表
-        ;将新的【board-size】个(k.new-col)分【board-size】次加入
-        ;(queen-rows (- k 1))中的每个表项
-        (flatmap
-          (lambda (rest-of-queens)
-            (map (lambda (new-col)
-                   (adjoin-position new-col k rest-of-queens))
-                 (enumerate-interval 1 board-size)))
-          (queen-rows (- k 1))))))
-  (show-all-solutions (queen-rows board-size) board-size 1))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;定义 empty-board
-(define empty-board '())
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;函数adjoin-position：将新位置插进rest-of-queens头部
-(define (adjoin-position new-col k rest-of-queens)
-  (cons (cons k new-col) rest-of-queens))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;check函数比较给出的new和exist位置是否在一行/列/斜线 是则返回#t&nbsp; 
-;--for safe?
-(define (check new exist)
-  (or
-    (= (car new) (car exist))
-    (= (cdr new) (cdr exist))
-    (= (abs (- (car new) (car exist)))
-       (abs (- (cdr new) (cdr exist))))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;safe?函数 根据k值判断当前的positions是否符合要求
-(define (safe? k positions)
-  (define (danger? new)
-    (check new (car positions)))
-  (if (= k 1)
-    #t
-    (null? (filter danger? (cdr positions)))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;函数show-row输出一行
-(define (show-row col board-size)
-  (define (show-next col board-size count)
-    ;一行的开始输出左括号
-    (cond 
-      ((= count 0)
-       (begin (display "(") (show-next col board-size (+ count 1))))
-      ((= count board-size) ;输入到末尾 判断该输出Q or * 输出并加右括号
-       (if (= count col)
-         (display "Q)")
-         (display "*)")))
-      ((= count col) ;第col列输出Q
-       (begin (display "Q ") 
-              (show-next col board-size (+ count 1))))
-      (else ;其余输出*
-        (begin (display "* ") 
-               (show-next col board-size (+ count 1))))))
-  (begin (show-next col board-size 0)
-         (newline)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;show-all-solutions 输出所有解法
-(define (show-all-solutions ls board-size count)
-  (define (show-one list);输出一个解法
-    (if (not(null? list))
-      (begin
-        (show-row (cdr (car list)) board-size)
-        (show-one (cdr list)))
-      '()))
-  (begin
-    (if (null? ls)
-      (begin
-        (newline)
-        (display "共")
-        (display (- count 1))
-        (display "种解法,输出完毕"))
-      (begin
-        (display "Solution No.")
-        (display count)
-        (display ":")
-        (newline)
-        (newline)
-        (+ count 1)
-        (show-one (car ls))
-        (newline)
-        (show-all-solutions (cdr ls) board-size (+ count 1))))))
-
-(queens 8);默认直接输出8皇后
-</pre>
-<p>保存为queen.scm，执行<span style="color: #ff0000;">racket -r queen.scm<br><span style="color: #000000;">输出：<br></span></span></p>
-<p><span style="color: #008000;">Solution No.1:</span></p>
-<p><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span></p>
-<p><span style="color: #008000;">Solution No.2:</span></p>
-<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">...</span></p>
-<p><span style="color: #008000;">Solution No.92:</span></p>
-<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span></p>
-<p><br><span style="color: #008000;">共92种解法,输出完毕</span></p>
-<p><span style="color: #ff0000;"><span style="color: #000000;">&nbsp;</span></span></p>
-<p>&nbsp;参考地址：<a href="http://www.oschina.net/code/snippet_96184_10064">http://www.oschina.net/code/snippet_96184_10064</a></p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
-        <a href="http://softidy.com/2013/7/15/EightQueen's-sicp.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 
