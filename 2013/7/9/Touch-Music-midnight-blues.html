@@ -5,12 +5,12 @@
     
     
     
-    <title>mdb-ins | 软轶-SofTidy.com</title>
+    <title>触动音乐-午夜怨曲 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="mdb-ins" />
+    <meta name="Keywords" content="触动音乐-午夜怨曲" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,120 +73,19 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-11-20
-    <center><h3>mdb-ins</h3><br></center> 
+    2013-07-09
+    <center><h3>触动音乐-午夜怨曲</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env perl
-
-use FindBin &#39;$Bin&#39;;
-use lib &quot;$Bin/../../lib&quot;;
-use xxtao;
-use MongoDB;
-use IO::Socket;
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getSharedCode($x)){
-        my $_cmd = &quot;ssh n$x &quot;.$cmd;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-my $conn = MongoDB::Connection-&gt;new(host=&gt;&#39;n1&#39;, port=&gt;27017);
-my $db = $conn-&gt;test;
-
-my $cfg = qq| {_id: &#39;shard1&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27017&#39;}, \\
-    {_id: 1, host: &#39;n2:27017&#39;}, \\
-    {_id: 2, host: &#39;n3:27017&#39;}] }
-|;
-
-my $cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-$cfg = qq| {_id: &#39;shard2&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27018&#39;}, \\
-    {_id: 1, host: &#39;n2:27018&#39;}, \\
-    {_id: 2, host: &#39;n3:27018&#39;}] }
-|;
-
-$cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo -port 27018 --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getConfigCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-for(1..3){
-    while(! &amp;ok_port(&quot;n$_&quot;, 20000)){
-        sleep 1;
-    }
-}
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getMongosCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-sub getSharedCode {
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, qq@&quot;ps -ef|grep mongod|grep fork|grep -v &#39;grep&#39;|awk &#39;{print \\\$2}&#39;|xargs kill&quot;@;
-    push @ret, &#39;rm -r /home/mongodb/data&#39;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard1$id&quot;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard2$id&quot;;
-
-
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard1 -port 27017 -dbpath /home/mongodb/data/shard1$id -oplogSize 100 -logpath /home/mongodb/data/shard1$id.log -logappend -fork&quot;;
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard2 -port 27018 -dbpath /home/mongodb/data/shard2$id -oplogSize 100 -logpath /home/mongodb/data/shard2$id.log -logappend -fork&quot;;
-
-    return @ret;
-}
-
-sub getConfigCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;mkdir -p /home/mongodb/data/config&#39;;
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongod -configsvr -dbpath /home/mongodb/data/config -port 20000 -logpath /home/mongodb/data/config.log -logappend -fork&#39;;
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub getMongosCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub ok_port {
-    my ($host, $port) = @_;
-    ptln &quot;wait $host $port&quot;;
-    my $sock = IO::Socket::INET-&gt;new(
-        Proto=&gt;&#39;tcp&#39;,
-        PeerAddr=&gt;$host,
-        PeerPort=&gt;$port
-    );
-    return $sock;
-}
+        <p>　　今天到家突然有一个旋律串到我的脑海里&mdash;&mdash;《<span>午夜怨曲</span>》，不是外面听到的，而是从心底里。最近工作上、生活上都没什么变化，不知道是什么原因，只是这几天一直下雨，人的情绪总是受天气影响啊。于是，翻出电脑里好久没光顾的music文件夹，单曲狂rock好几遍。读读它的歌词，是否心底也会有些感触呢？曾经有多少个旋律打动过内心中最敏感的部分，乘着它的翅膀一次次自由的翱翔。城市里紧张的工作占据了太多的梦想，现在把一切都放下，仔细读一读你曾经喜欢过的歌，慢慢的品味，也许可以发现埋藏在你心里的那一份最纯真的感觉。</p>
+<p>午夜怨曲<br />作词：叶世荣 作曲：黄家驹<br />演唱：Beyond</p>
+<p>从来不知想拥有多少的理想<br />还离不开种种困忧<br />勉强去掩饰失意的感觉<br />再次听到昨日的冷嘲</p>
+<p>徘徊於街中恐怕只得孤独<br />寻回思忆中的碎片<br />变作了一堆草芥风中散<br />与你奏过午夜的怨曲</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>从回忆中找不到天真的笑声<br />曾留不低心中斗争<br />每次去担当失意的主角<br />冷笑变作故事的作者</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>啊~啊~ 障碍能撕破</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
     </div>
 </article>
 
@@ -197,8 +96,8 @@ sub ok_port {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1493';
-            var disqus_url = 'http://softidy.com/2012/11/20/Mdb-ins.html';
+            var disqus_identifier = '1579';
+            var disqus_url = 'http://softidy.com/2013/7/9/Touch-Music-midnight-blues.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

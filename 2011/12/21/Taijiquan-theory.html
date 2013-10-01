@@ -5,12 +5,12 @@
     
     
     
-    <title>mdb-ins | 软轶-SofTidy.com</title>
+    <title>太极拳论 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="mdb-ins" />
+    <meta name="Keywords" content="太极拳论" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,120 +73,10 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-11-20
-    <center><h3>mdb-ins</h3><br></center> 
+    2011-12-21
+    <center><h3>太极拳论</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env perl
-
-use FindBin &#39;$Bin&#39;;
-use lib &quot;$Bin/../../lib&quot;;
-use xxtao;
-use MongoDB;
-use IO::Socket;
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getSharedCode($x)){
-        my $_cmd = &quot;ssh n$x &quot;.$cmd;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-my $conn = MongoDB::Connection-&gt;new(host=&gt;&#39;n1&#39;, port=&gt;27017);
-my $db = $conn-&gt;test;
-
-my $cfg = qq| {_id: &#39;shard1&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27017&#39;}, \\
-    {_id: 1, host: &#39;n2:27017&#39;}, \\
-    {_id: 2, host: &#39;n3:27017&#39;}] }
-|;
-
-my $cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-$cfg = qq| {_id: &#39;shard2&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27018&#39;}, \\
-    {_id: 1, host: &#39;n2:27018&#39;}, \\
-    {_id: 2, host: &#39;n3:27018&#39;}] }
-|;
-
-$cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo -port 27018 --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getConfigCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-for(1..3){
-    while(! &amp;ok_port(&quot;n$_&quot;, 20000)){
-        sleep 1;
-    }
-}
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getMongosCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-sub getSharedCode {
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, qq@&quot;ps -ef|grep mongod|grep fork|grep -v &#39;grep&#39;|awk &#39;{print \\\$2}&#39;|xargs kill&quot;@;
-    push @ret, &#39;rm -r /home/mongodb/data&#39;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard1$id&quot;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard2$id&quot;;
-
-
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard1 -port 27017 -dbpath /home/mongodb/data/shard1$id -oplogSize 100 -logpath /home/mongodb/data/shard1$id.log -logappend -fork&quot;;
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard2 -port 27018 -dbpath /home/mongodb/data/shard2$id -oplogSize 100 -logpath /home/mongodb/data/shard2$id.log -logappend -fork&quot;;
-
-    return @ret;
-}
-
-sub getConfigCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;mkdir -p /home/mongodb/data/config&#39;;
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongod -configsvr -dbpath /home/mongodb/data/config -port 20000 -logpath /home/mongodb/data/config.log -logappend -fork&#39;;
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub getMongosCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub ok_port {
-    my ($host, $port) = @_;
-    ptln &quot;wait $host $port&quot;;
-    my $sock = IO::Socket::INET-&gt;new(
-        Proto=&gt;&#39;tcp&#39;,
-        PeerAddr=&gt;$host,
-        PeerPort=&gt;$port
-    );
-    return $sock;
-}
+        <p><span style="font-size: large; ">      太极者。无极而生。（动静之机。）阴阳之母也。动之则分。静之则合。无过不及。随曲就伸。人刚我柔谓之走。我顺人背谓之粘。动急则急应。动缓则缓随。虽变化万端。而理唯／为一贯。</span> </p><p><span style="font-size: large; ">　　由著熟而渐悟懂劲。由懂劲而阶及神明。然非用／功力之久。不能豁然贯通焉。</span><a target="_blank" style="color: rgb(19, 110, 194); font-family: arial, 宋体, sans-serif; font-size: 14px; line-height: 24px; " href="http://baike.baidu.com/view/243070.htm"><span style="font-size: large; ">虚领顶劲</span></a><span style="font-size: large; ">。</span><a target="_blank" style="color: rgb(19, 110, 194); font-family: arial, 宋体, sans-serif; font-size: 14px; line-height: 24px; " href="http://baike.baidu.com/view/249908.htm"><span style="font-size: large; ">气沉丹田</span></a><span style="font-size: large; ">。不偏不倚。忽隐忽现。左重则左虚。右重则右杳。仰之则弥高。俯之则弥深。进之则愈长。退之则愈促。一羽不能加。蝇虫不能落。人不知我。我独知人。英雄所向无敌。盖皆由此而及也。</span><span style="font-size: large; "> </span></p><p><span style="font-size: large; ">　　斯技旁门甚多。虽势有区别。概不外乎壮欺弱。慢让快耳。有力打无力。手慢让手快。皆是先天自然之能。非关学力而有为也。察</span><a target="_blank" style="color: rgb(19, 110, 194); font-family: arial, 宋体, sans-serif; font-size: 14px; line-height: 24px; " href="http://baike.baidu.com/view/247266.htm"><span style="font-size: large; ">四两拨千斤</span></a><span style="font-size: large; ">之句。显非力胜。观耄耋能御众之形。快何能为。立如平／秤准。活似车轮。偏沉则随。双重则滞。每见数年纯功。不能运化者。率皆自为人制。双重之病未悟耳。欲避此病。须知阴阳。粘即是走。走即是粘。阴不离阳。阳不离阴。阴阳相济方为懂劲。懂劲后。愈练愈精。默识揣摩。渐至从心所欲。本是舍己从人。多误舍近求远。所谓差之毫厘。谬之千里。学者不可不详辨焉。是为论。 </span></p>
     </div>
 </article>
 
@@ -197,8 +87,8 @@ sub ok_port {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1493';
-            var disqus_url = 'http://softidy.com/2012/11/20/Mdb-ins.html';
+            var disqus_identifier = '1242';
+            var disqus_url = 'http://softidy.com/2011/12/21/Taijiquan-theory.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

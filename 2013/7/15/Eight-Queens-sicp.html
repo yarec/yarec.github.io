@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+    
+    
+    
+    <title>SICP的八皇后实现 | 软轶-SofTidy.com</title>
+
+	<!-- Mobile viewport optimisation -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="Keywords" content="SICP的八皇后实现" />
+    <meta name="Description" content="" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
+	<!--[if lte IE 7]>
+	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+
+
+
+<div id="left" class="mid-menu-left"></div>
+
+<nav id="nav">
+    <div id="nav_inner">
+        <ul >
+            <li>
+                <a href="/">HOME</a>
+            </li>
+            <li>
+                <a href="/tag">Tag↓</a>
+                <ul>
+                    <li><a href="/list">All</a></li>
+                    <li><a href="/res">Res</a></li>
+                    
+                    <li><a href="/tag/Tool">工具</a></li>
+                    
+                    <li><a href="/tag/Miscellaneous">杂项</a></li>
+                    
+                    <li><a href="/tag/Programming">编程</a></li>
+                    
+                    <li><a href="/tag/Tai-Chi">太极</a></li>
+                    
+                </ul>
+            </li>
+            <li><a href="/plus">Plus</a></li>
+            <li><a href="/about">About</a></li>
+            <li>
+                <form action="http://google.com/search" method="get" accept-charset="utf-8">
+                    <input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                    <input type="hidden" name="q" value="site:softidy.com">
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="main">
+    <div class="ym-wrapper">
+        <div class="ym-wbox">
+            <section class="ym-grid linearize-level-1">
+                <article class="arc" aid="">
+    2013-07-15
+    <center><h3>SICP的八皇后实现</h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><a href="http://zh.wikipedia.org/wiki/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98">八皇后问题</a>：</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [28]; toolbar: false; ">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;一些实现基本功能的函数
+;函数accumulate：在list各元素上累积运算------------------
+(define (accumulate op initial seq)
+  (if (null? seq)
+    initial
+    (op (car seq) (accumulate op initial (cdr seq)))))
+
+;函数filter：list元素过滤
+(define (filter predicate sequence)
+  (cond ((null? sequence) '())
+        ((predicate (car sequence))
+         (cons (car sequence) (filter predicate (cdr sequence))))
+        (else (filter predicate (cdr sequence)))))
+
+;函数flatmap
+(define (flatmap proc seq)
+  (accumulate append '() (map proc seq)))
+
+;函数enumerate-interval：产生list
+(define (enumerate-interval low high)
+  (if (&gt; low high)
+    '()
+    (cons low (enumerate-interval (+ low 1) high))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;程序主要框架
+(define (queens board-size)
+  (define (queen-rows k)
+    (if (= k 0)
+      (list empty-board)
+      (filter
+        (lambda (positions) (safe? k positions))
+        ;根据K值，过滤掉不符合条件的表
+        ;将新的【board-size】个(k.new-col)分【board-size】次加入
+        ;(queen-rows (- k 1))中的每个表项
+        (flatmap
+          (lambda (rest-of-queens)
+            (map (lambda (new-col)
+                   (adjoin-position new-col k rest-of-queens))
+                 (enumerate-interval 1 board-size)))
+          (queen-rows (- k 1))))))
+  (show-all-solutions (queen-rows board-size) board-size 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;定义 empty-board
+(define empty-board '())
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;函数adjoin-position：将新位置插进rest-of-queens头部
+(define (adjoin-position new-col k rest-of-queens)
+  (cons (cons k new-col) rest-of-queens))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;check函数比较给出的new和exist位置是否在一行/列/斜线 是则返回#t&nbsp; 
+;--for safe?
+(define (check new exist)
+  (or
+    (= (car new) (car exist))
+    (= (cdr new) (cdr exist))
+    (= (abs (- (car new) (car exist)))
+       (abs (- (cdr new) (cdr exist))))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;safe?函数 根据k值判断当前的positions是否符合要求
+(define (safe? k positions)
+  (define (danger? new)
+    (check new (car positions)))
+  (if (= k 1)
+    #t
+    (null? (filter danger? (cdr positions)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;函数show-row输出一行
+(define (show-row col board-size)
+  (define (show-next col board-size count)
+    ;一行的开始输出左括号
+    (cond 
+      ((= count 0)
+       (begin (display "(") (show-next col board-size (+ count 1))))
+      ((= count board-size) ;输入到末尾 判断该输出Q or * 输出并加右括号
+       (if (= count col)
+         (display "Q)")
+         (display "*)")))
+      ((= count col) ;第col列输出Q
+       (begin (display "Q ") 
+              (show-next col board-size (+ count 1))))
+      (else ;其余输出*
+        (begin (display "* ") 
+               (show-next col board-size (+ count 1))))))
+  (begin (show-next col board-size 0)
+         (newline)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;show-all-solutions 输出所有解法
+(define (show-all-solutions ls board-size count)
+  (define (show-one list);输出一个解法
+    (if (not(null? list))
+      (begin
+        (show-row (cdr (car list)) board-size)
+        (show-one (cdr list)))
+      '()))
+  (begin
+    (if (null? ls)
+      (begin
+        (newline)
+        (display "共")
+        (display (- count 1))
+        (display "种解法,输出完毕"))
+      (begin
+        (display "Solution No.")
+        (display count)
+        (display ":")
+        (newline)
+        (newline)
+        (+ count 1)
+        (show-one (car ls))
+        (newline)
+        (show-all-solutions (cdr ls) board-size (+ count 1))))))
+
+(queens 8);默认直接输出8皇后
+</pre>
+<p>保存为queen.scm，执行<span style="color: #ff0000;">racket -r queen.scm<br><span style="color: #000000;">输出：<br></span></span></p>
+<p><span style="color: #008000;">Solution No.1:</span></p>
+<p><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span></p>
+<p><span style="color: #008000;">Solution No.2:</span></p>
+<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">...</span></p>
+<p><span style="color: #008000;">Solution No.92:</span></p>
+<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span></p>
+<p><br><span style="color: #008000;">共92种解法,输出完毕</span></p>
+<p><span style="color: #ff0000;"><span style="color: #000000;">&nbsp;</span></span></p>
+<p>&nbsp;参考地址：<a href="http://www.oschina.net/code/snippet_96184_10064">http://www.oschina.net/code/snippet_96184_10064</a></p>
+    </div>
+</article>
+
+            </section>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'softidy';
+            var disqus_identifier = '1581';
+            var disqus_url = 'http://softidy.com/2013/7/15/Eight-Queens-sicp.html';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+    </div>
+</div>
+
+<footer>
+	<div class="ym-wrapper">
+        <div class="ym-grid ">
+            <div class="ym-g20 ym-gl"> | </div>
+            <div class="ym-g60 ym-gl"> 
+                <div class="ym-wbox">
+                    <h4><var>Friends:</var></h4>
+                    <tt>
+                        <ul>
+                            <li><a href="http://blog.sina.com.cn/u/1310483170">太极之春</a></li>
+                            <li><a href="http://codingmatch.me">敲代码的火柴</a></li>
+                        </ul>
+                    </tt>
+                </div>
+            </div>
+            <div class="ym-g20 ym-gl"> | </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+<script src="/js/jquery.js"></script>
+<script src="/js/toTop.js"></script>
+<script src="/js/softidy.js"></script>
+<link href="/syntaxhighlighter/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+<script src="/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa9274a07fa6cefb9c0c78eecb4d777b7' type='text/javascript'%3E%3C/script%3E"));
+</script>

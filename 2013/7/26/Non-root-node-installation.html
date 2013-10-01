@@ -5,12 +5,12 @@
     
     
     
-    <title>mdb-ins | 软轶-SofTidy.com</title>
+    <title>非root安装node | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="mdb-ins" />
+    <meta name="Keywords" content="非root安装node" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,120 +73,40 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-11-20
-    <center><h3>mdb-ins</h3><br></center> 
+    2013-07-26
+    <center><h3>非root安装node</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env perl
-
-use FindBin &#39;$Bin&#39;;
-use lib &quot;$Bin/../../lib&quot;;
-use xxtao;
-use MongoDB;
-use IO::Socket;
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getSharedCode($x)){
-        my $_cmd = &quot;ssh n$x &quot;.$cmd;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-my $conn = MongoDB::Connection-&gt;new(host=&gt;&#39;n1&#39;, port=&gt;27017);
-my $db = $conn-&gt;test;
-
-my $cfg = qq| {_id: &#39;shard1&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27017&#39;}, \\
-    {_id: 1, host: &#39;n2:27017&#39;}, \\
-    {_id: 2, host: &#39;n3:27017&#39;}] }
-|;
-
-my $cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-$cfg = qq| {_id: &#39;shard2&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27018&#39;}, \\
-    {_id: 1, host: &#39;n2:27018&#39;}, \\
-    {_id: 2, host: &#39;n3:27018&#39;}] }
-|;
-
-$cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo -port 27018 --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getConfigCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-for(1..3){
-    while(! &amp;ok_port(&quot;n$_&quot;, 20000)){
-        sleep 1;
-    }
-}
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getMongosCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-sub getSharedCode {
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, qq@&quot;ps -ef|grep mongod|grep fork|grep -v &#39;grep&#39;|awk &#39;{print \\\$2}&#39;|xargs kill&quot;@;
-    push @ret, &#39;rm -r /home/mongodb/data&#39;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard1$id&quot;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard2$id&quot;;
-
-
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard1 -port 27017 -dbpath /home/mongodb/data/shard1$id -oplogSize 100 -logpath /home/mongodb/data/shard1$id.log -logappend -fork&quot;;
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard2 -port 27018 -dbpath /home/mongodb/data/shard2$id -oplogSize 100 -logpath /home/mongodb/data/shard2$id.log -logappend -fork&quot;;
-
-    return @ret;
-}
-
-sub getConfigCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;mkdir -p /home/mongodb/data/config&#39;;
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongod -configsvr -dbpath /home/mongodb/data/config -port 20000 -logpath /home/mongodb/data/config.log -logappend -fork&#39;;
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub getMongosCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub ok_port {
-    my ($host, $port) = @_;
-    ptln &quot;wait $host $port&quot;;
-    my $sock = IO::Socket::INET-&gt;new(
-        Proto=&gt;&#39;tcp&#39;,
-        PeerAddr=&gt;$host,
-        PeerPort=&gt;$port
-    );
-    return $sock;
-}
+        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
+cd node
+mkdir ~/opt
+export PREFIX=~/opt; ./configure
+make
+make install
+echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+<p>&nbsp;测试一下：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
+v0.11.5-pre
+$ npm -v
+1.3.4</pre>
+<p>再测试一下webapp，以下代码保存到app.js</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
+server = http.createServer(function (req, res) {
+res.writeHeader(200, {"Content-Type": "text/plain"});
+res.end("Hello Node");
+})
+server.listen(3000);</pre>
+<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
+<p>试用Express:</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">npm install -g express
+mkdir site &amp;&amp; cd site
+express .
+cd . &amp;&amp; npm install
+node app.js</pre>
+<p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
+<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
+<p>&nbsp;</p>
     </div>
 </article>
 
@@ -197,8 +117,8 @@ sub ok_port {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1493';
-            var disqus_url = 'http://softidy.com/2012/11/20/Mdb-ins.html';
+            var disqus_identifier = '1586';
+            var disqus_url = 'http://softidy.com/2013/7/26/Non-root-node-installation.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

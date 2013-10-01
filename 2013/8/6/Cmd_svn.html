@@ -4,12 +4,12 @@
 	<meta charset="utf-8"/>
     
     
-    <title>cmd_svn | SofTidy.com</title>
+    
+    <title>cmd_svn | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <base target="_blank" />
     <meta name="Keywords" content="cmd_svn" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
@@ -37,17 +37,34 @@
 <nav id="nav">
     <div id="nav_inner">
         <ul >
-            <li><a href="/">HOME</a></li>
-            <li><a href="/tag">Tag</a></li>
-            <li><a href="/list">List</a></li>
+            <li>
+                <a href="/">HOME</a>
+            </li>
+            <li>
+                <a href="/tag">Tag↓</a>
+                <ul>
+                    <li><a href="/list">All</a></li>
+                    <li><a href="/res">Res</a></li>
+                    
+                    <li><a href="/tag/Tool">工具</a></li>
+                    
+                    <li><a href="/tag/Miscellaneous">杂项</a></li>
+                    
+                    <li><a href="/tag/Programming">编程</a></li>
+                    
+                    <li><a href="/tag/Tai-Chi">太极</a></li>
+                    
+                </ul>
+            </li>
             <li><a href="/plus">Plus</a></li>
-            <li><a href="/resouses">utils</a></li>
             <li><a href="/about">About</a></li>
+            <li>
+                <form action="http://google.com/search" method="get" accept-charset="utf-8">
+                    <input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
+                    <input type="hidden" name="q" value="site:softidy.com">
+                </form>
+            </li>
         </ul>
-        <form action="http://google.com/search" method="get" accept-charset="utf-8">
-            <input class="ym-searchfield" type="search" name="q" placeholder="Search..." />
-            <input type="hidden" name="q" value="site:softidy.com">
-        </form>
     </div>
 </nav>
 
@@ -56,9 +73,8 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    <a name="1594"></a>
-    2013-08-07 
-    <center><h3>cmd_svn</h3></center>
+    2013-08-06
+    <center><h3>cmd_svn</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p><span style="font-size: large;">一、复制修改且未提交的文件到　/tmp/tt　目录下：</span></p>
 <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">svn st|sed -e '/^?.*$/d'|sed -e 's/^[MA]/cp --parents/g'|sed -e 's/$/ \/tmp\/tt/' | sh</pre>

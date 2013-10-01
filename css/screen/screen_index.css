@@ -131,46 +131,83 @@ footer {
     margin: 0 auto;
 }
 
-#nav ul{
+#nav>div>ul{
     list-style: none outside none;
     margin: 0;
-    padding: 0;
+    padding-left: 90px;
     display: -moz-inline-stack;
     display: inline-block;
     *display: inline;
     *zoom: 1;
 }
 
-#nav li{
+#nav>div>ul>li{
     display: -moz-inline-stack;
     display: inline-block;
     *display: inline;
     *zoom: 1;
-    padding: 0 8px;
     opacity: 1;
     -ms-filter: none;
+    #background-color: rgba(30,30,30,0.9);
+    #background-color: green;
+    position: relative;
 }
 #nav li a{
-    padding: 10px 0;
-    width: 50px;
+    padding: 5px 15px;
+    margin: 10px -8px;
+    #background-color: blue;
 }
+#nav li ul{
+    display: none;
+    left: -40px;
+    top: -4px;
+    margin-top: 30px;
+    line-height: 16px;
+    width: 140px;
+    position: absolute;
+    background-color: #303030;
+}
+
+#nav li:hover ul { display:block;}
+
+#nav li ul li{
+    display: block;
+    margin: 0px 10px; 
+    padding: 5px 10px;
+    border-top; dotted 1px #606060;
+    list-style-type: none;
+    color: #fff;
+    #background-color: green;
+}
+
+#nav li ul li a{
+    padding: 12px 55px 12px 0px;
+    margin: 10px 0px;
+    #background-color: blue;
+}
+#nav li ul li:first-child { border-top: none; }
+#nav>div>ul>li:first-child +li+li+li+li{ padding-left: 280px; }
 
 #nav form{
     float: right;
-    padding: 
 }
 #nav form input{
     height: 25px;
+    position: relative;
+    top: 5px;
+}
+#nav form + ul{
+    top: 5px;
+    left: 262px;
+    width: 185px;
 }
 
-#nav:hover{
-    height: 56px;
-    line-height: 56px;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    -ms-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+#nav li:hover > a{
+    #background-color: transparent;
+    background-color: black;
+}
+#nav li ul li:hover > a{
+    background-color: transparent;
 }
 
 #main {

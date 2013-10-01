@@ -5,12 +5,12 @@
     
     
     
-    <title>mdb-ins | 软轶-SofTidy.com</title>
+    <title>shell常用命令-快捷键-配置 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="mdb-ins" />
+    <meta name="Keywords" content="shell常用命令-快捷键-配置" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,120 +73,107 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-11-20
-    <center><h3>mdb-ins</h3><br></center> 
+    2013-08-26
+    <center><h3>shell常用命令-快捷键-配置</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env perl
-
-use FindBin &#39;$Bin&#39;;
-use lib &quot;$Bin/../../lib&quot;;
-use xxtao;
-use MongoDB;
-use IO::Socket;
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getSharedCode($x)){
-        my $_cmd = &quot;ssh n$x &quot;.$cmd;
-        ptln $_cmd;
-        system $_cmd;
+        <h3 class="entry-title public">常用命令：</h3>
+<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*<br />列出文件大小并排序：du -sh *|sort -h -r<br />基于日期循环：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">function dojob {
+  echo $1
+}
+b=$1
+e=$2
+while [ $b -le $e ]; do
+  dojob $b
+  b=`date -d "$b UTC +1 day" +"%Y%m%d"`
+done</pre>
+<h3 class="entry-title public">快捷键：</h3>
+<h4 style="margin-left: 30px;">编辑命令</h4>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + a ：移到命令行首</li>
+<li>Ctrl + e ：移到命令行尾</li>
+<li>Ctrl + f ：按字符前移（右向）</li>
+<li>Ctrl + b ：按字符后移（左向）</li>
+<li>Alt + f ：按单词前移（右向）</li>
+<li>Alt + b ：按单词后移（左向）</li>
+<li>Ctrl + xx：在命令行首和光标之间移动</li>
+<li>Ctrl + u ：从光标处删除至命令行首</li>
+<li>Ctrl + k ：从光标处删除至命令行尾</li>
+<li>Ctrl + w ：从光标处删除至字首</li>
+<li>Alt + d ：从光标处删除至字尾</li>
+<li>Ctrl + d ：删除光标处的字符</li>
+<li>Ctrl + h ：删除光标前的字符</li>
+<li>Ctrl + y ：粘贴至光标后</li>
+<li>Alt + c ：从光标处更改为首字母大写的单词</li>
+<li>Alt + u ：从光标处更改为全部大写的单词</li>
+<li>Alt + l ：从光标处更改为全部小写的单词</li>
+<li>Ctrl + t ：交换光标处和之前的字符</li>
+<li>Alt + t ：交换光标处和之前的单词</li>
+<li>Alt + Backspace：与 Ctrl + w&nbsp;</li>
+</ul>
+</li>
+</ul>
+<h4 style="margin-left: 30px;">重新执行命令</h4>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + r：逆向搜索命令历史</li>
+<li>Ctrl + g：从历史搜索模式退出</li>
+<li>Ctrl + p：历史中的上一条命令</li>
+<li>Ctrl + n：历史中的下一条命令</li>
+<li>Alt + .：使用上一条命令的最后一个参数</li>
+</ul>
+</li>
+</ul>
+<h4 style="margin-left: 30px;">控制命令</h4>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + l：清屏</li>
+<li>Ctrl + o：执行当前命令，并选择上一条命令</li>
+<li>Ctrl + s：阻止屏幕输出</li>
+<li>Ctrl + q：允许屏幕输出</li>
+<li>Ctrl + c：终止命令</li>
+<li>Ctrl + z：挂起命令</li>
+</ul>
+</li>
+</ul>
+<h4 style="margin-left: 30px;">Bang (!) 命令</h4>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>!!：执行上一条命令</li>
+<li>!blah：执行最近的以 blah 开头的命令，如 !ls</li>
+<li>!blah:p：仅打印输出，而不执行</li>
+<li>!$：上一条命令的最后一个参数，与 Alt + . 相同</li>
+<li>!$:p：打印输出 !$ 的内容</li>
+<li>!*：上一条命令的所有参数</li>
+<li>!*:p：打印输出 !* 的内容</li>
+<li>^blah：删除上一条命令中的 blah</li>
+<li>^blah^foo：将上一条命令中的 blah 替换为 foo</li>
+<li>^blah^foo^：将上一条命令中所有的 blah 都替换为 foo</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h3 class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/milkbikis/powerline-shell">powerline-shell</a></strong></h3>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">    function powerline_precmd() {
+      export PS1="$(~/powerline-shell.py $? --cwd-only --mode compatible --shell zsh
     }
-}
 
-
-my $conn = MongoDB::Connection-&gt;new(host=&gt;&#39;n1&#39;, port=&gt;27017);
-my $db = $conn-&gt;test;
-
-my $cfg = qq| {_id: &#39;shard1&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27017&#39;}, \\
-    {_id: 1, host: &#39;n2:27017&#39;}, \\
-    {_id: 2, host: &#39;n3:27017&#39;}] }
-|;
-
-my $cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-$cfg = qq| {_id: &#39;shard2&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27018&#39;}, \\
-    {_id: 1, host: &#39;n2:27018&#39;}, \\
-    {_id: 2, host: &#39;n3:27018&#39;}] }
-|;
-
-$cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo -port 27018 --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getConfigCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
+    function install_powerline_precmd() {
+      for s in "${precmd_functions[@]}"; do
+        if [ "$s" = "powerline_precmd" ]; then
+          return
+        fi
+      done
+      precmd_functions+=(powerline_precmd)
     }
-}
 
-for(1..3){
-    while(! &amp;ok_port(&quot;n$_&quot;, 20000)){
-        sleep 1;
-    }
-}
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getMongosCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-sub getSharedCode {
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, qq@&quot;ps -ef|grep mongod|grep fork|grep -v &#39;grep&#39;|awk &#39;{print \\\$2}&#39;|xargs kill&quot;@;
-    push @ret, &#39;rm -r /home/mongodb/data&#39;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard1$id&quot;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard2$id&quot;;
-
-
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard1 -port 27017 -dbpath /home/mongodb/data/shard1$id -oplogSize 100 -logpath /home/mongodb/data/shard1$id.log -logappend -fork&quot;;
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard2 -port 27018 -dbpath /home/mongodb/data/shard2$id -oplogSize 100 -logpath /home/mongodb/data/shard2$id.log -logappend -fork&quot;;
-
-    return @ret;
-}
-
-sub getConfigCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;mkdir -p /home/mongodb/data/config&#39;;
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongod -configsvr -dbpath /home/mongodb/data/config -port 20000 -logpath /home/mongodb/data/config.log -logappend -fork&#39;;
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub getMongosCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub ok_port {
-    my ($host, $port) = @_;
-    ptln &quot;wait $host $port&quot;;
-    my $sock = IO::Socket::INET-&gt;new(
-        Proto=&gt;&#39;tcp&#39;,
-        PeerAddr=&gt;$host,
-        PeerPort=&gt;$port
-    );
-    return $sock;
-}
+    install_powerline_precmd</pre>
+<h2 class="entry-title public">&nbsp;</h2>
     </div>
 </article>
 
@@ -197,8 +184,8 @@ sub ok_port {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1493';
-            var disqus_url = 'http://softidy.com/2012/11/20/Mdb-ins.html';
+            var disqus_identifier = '1605';
+            var disqus_url = 'http://softidy.com/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

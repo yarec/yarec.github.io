@@ -5,12 +5,12 @@
     
     
     
-    <title>mdb-ins | 软轶-SofTidy.com</title>
+    <title>windows多用户远程桌面 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="mdb-ins" />
+    <meta name="Keywords" content="windows多用户远程桌面" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,120 +73,12 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-11-20
-    <center><h3>mdb-ins</h3><br></center> 
+    2013-09-28
+    <center><h3>windows多用户远程桌面</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env perl
-
-use FindBin &#39;$Bin&#39;;
-use lib &quot;$Bin/../../lib&quot;;
-use xxtao;
-use MongoDB;
-use IO::Socket;
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getSharedCode($x)){
-        my $_cmd = &quot;ssh n$x &quot;.$cmd;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-my $conn = MongoDB::Connection-&gt;new(host=&gt;&#39;n1&#39;, port=&gt;27017);
-my $db = $conn-&gt;test;
-
-my $cfg = qq| {_id: &#39;shard1&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27017&#39;}, \\
-    {_id: 1, host: &#39;n2:27017&#39;}, \\
-    {_id: 2, host: &#39;n3:27017&#39;}] }
-|;
-
-my $cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-$cfg = qq| {_id: &#39;shard2&#39;, members: [ \\
-    {_id: 0, host: &#39;n1:27018&#39;}, \\
-    {_id: 1, host: &#39;n2:27018&#39;}, \\
-    {_id: 2, host: &#39;n3:27018&#39;}] }
-|;
-
-$cmd = &quot;ssh n1 \&quot;/home/mongodb/mongodb/bin/mongo -port 27018 --eval \\\&quot;rs.initiate($cfg);\\\&quot;\&quot;&quot;;
-ptln $cmd;
-system $cmd;
-
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getConfigCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-for(1..3){
-    while(! &amp;ok_port(&quot;n$_&quot;, 20000)){
-        sleep 1;
-    }
-}
-
-foreach my $x (1..3) {
-    foreach my $cmd (&amp;getMongosCode($x)){
-        my $_cmd = &quot;ssh n$x $cmd&quot;;
-        ptln $_cmd;
-        system $_cmd;
-    }
-}
-
-
-sub getSharedCode {
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, qq@&quot;ps -ef|grep mongod|grep fork|grep -v &#39;grep&#39;|awk &#39;{print \\\$2}&#39;|xargs kill&quot;@;
-    push @ret, &#39;rm -r /home/mongodb/data&#39;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard1$id&quot;;
-    push @ret, &quot;mkdir -p /home/mongodb/data/shard2$id&quot;;
-
-
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard1 -port 27017 -dbpath /home/mongodb/data/shard1$id -oplogSize 100 -logpath /home/mongodb/data/shard1$id.log -logappend -fork&quot;;
-    push @ret, &quot;/home/mongodb/mongodb/bin/mongod -shardsvr -replSet shard2 -port 27018 -dbpath /home/mongodb/data/shard2$id -oplogSize 100 -logpath /home/mongodb/data/shard2$id.log -logappend -fork&quot;;
-
-    return @ret;
-}
-
-sub getConfigCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;mkdir -p /home/mongodb/data/config&#39;;
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongod -configsvr -dbpath /home/mongodb/data/config -port 20000 -logpath /home/mongodb/data/config.log -logappend -fork&#39;;
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub getMongosCode{
-    my $id = shift;
-    my @ret = ();
-
-    push @ret, &#39;/home/mongodb/mongodb/bin/mongos -configdb n1:20000,n2:20000,n3:20000 -port 30000 -chunkSize 5 -logpath /home/mongodb/data/mongos.log -logappend -fork&#39;;
-
-    return @ret;
-}
-
-sub ok_port {
-    my ($host, $port) = @_;
-    ptln &quot;wait $host $port&quot;;
-    my $sock = IO::Socket::INET-&gt;new(
-        Proto=&gt;&#39;tcp&#39;,
-        PeerAddr=&gt;$host,
-        PeerPort=&gt;$port
-    );
-    return $sock;
-}
+        <p>软件名称： Universal Termsrv.dll Patch (远程桌面多用户同时连接数破解通用补丁)<br />操作系统： Windows XP SP2 SP3; Vista SP1 SP2/Windows 7, 32bit(x86)/64bit(x64)<br />原理：　　破解 termsrv.dll, 解除远程桌面多用户同时连接（会话）数限制。<br />下载：　　<a href="http://yunpan.cn/QGiiFPBQ866ut">http://yunpan.cn/QGiiFPBQ866ut</a></p>
+<p>由于 Windows XP/Vista 的许可限制，在一台电脑上同一时间只允许一个用户登录（会话）。<br />如果有第二个用户通过远程桌面服务登录本机，那么在此之前本地已登录的用户、或远程已登录的用户将被踢出。<br />本补丁的功能就是去除这个限制，允许多人多用户同时并行访问登录XP/Vista，拥有一个终端服务器的功能。<br />通用补丁，适合所有语言的Windows！</p>
+<p>说明：<br />1, 请根据你的系统以管理员运行对应的程序：右键点程序，选择以管理员身份运行。<br />&nbsp; &nbsp; 32位系统请运行 UniversalTermsrvPatch-x86.exe;<br />&nbsp; &nbsp; 64位系统请运行 UniversalTermsrvPatch-x64.exe。<br />　 注：1重启生效，2备份文件： \windows\system32\termsrv.dll.backup。<br />2, 导入相应注册表文件，vista及以后的版本导入vista.reg，xp导入xp.reg<br />3, 用户必须拥有"Remote Desktop Users"或&ldquo;Administrators&rdquo;组的权限。</p>
     </div>
 </article>
 
@@ -197,8 +89,8 @@ sub ok_port {
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1493';
-            var disqus_url = 'http://softidy.com/2012/11/20/Mdb-ins.html';
+            var disqus_identifier = '1622';
+            var disqus_url = 'http://softidy.com/2013/9/28/Windows-multi-user-remote-desktop.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
