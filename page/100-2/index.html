@@ -73,6 +73,45 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1586">
+    2013-07-26
+    <center><h3><a href="/2013/7/26/Non-root-node-installation.html">非root安装node</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
+cd node
+mkdir ~/opt
+export PREFIX=~/opt; ./configure
+make
+make install
+echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+<p>&nbsp;测试一下：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
+v0.11.5-pre
+$ npm -v
+1.3.4</pre>
+<p>再测试一下webapp，以下代码保存到app.js</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
+server = http.createServer(function (req, res) {
+res.writeHeader(200, {"Content-Type": "text/plain"});
+res.end("Hello Node");
+})
+server.listen(3000);</pre>
+<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
+<p>试用Express:</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">npm install -g express
+mkdir site &amp;&amp; cd site
+express .
+cd . &amp;&amp; npm install
+node app.js</pre>
+<p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
+<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
+<p>&nbsp;</p>
+        <a href="/2013/7/26/Non-root-node-installation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1581">
     2013-07-15
     <center><h3><a href="/2013/7/15/Eight-Queens-sicp.html">SICP的八皇后实现</a></h3><br></center> 
@@ -205,7 +244,6 @@
 <p><br><span style="color: #008000;">共92种解法,输出完毕</span></p>
 <p><span style="color: #ff0000;"><span style="color: #000000;">&nbsp;</span></span></p>
 <p>&nbsp;参考地址：<a href="http://www.oschina.net/code/snippet_96184_10064">http://www.oschina.net/code/snippet_96184_10064</a></p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/7/15/Eight-Queens-sicp.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -224,7 +262,6 @@
 <p>啊~啊~ 障碍能撕破</p>
 <p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
 <p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/7/9/Touch-Music-midnight-blues.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -234,7 +271,6 @@
     <center><h3><a href="/2013/7/5/PlanBox-box.html">PlanBox-计划盒子</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>&nbsp; &nbsp; &nbsp; PlanBox是我的一个web项目，其功能类似于云笔记，使用的技术包括perl、mongodb、extjs、catalyst（perl的mvc框架）。为了解决extjs库（压缩后1M多）加载慢的问题，将其封装到了chrome扩展。数据库使用的mongodb，程序部署在heroku（目前的免费服务已经够用了）。<br />&nbsp; &nbsp; &nbsp; 在云笔记还没有满天飞的年代，我就开始实现这个程序，以记载从网上搜集的各种知识。最开始使用的是java的经典框架（<a href="http://baike.baidu.com/view/2090973.htm">SSH</a>），当时直接用的<a href="http://appfuse.org/">appfuse</a>(后来国内有了springside)。界面用了<a href="http://echo.nextapp.com/">echo</a>(一个服务端的ajax框架，其nb之处在于有一个像vs studio的设计工具)，对于我这种对html和css不通的程序员来说，echo真的是一个神器啊。后来之所以换成了perl+extjs的方案，是因为想要把java放到线上成本是很大的。因为曾经用perl实现了一个脚本工具wt（work tool：旨在简化日常使用的命令行工具），对perl的精炼和强大深有体会。界面方面echo虽然强的不行，但唯一的缺陷是对java的绑定，于是另一个强大的ui框架extjs成了我折腾的对象。基本结构是extjs负责界面的显示和操作的处理，与后台perl程序通过REST以json格式来通信。经过一段时间的苦战，功能已经全部重写完成。planbox成为我重要的工具，记学习笔记、写工作计划和总结、写博客、生成博客文章...<br />&nbsp; &nbsp; &nbsp; planbox和wt是我写过的对我来说最有用的代码，几乎天天都会用到。最初原型（<a href="http://code.google.com/p/webechonote/">webechonote</a>）提交到googlecode的日期为Nov 6, 2009，数来也有四年多了，现在对之前的一些辛苦做一个小总结，也和大家分享一下softidy.com后台程序的故事。相信作为写代码的人，总有一些程序就像自己的孩子一样，永远是那么漂亮，愿意用最宝贵的时间去呵护它、培养它，即使它看上去总是笨手笨脚的。</p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/7/5/PlanBox-box.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -252,7 +288,6 @@
 <p>&nbsp; &nbsp; &nbsp; 玄藏法师译本《心经》<br />&nbsp; &nbsp; &nbsp; 观自在菩萨．行深般若波罗蜜多时．照见五蕴皆空．度一切苦厄．舍利子．色不异空．空不异色．色即是空．空即是色．受想行识．亦复如是．舍利子．是诸法空相．不生不灭．不垢不净．不增不减．是故空中无色．无受想行识．无眼耳鼻舌身意．无色声香味触法．无眼界．乃至无意识界．无无明．亦无无明尽．乃至无老死．亦无老死尽．无苦集灭道．无智亦无得．以无所得故．菩提萨埵．依般若波罗蜜多故．心无挂碍．无挂碍故．无有恐怖．远离颠倒梦想．究竟涅槃．三世诸佛．依般若波罗蜜多故．得阿耨多罗三藐三菩提. 故知般若波罗蜜多．是大神咒．是大明咒．是无上咒．是无等等咒．能除一切苦．真实不虚．故说般若波罗蜜多咒．即说咒曰．揭谛揭谛．波罗揭谛．波罗僧揭谛．菩提萨婆诃<br /><br />&nbsp; &nbsp; &nbsp; 《太上老君说常清静经》<br />&nbsp; &nbsp; &nbsp; 老君曰：大道无形，生育天地；大道无情，运行日月；大道无名，长养万物；吾不知其名，强名曰道。夫道者：有清有浊，有动有静；天清地浊，天动地静。男清女浊，男动女静。降本流末，而生万物。清者浊之源，动者静之基。人能常清静，天地悉皆归。<br />&nbsp; &nbsp; &nbsp; 夫人神好清，而心扰之；人心好静，而欲牵之。常能遣其欲，而心自静，澄其心而神自清。自然六欲不生，三毒消灭。所以不能者，为心未澄，欲未遣也。能遣之者，内观其心，心无其心；外观其形，形无其形；远观其物，物无其物。三者既悟，唯见於空；观空亦空，空无所空；所空既无，无无亦无；无无既无，湛然常寂；寂无所寂，欲岂能生？欲既不生，即是真静。真常应物，真常得性；常应常静，常清静矣。如此清静，渐入真道；既入真道，名为得道，虽名得道，实无所得；为化众生，名为得道；能悟之者，可传圣道。<br />&nbsp; &nbsp; &nbsp; 老君曰：上士无争，下士好争；上德不德，下德执德。执著之者，不明道德。众生所以不得真道者，为有妄心。既有妄心，即惊其神；既惊其神，即著万物；既著万物，即生贪求；既生贪求，即是烦恼；烦恼妄想，忧苦身心；便遭浊辱，流浪生死，常沉苦海，永失真道。真常之道，悟者自得，得悟道者，常清静矣。<br />&nbsp; &nbsp; &nbsp; 仙人葛翁曰：吾得真道，曾诵此经万遍。此经是天人所习，不传下士。吾昔受之于东华帝君，东华帝君受之于金阙帝君，金阙帝君受之于西王母。西王母皆口口相传，不记文字。吾今于世，书而录之。上士悟之，升为天仙；中士修之，南宫列官；下士得之，在世长年。游行三界，升入金门。<br />&nbsp; &nbsp; &nbsp; 左玄真人曰：学道之士，持诵此经者，即得十天善神，拥护其身。然后玉符保神，金液炼形。形神俱妙，与道合真。<br />&nbsp; &nbsp; &nbsp; 正一真人曰：人家有此经，悟解之者，灾障不干，众圣护门。神升上界，朝拜高真。功满德就，相感帝君。诵持不退，身腾紫云。<br /><br /></p>
 <p>《秘授歌》原文 　　</p>
 <p>　　无形无象，全身透空。应物自然，西山悬謦。虎吼猿鸣，泉清河静。翻江播海，尽性立命。</p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/7/4/Tai-Chi-classic.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -299,7 +334,6 @@
   (= (* (numer x) (denom y))
      (* (numer y) (denom x))))</pre>
 <p>对有理数提供加、减、乘、除、相等？操作给应用程序，这样应用程序就可以在一个高层有理数概念上去构建程序。<br /><img src="http://mitpress.mit.edu/sicp/full-text/book/ch2-Z-G-6.gif" alt="" width="339" height="235" /><br />这就是数据抽象带来的好处，只要高层的add-rat、make-rat等不变，对于具体是怎么实现的可以不用关心。</p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/6/28/Abstract-and-program-design.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -437,72 +471,7 @@ console.log(sqrt(9));</pre>
 (sqrt 9)</pre>
 <p><br />过程抽象：</p>
 <p>上面Js版本描述了一个模型，即<a href="http://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9#.E7.89.9B.E9.A0.93.E6.B3.95">牛顿法</a>的递归函数。<br />scm版本与Js版类似，只不过这个版本抽象出了几个更基本的函数。<br />多了这一层的抽象，对于解平方根只起到了一个语义清晰的作用，某些时候这种做法会导致性能的降低。<br />然而对一个复杂系统来说，其内部可以有成千上万的模型，对于这种复杂度的控制，抽象是最有效的工具。<br />通过抽象，将基本的模型组织成高级的模型，再用高级模型再组织成更高级的模型，这样在高层次思考问题时复杂度就降低了。<br />优秀的程序设计者应该能够对系统的复杂度充分了解，并设计出具有适当抽象层次的程序模型结构。<br />fixed-point版本使用了更多的抽象层次，sqrt &gt;&nbsp;fixed-point-of-transform&nbsp;&gt; fixed-point &gt; average-damp &gt; average 。<br />Newton's method以另外一个模型来构建这一功能，sqrt &gt;&nbsp;fixed-point-of-transform &gt; fixed-point &gt; newton-transform &gt; deriv<br /><br /></p>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
         <a href="/2013/6/20/The-square-root-of-evaluation-algorithm.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1562">
-    2013-06-18
-    <center><h3><a href="/2013/6/18/Scheme-resource-list.html">scheme资源列表</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>&nbsp; &nbsp; &nbsp; &nbsp;Scheme 语言是 Lisp 的一个现代变种、方言，诞生于1975年，由 MIT 的 Gerald J. Sussman and Guy L. Steele Jr. 完成<br />&nbsp; &nbsp; &nbsp; &nbsp;Scheme语言的规范很短，总共只有50页，甚至连Common Lisp 规范的索引的长度都不到，但是却被称为是现代编程语言王国的皇后。它与以前和以后的 Lisp 实现版本都存在一些差异，但是却易学易用。</p>
-<p>在线社区：</p>
-<ul>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.schemers.org/">schemers.org</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://groups.csail.mit.edu/mac/projects/scheme/">mit scheme</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://lisp.org.cn/">lisp.org.cn</a></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div><span style="font-family: arial;">方言：</span></div>
-<div>
-<ul>
-<li><span style="font-size: medium;"><a href="http://racket-lang.org/"><span style="font-family: arial;">racket</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/guile/"><span style="font-family: arial;">guile</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.call-cc.org/">chicken</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://dynamo.iro.umontreal.ca/wiki/index.php/Main_Page">gambit</a></span></span></li>
-<li><span style="font-size: medium;"><a href="http://www.scheme.com/"><span style="font-family: arial;">chez</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.canonical.org/~kragen/sw/urscheme/">urscheme</a>*</span></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/kawa/"><span style="font-family: arial;">kawa</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.biwascheme.org/"><span style="font-family: arial;">biwaschrme</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="https://github.com/schani/jscreme">jscreme</a>*</span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="https://github.com/dyoo/whalesong">whalesong</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://fargo.jcoglan.com/">fargo</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://sourceforge.net/projects/minty/">minty</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.omnigia.com/scheme/cpscm/home/">cpscm</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.t3x.org/s9fes">s9fes</a></span></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div>学习资源：</div>
-<div>
-<ul>
-<li><span style="font-family: arial; font-size: medium;">little schemer (<a href="https://github.com/pkrumins/the-little-schemer">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">SICP</a>&nbsp;(<a href="http://mitpress.mit.edu/sicp/code/index.html">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://cn.paradigmx.net/blog/2013/05/02/why-sicp-matters/">why-sicp-matters</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.scheme.com/tspl4/">TLSP4</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-1.html">Teach Yourself Scheme in Fixnum Days</a></span></li>
-<li><span style="font-size: medium;"><a href="http://practical-scheme.net/wiliki/schemexref.cgi?RRS">RRS</a>&nbsp;<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/">R5RS</a></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://www.iro.umontreal.ca/~boucherd/mslug/meetings/20041020/minutes-en.html">The 90 Minute Scheme to C compiler</a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://stackoverflow.com/questions/1669/learning-to-write-a-compiler">learning-to-write-a-compiler</a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://www.cs.indiana.edu/eip/96workshops.html">96workshops</a><a href="http://www.cs.indiana.edu/eip/compile/"><br /></a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://icem-www.folkwang-hochschule.de/~finnendahl/cm_kurse/doc/schintro/schintro_toc.html">schintro(An Introduction to Scheme and its Implementation</a>)</strong></span></li>
-<li><span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Scheme_(programming_language)">wikipedia</a></span></li>
-<li><span style="font-size: medium;"><a href="http://schemewiki.org/">schemewiki.org</a></span></li>
-<li><span style="font-size: medium;"><a href="http://readscheme.org/">readscheme.org</a></span></li>
-<li><span style="font-size: medium;"><a href="http://ceaude.twoticketsplease.de/js-lisps.html">js-lisps</a></span></li>
-</ul>
-Y Combinator<span style="font-size: medium;">：</span>
-<ul>
-<li><a style="font-size: 10px;" href="http://cuipengfei.me/blog/2013/04/09/make-y/">如何一步一步推导出Y Combinator</a></li>
-<li><a href="https://github.com/cuipengfei/SICP-Practice-Code/blob/master/ycombinator.rkt">cuipengfei　ycombinator.rkt</a></li>
-<li><a href="https://github.com/zhewuzhou/js-y-combinator/blob/master/y-combinator.js">zhewuzhou　y-combinator.js</a></li>
-<li><a href="https://bitbucket.org/egi/lambda-calculator">egi/lambda-calculator</a></li>
-<li><a href="http://docs.huihoo.com/homepage/shredderyin/wiki/SchemeYcombinator.html">Y Combinator 的 Scheme 实现(王垠</a></li>
-</ul>
-</div>
-</div>
-        <br/><a href="http://softidy.com">http://softidy.com</a>
-        <a href="/2013/6/18/Scheme-resource-list.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

@@ -5,12 +5,12 @@
     
     
     
-    <title>about | 软轶-SofTidy.com</title>
+    <title>ubuntu拨号上网和wifi共享 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="about" />
+    <meta name="Keywords" content="ubuntu拨号上网和wifi共享" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,37 +73,35 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-06-04
-    <center><h3>about</h3><br></center> 
+    2013-10-02
+    <center><h3>ubuntu拨号上网和wifi共享</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>Web IDs：</p>
+        <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：</p>
+<ol>
+<li>拨号上网</li>
+<li>共享wifi</li>
+</ol>
+<p>解决方法<br />一、拨号上网的方法： pppoeconf</p>
+<ol>
+<li>打开终端，Ctrl+Alt+t</li>
+<li>以root身份启动，执行 sudo pppoeconf</li>
+<li>启动后会提示一些问题，一路选&ldquo;Yes"即可，直到要求输入ADSL账号，填好账号，下一步是密码，再之后一路"Yes"就ok了</li>
+<li>其中最后一步是设置是否开机自动拨号，如果不想自动拨就选&ldquo;No&rdquo;，手动拨号的命令是&nbsp;pon dsl-provider</li>
+</ol>
+<p>我一直是用的这个方法，另外网上有人说有图形操作的方法： 系统-》首选项-》网络连接 选择 DSL 然后添加 输入用户名和密码 勾上自动连接 在点应用 就OK 了<br />这个方法我试了不好使，不知道是不是得重启电脑才行，前一种方法已经满足我了，不折腾了。<br />pppoeconf和NetworkManager是相冲突的，用过pppoeconf的想要换为nm需要下面的设置（此方法我没有试成功，大家可以试试）：</p>
+<ol>
+<li>更改/etc/NetworkManager/NetworkManager.conf中的managed＝true</li>
+<li>更改/etc/network/interfaces，只保留<br />auto lo<br />iface lo inet loopback</li>
+<li>删除，rm /etc/resolv.conf</li>
+<li>重启nm，sudo /etc/init.d/network-manager restart （如果面板没有nm图标，ALT+F2然后输入nm-applet回车）</li>
+</ol>
+<p>一些命令：</p>
 <ul>
-<li><a href="http://about.me/softidy">about.me</a></li>
-<li><a href="https://github.com/yarec">github.com</a></li>
-<li><a href="https://plus.google.com/103972902124752956325/posts">plus.google.com</a></li>
-<li><a href="http://weibo.com/u/2826117997?from=profile&amp;wvr=5&amp;loc=infdomain">weibo.com</a></li>
+<li>Ubuntu ADSL手工断线：sudo poff</li>
+<li>查看连接情况：sudo plog</li>
+<li>可查询本机的上网IP: sudo ifconfig ppp0</li>
 </ul>
-<p>Stared&nbsp;Repos:</p>
-<p style="margin-left: 30px;">My:</p>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li><a href="https://github.com/yarec/cnchess">cnchess</a>&nbsp;&nbsp;(c++ |&nbsp;<span>chinese chess base on qt, eleeye)</span></li>
-<li><a href="https://github.com/yarec/swhost">swhost</a>　(c++ |&nbsp;<span>a hosts manage and switch tool)</span></li>
-<li><a href="https://github.com/yarec/fitnis">fitnis</a>&nbsp; &nbsp; &nbsp; &nbsp;(java |&nbsp;<span>a http autotest tool base on fitnesse, htmlunit)</span></li>
-<li><a href="https://github.com/yarec/wt">wt</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (perl &nbsp;| work tool for fast cmd-line)</li>
-</ul>
-</li>
-</ul>
-<p style="margin-left: 30px;">Other's：</p>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li><a href="https://github.com/schani/jscreme">jscreme</a></li>
-<li><a href="https://bitbucket.org/ttsai/greedysnake">greedysnake</a></li>
-</ul>
-</li>
-</ul>
+<p>二、windows上共享wifi有手动的方法，也有好用的工具。ubuntu上手动的方法，一直没有成功。最后发现一个工具，&nbsp;<a href="http://code.google.com/p/wifi-hostapd-ap/" target="_blank">wifi-hostapd-ap</a>，非常方便的工具啊。我这里是编译安装的。先安装依赖的库： sudo apt-get install wireless-tools bridge-utils hostapd dnsmasq libqtgui4<br />编译：make<br />启动：./WiFi_Hostapd_AP<br />设置密码=》应用， 搞定！</p>
     </div>
 </article>
 
@@ -114,8 +112,8 @@
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1551';
-            var disqus_url = 'http://softidy.com/about/index.html';
+            var disqus_identifier = '1631';
+            var disqus_url = 'http://softidy.com/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
