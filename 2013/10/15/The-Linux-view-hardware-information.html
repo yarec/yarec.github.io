@@ -5,12 +5,12 @@
     
     
     
-    <title>CPS（Continuation-Passing-Style） | 软轶-SofTidy.com</title>
+    <title>linux查看硬件信息 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="CPS（Continuation-Passing-Style）" />
+    <meta name="Keywords" content="linux查看硬件信息" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,33 +73,26 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-08-28
-    <center><h3>CPS（Continuation-Passing-Style）</h3><br></center> 
+    2013-10-15
+    <center><h3>linux查看硬件信息</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <h3>&nbsp;</h3>
-<h3 id="sec-1"><span class="section-number-2">1、</span>什么是Continuation-passing Style:</h3>
-<div id="text-1" class="outline-text-2">
-<p style="margin-left: 30px;">Continuation-passing style(CPS)是指将控制流(Control flow)<sup><a class="footref" name="fnr.1" href="http://blog.csdn.net/cnnzp/article/details/7832106#fn.1"></a></sup>显式的当做参数传递的编程风格。 函数的返回不在通过return语句，而是将返回值当做参数，调用控制流。<br />CPS风格的函数都会有一个额外的参数k，显式的表示了continuation（可以理解成控制流的流向，what comes next）。当CPS函数需要返回的时候，调用k，并将返回值作为k的参数。</p>
-<h3>２、CPS程序与普通程序相比有如下明显的不同：</h3>
-<p style="margin-left: 30px;">CPS函数都有一个额外的参数&nbsp;<em>k</em>&nbsp;，表示控制流。函数需要返回，必须显式的调用&nbsp;<em>k</em>&nbsp;.<br />在函数的末尾调用了另外一个函数，这种调用称为尾调用，tail call。相应的在尾部递归调用，称之为尾递归，tail recursion。&nbsp;<strong>CPS所有函数都是尾调用。</strong></p>
-<h3>３、具有突出表现的场景</h3>
-<p style="margin-left: 30px;">使用CPS最初主要用于<span style="color: #ff0000;">编译高级语言</span>时一种中间代码表示，有了这种中间代码，编译器的复杂度大大降低。<br />现在发现CPS在<span style="color: #ff0000;">异步编程</span>里，<span style="color: #ff0000;">分布式编程</span>里大显身手。</p>
-<h3>４、CPS风格代码也有自己的缺点：</h3>
-<p style="margin-left: 30px;">CPS代码基本没法阅读和理解，看上面递归的例子就知道有多晦涩。<br />CPS代码不断的嵌套调用，在不支持尾递归的语言中，可能出现栈溢出。</p>
-<p>相关文章：&nbsp;</p>
-</div>
-<ul>
-<li><a href="http://docs.huihoo.com/homepage/shredderyin/wiki/ContinuationPassingStyle.html">一个 CPS 的例子</a></li>
-<li><a href="http://blog.csdn.net/hikaliv/article/details/4548561">函数式编程魅力：Continuation-Passing Style，说为何 C#、C++ 引入 Lambda 意义重大及 C++ 和 C# 的缺憾</a></li>
-<li><a href="http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/">programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/</a></li>
-<li><a href="http://matt.might.net/articles/by-example-continuation-passing-style/">by-example-continuation-passing-style/</a></li>
-<li><a href="http://matt.might.net/articles/cps-conversion/">http://matt.might.net/articles/cps-conversion/</a></li>
-<li><a href="http://blog.sina.com.cn/s/blog_698213630101bj0q.html"><span>理解Continuation和CPS（Continuation&nbsp;Passing&nbsp;Style）</span></a></li>
-<li><a href="http://www.zhihu.com/question/20259086"><span>怎样理解 Continuation-passing style?</span></a></li>
-<li><a href="http://en.wikipedia.org/wiki/Continuation-passing_style">wikipedia-cps</a></li>
-<li><a href="http://blog.csdn.net/cnnzp/article/details/7832106">Continuation-passing Style介绍及应用</a></li>
-<li></li>
-</ul>
+        <p>linux查看硬件信息的命令</p>
+<h4>软件类：</h4>
+<p>用硬件检测程序kuduz探测新硬件：service kudzu start ( or restart)<br />查看系统硬盘信息和使用情况：fdisk &amp; disk - l &amp; df &amp;&nbsp;hdparm -I /dev/sda&nbsp;<br />dmidecode查看硬件信息，包括bios、cpu、内存等信息<br />dmesg | more 查看硬件信息<br />lshw(<a class="external text" style="font-size: 10px;" href="http://ezix.org/project/wiki/HardwareLiSter" rel="nofollow" target="_blank">Hardware Lister</a>可以把硬件的详细信息导出</p>
+<h4>proc信息类：</h4>
+<p>查看CPU信息：cat /proc/cpuinfo<br />查看板卡信息：</p>
+<ol>
+<li>cat /proc/pci</li>
+<li>lspci (相比cat /proc/pci更直观） 例子： lspci |grep Ethernet 查看网卡型号</li>
+</ol>
+<p>查看内存信息：cat /proc/meminfo<br />查看USB设备：</p>
+<ol>
+<li>cat /proc/bus/usb/devices</li>
+<li>lsusb</li>
+</ol>
+<p>查看键盘和鼠标:cat /proc/bus/input/devices<br />查看各设备的中断请求(IRQ):cat /proc/interrupts</p>
+<h4>OS信息类：</h4>
+<p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
     </div>
 </article>
 
@@ -110,8 +103,8 @@
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1607';
-            var disqus_url = 'http://softidy.com/2013/8/28/CPS-(Continuation-Passing-Style).html';
+            var disqus_identifier = '1636';
+            var disqus_url = 'http://softidy.com/2013/10/15/The-Linux-view-hardware-information.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
