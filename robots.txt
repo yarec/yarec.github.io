@@ -2,7 +2,7 @@ User-agent: *
 Disallow: /2010/6/7/LakeBaiWen.html
 Disallow: /2011/12/21/Taijiquantheory.html
 Disallow: /2011/12/21/TaiChiby.html
-Disallow: /2012/12/12/Chrome-red-bean-green.html
+Disallow: 2012/12/12/Chromeredbeangreen.html
 Disallow: /2013/6/9/Zerobasistoconstructthecompiler.html
 Disallow: /2013/6/18/Schemeresourcelist.html
 Disallow: /2013/6/20/Squarerootalgorithms.html
