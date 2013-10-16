@@ -1,5 +1,23 @@
 User-agent: *
-Disallow: 
+Disallow: /2010/6/7/LakeBaiWen.html
+Disallow: /2011/12/21/Taijiquantheory.html
+Disallow: /2011/12/21/TaiChiby.html
+Disallow: /2012/12/12/Chrome-red-bean-green.html
+Disallow: /2013/6/9/Zerobasistoconstructthecompiler.html
+Disallow: /2013/6/18/Schemeresourcelist.html
+Disallow: /2013/6/20/Squarerootalgorithms.html
+Disallow: /2013/6/21/Test.html
+Disallow: /2013/6/28/Abstractandprogramdesign.html
+Disallow: /2013/7/4/TaiChiclassics.html
+Disallow: /2013/7/9/TouchMusic-midnightblues.html
+Disallow: /2013/7/15/EightQueen's-sicp.html
+Disallow: /2013/7/26/Nonrootnodeinstallation.html
+Disallow: /2013/8/6/Knowledgediscovery(turn).html
+Disallow: /2013/8/26/Theshellshortcuttobuildandconfigure.html
+Disallow: /2013/8/28/CPS(Continuation-Passing-Style).html
+Disallow: /2013/9/16/Thehalf-lifeofformula.html
+Disallow: /2013/9/27/NetworkdatapacketsunderWindowsmonitoringandinterceptiontechnology.html
+Disallow: /2013/9/28/Windowsmultiuserremotedesktop.html
 
 sitemap: http://softidy.com/sitemap.xml
 
