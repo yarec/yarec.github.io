@@ -73,6 +73,15 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1638">
+    2013-10-18
+    <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
+        <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1636">
     2013-10-15
     <center><h3><a href="/2013/10/15/The-Linux-view-hardware-information.html">linux查看硬件信息</a></h3><br></center> 
@@ -258,112 +267,6 @@
 <li></li>
 </ul>
         <a href="/2013/8/28/CPS-(Continuation-Passing-Style).html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1605">
-    2013-08-26
-    <center><h3><a href="/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html">shell常用命令-快捷键-配置</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h3 class="entry-title public">常用命令：</h3>
-<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*<br />列出文件大小并排序：du -sh *|sort -h -r<br />基于日期循环：</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">function dojob {
-  echo $1
-}
-b=$1
-e=$2
-while [ $b -le $e ]; do
-  dojob $b
-  b=`date -d "$b UTC +1 day" +"%Y%m%d"`
-done</pre>
-<h3 class="entry-title public">快捷键：</h3>
-<h4 style="margin-left: 30px;">编辑命令</h4>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li>Ctrl + a ：移到命令行首</li>
-<li>Ctrl + e ：移到命令行尾</li>
-<li>Ctrl + f ：按字符前移（右向）</li>
-<li>Ctrl + b ：按字符后移（左向）</li>
-<li>Alt + f ：按单词前移（右向）</li>
-<li>Alt + b ：按单词后移（左向）</li>
-<li>Ctrl + xx：在命令行首和光标之间移动</li>
-<li>Ctrl + u ：从光标处删除至命令行首</li>
-<li>Ctrl + k ：从光标处删除至命令行尾</li>
-<li>Ctrl + w ：从光标处删除至字首</li>
-<li>Alt + d ：从光标处删除至字尾</li>
-<li>Ctrl + d ：删除光标处的字符</li>
-<li>Ctrl + h ：删除光标前的字符</li>
-<li>Ctrl + y ：粘贴至光标后</li>
-<li>Alt + c ：从光标处更改为首字母大写的单词</li>
-<li>Alt + u ：从光标处更改为全部大写的单词</li>
-<li>Alt + l ：从光标处更改为全部小写的单词</li>
-<li>Ctrl + t ：交换光标处和之前的字符</li>
-<li>Alt + t ：交换光标处和之前的单词</li>
-<li>Alt + Backspace：与 Ctrl + w&nbsp;</li>
-</ul>
-</li>
-</ul>
-<h4 style="margin-left: 30px;">重新执行命令</h4>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li>Ctrl + r：逆向搜索命令历史</li>
-<li>Ctrl + g：从历史搜索模式退出</li>
-<li>Ctrl + p：历史中的上一条命令</li>
-<li>Ctrl + n：历史中的下一条命令</li>
-<li>Alt + .：使用上一条命令的最后一个参数</li>
-</ul>
-</li>
-</ul>
-<h4 style="margin-left: 30px;">控制命令</h4>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li>Ctrl + l：清屏</li>
-<li>Ctrl + o：执行当前命令，并选择上一条命令</li>
-<li>Ctrl + s：阻止屏幕输出</li>
-<li>Ctrl + q：允许屏幕输出</li>
-<li>Ctrl + c：终止命令</li>
-<li>Ctrl + z：挂起命令</li>
-</ul>
-</li>
-</ul>
-<h4 style="margin-left: 30px;">Bang (!) 命令</h4>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li>!!：执行上一条命令</li>
-<li>!blah：执行最近的以 blah 开头的命令，如 !ls</li>
-<li>!blah:p：仅打印输出，而不执行</li>
-<li>!$：上一条命令的最后一个参数，与 Alt + . 相同</li>
-<li>!$:p：打印输出 !$ 的内容</li>
-<li>!*：上一条命令的所有参数</li>
-<li>!*:p：打印输出 !* 的内容</li>
-<li>^blah：删除上一条命令中的 blah</li>
-<li>^blah^foo：将上一条命令中的 blah 替换为 foo</li>
-<li>^blah^foo^：将上一条命令中所有的 blah 都替换为 foo</li>
-</ul>
-</li>
-</ul>
-<p>&nbsp;</p>
-<h3 class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/milkbikis/powerline-shell">powerline-shell</a></strong></h3>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">    function powerline_precmd() {
-      export PS1="$(~/powerline-shell.py $? --cwd-only --mode compatible --shell zsh
-    }
-
-    function install_powerline_precmd() {
-      for s in "${precmd_functions[@]}"; do
-        if [ "$s" = "powerline_precmd" ]; then
-          return
-        fi
-      done
-      precmd_functions+=(powerline_precmd)
-    }
-
-    install_powerline_precmd</pre>
-<h2 class="entry-title public">&nbsp;</h2>
-        <a href="/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 
