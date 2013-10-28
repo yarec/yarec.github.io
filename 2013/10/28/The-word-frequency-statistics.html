@@ -5,12 +5,12 @@
     
     
     
-    <title>about | 软轶-SofTidy.com</title>
+    <title>统计单词频率 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="about" />
+    <meta name="Keywords" content="统计单词频率" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,38 +73,25 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-06-04
-    <center><h3>about</h3><br></center> 
+    2013-10-28
+    <center><h3>统计单词频率</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>Web IDs：</p>
-<ul>
-<li><a href="http://about.me/softidy">about.me</a></li>
-<li><a href="https://github.com/yarec">github.com</a></li>
-<li><a href="https://plus.google.com/103972902124752956325/posts">plus.google.com</a></li>
-<li><a href="http://weibo.com/u/2826117997?from=profile&amp;wvr=5&amp;loc=infdomain">weibo.com</a></li>
-</ul>
-<p>Stared&nbsp;Repos:</p>
-<p style="margin-left: 30px;">Mine:</p>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li><a href="https://github.com/yarec/cnchess">cnchess</a>&nbsp;&nbsp;(c++ |&nbsp;<span>chinese chess base on qt, eleeye)</span></li>
-<li><a href="https://github.com/yarec/swhost">swhost</a>　(c++ |&nbsp;<span>a hosts manage and switch tool)</span></li>
-<li><a href="https://github.com/yarec/fitnis">fitnis</a>&nbsp; &nbsp; &nbsp; &nbsp;(java |&nbsp;<span>a http autotest tool base on fitnesse, htmlunit)</span></li>
-<li><a href="https://github.com/yarec/wt">wt</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (perl &nbsp;| work tool for fast cmd-line)</li>
-<li><a href="https://github.com/yarec/tred">tred</a>&nbsp; &nbsp; &nbsp; &nbsp; (js &nbsp; &nbsp;| a scheme2js compiler)</li>
-</ul>
-</li>
-</ul>
-<p style="margin-left: 30px;">Other's：</p>
-<ul>
-<li style="list-style-type: none;">
-<ul>
-<li><a href="https://github.com/schani/jscreme">jscreme</a></li>
-<li><a href="https://github.com/ih/ikarus.dev">ikarus</a><a href="https://bitbucket.org/ttsai/greedysnake"><br /></a></li>
-</ul>
-</li>
-</ul>
+        <pre>#!/usr/bin/env bash
+#Name: word_freq.sh  
+#Description: Find out frequency of words in a file  
+#Usage: ./word_freq.sh words_file.txt|sort -n -k 2
+  
+if [ $# -ne 1 ];
+then
+    echo &quot;Usage: $0 filename&quot;;
+    exit -1
+fi
+  
+filename=$1
+  
+egrep -o &quot;\b[[:alpha:]]+\b&quot; $filename | \
+awk &#39;{ count[$0]++ } END{ printf(&quot;%-28s%s\n&quot;,&quot;Word&quot;,&quot;Count&quot;) ; \
+ for(ind in count) { printf(&quot;%-28s%d\n&quot;,ind,count[ind]); } }&#39;
     </div>
 </article>
 
@@ -115,8 +102,8 @@
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1551';
-            var disqus_url = 'http://softidy.com/about/index.html';
+            var disqus_identifier = '1647';
+            var disqus_url = 'http://softidy.com/2013/10/28/The-word-frequency-statistics.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
