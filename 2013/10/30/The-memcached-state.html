@@ -5,12 +5,12 @@
     
     
     
-    <title>统计单词频率 | 软轶-SofTidy.com</title>
+    <title>memcached状态 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="统计单词频率" />
+    <meta name="Keywords" content="memcached状态" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,25 +73,105 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-10-28
-    <center><h3>统计单词频率</h3><br></center> 
+    2013-10-30
+    <center><h3>memcached状态</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env bash
-#Name: word_freq.sh  
-#Description: Find out frequency of words in a file  
-#Usage: ./word_freq.sh words_file.txt|sort -n
-  
-if [ $# -ne 1 ];
-then
-    echo &quot;Usage: $0 filename&quot;;
-    exit -1
-fi
-  
-filename=$1
-  
-egrep -o &quot;\b[[:alpha:]]+\b&quot; $filename | \
-awk &#39;{ count[$0]++ } END{ printf(&quot;%-10s%s\n&quot;,&quot;Word&quot;,&quot;Count&quot;) ; \
- for(ind in count) { printf(&quot;%-10d%s\n&quot;,count[ind],ind); } }&#39;
+        <p><span>查看&nbsp;memcached 状态命令:　$ echo stats | nc 127.0.0.1 11211</span></p>
+<p>参数说明：</p>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>pid</td>
+<td>memcache服务器的进程ID</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>服务器已经运行的秒数</td>
+</tr>
+<tr>
+<td>time</td>
+<td>服务器当前的unix时间戳</td>
+</tr>
+<tr>
+<td>version</td>
+<td>memcache版本</td>
+</tr>
+<tr>
+<td>pointer_size</td>
+<td>当前<span style="text-decoration: underline;"><strong>操作系统</strong></span>的指针大小（32位系统一般是32bit）</td>
+</tr>
+<tr>
+<td>rusage_user</td>
+<td>进程的累计用户时间</td>
+</tr>
+<tr>
+<td>rusage_system</td>
+<td>进程的累计系统时间</td>
+</tr>
+<tr>
+<td>curr_items</td>
+<td>服务器当前存储的items数量</td>
+</tr>
+<tr>
+<td>total_items</td>
+<td>从服务器启动以后存储的items总数量</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>当前服务器存储items占用的字节数</td>
+</tr>
+<tr>
+<td>curr_connections</td>
+<td>当前打开着的连接数</td>
+</tr>
+<tr>
+<td>total_connections</td>
+<td>从服务器启动以后曾经打开过的连接数</td>
+</tr>
+<tr>
+<td>connection_structures</td>
+<td>服务器分配的连接构造数</td>
+</tr>
+<tr>
+<td>cmd_get</td>
+<td>get命令（获取）总请求次数</td>
+</tr>
+<tr>
+<td>cmd_set</td>
+<td>set命令（保存）总请求次数</td>
+</tr>
+<tr>
+<td>get_hits</td>
+<td>总命中次数</td>
+</tr>
+<tr>
+<td>get_misses</td>
+<td>总未命中次数</td>
+</tr>
+<tr>
+<td>evictions</td>
+<td>为获取空闲内存而删除的items数（分配给memcache的空间用满后需要删除旧的items来得到空间分配给新的items）</td>
+</tr>
+<tr>
+<td>bytes_read</td>
+<td>总读取字节数（请求字节数）</td>
+</tr>
+<tr>
+<td>bytes_written</td>
+<td>总发送字节数（结果字节数）</td>
+</tr>
+<tr>
+<td>limit_maxbytes</td>
+<td>分配给memcache的内存大小（字节）</td>
+</tr>
+<tr>
+<td>threads</td>
+<td>当前线程数</td>
+</tr>
+</tbody>
+</table>
+<p>php实现的查看工具：</p>
+<p><a href="http://livebookmark.net/journal/2008/05/21/memcachephp-stats-like-apcphp/">http://livebookmark.net/journal/2008/05/21/memcachephp-stats-like-apcphp/</a></p>
     </div>
 </article>
 
@@ -102,8 +182,8 @@ awk &#39;{ count[$0]++ } END{ printf(&quot;%-10s%s\n&quot;,&quot;Word&quot;,&quo
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1647';
-            var disqus_url = 'http://softidy.com/2013/10/28/The-word-frequency-statistics.html';
+            var disqus_identifier = '1649';
+            var disqus_url = 'http://softidy.com/2013/10/30/The-memcached-state.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
