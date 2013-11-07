@@ -73,6 +73,53 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1657">
+    2013-11-06
+    <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
+<p>一、python</p>
+<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
+<p>二、nodejs</p>
+<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
+<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如perl，c++，scheme。</p>
+        <a href="/2013/11/6/Simulated-login-script-are.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
+<article class="arc" aid="1645">
+    2013-10-24
+    <center><h3><a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html">使用cloudera快速部署hadoop环境</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4>一、资源准备</h4>
+<p>centos镜像:&nbsp;CentOS-6</p>
+<p>cloudera:</p>
+<p><a href="http://archive.cloudera.com/cdh4/repo-as-tarball/">CDH(Cloudera&rsquo;s Distribution Including Apache Hadoop)</a><br /><a href="http://archive.cloudera.com/cm4/repo-as-tarball/">CM(Cloudera Manager)<br /></a><a href="https://ccp.cloudera.com/display/SUPPORT/Downloads">CMI(Cloudera Manager Installer)</a></p>
+<h4>二、安装配置centos</h4>
+<p>选择最小安装，共２０４个包，其它需要的软件在系统安装好之后使用脚本一次安装。</p>
+<p>我选择的<a href="http://softidy.com/2013/11/7/Fast-installation-CentOS.html">安装方法</a>为网络安装，其好处是安装速度快。系统镜像是放到一个http服务器上，被装机器只要能启动安装内核，其它安装包通过网络（内网）在线下载比读光盘要快多了。</p>
+<p>系统配置：</p>
+<ol>
+<li>关闭SELinux</li>
+<li>配置yum源</li>
+<li>配置网络</li>
+<li>安装需要的软件包</li>
+</ol>
+<p>操作写在了一个<a href="http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html">shell脚本</a>中，可以作为参考，使用时需要做一些相应的修改。</p>
+<h4>三、安装cloudera</h4>
+<p>安装cm：cm安装使用官方推荐的cmi，取消在线下载安装包（使用已经下载的本地源），./cmi.bin --skip_repo_package=1</p>
+<p>通过cm安装cdh</p>
+<h4>四、使用cloudera部署hadoop</h4>
+<h4>五、一些简单测试</h4>
+<ul>
+<li>hbase</li>
+<li>hive</li>
+<li>impala</li>
+</ul>
+        <a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1642">
     2013-10-23
     <center><h3><a href="/2013/10/23/Reading.html">读书</a></h3><br></center> 
@@ -80,6 +127,26 @@
         <p align="left">由于一个偶然的机会，促使我对读书这个事情产生一些疑问和想法。读书的目的是什么？在生活中占有怎么样的地位？一生当中要花多少时间？去读哪些书？次序性是怎样的？是否每天都安排固定的时间去读书？</p>
 <p align="left">摘录一些网上整理的&ldquo;<span style="text-decoration: underline;"><a href="../../2013/10/24/On-the-reading-of-famous-quotes.html"><span style="color: #000000; text-decoration: underline;">关于读书的名人名言</span></a></span>&rdquo;，从这些言语中总能发现一些让人决心去读书的冲动。这种冲动在很久以前产生过，但由于三分钟热度一过就丟在一边了。这一次有机会重新确认读书的重要性，必须坚持下去。</p>
         <a href="/2013/10/23/Reading.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
+<article class="arc" aid="1639">
+    2013-10-20
+    <center><h3><a href="/2013/10/20/Sublime-text-configuration.html">sublime text配置</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4 class="entry-title public"><strong>安装Package Control</strong></h4>
+<p class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/wbond/sublime_package_control">sublime_package_control</a>：　</strong>A full-featured package manager for Sublime Text　<a href="https://sublime.wbond.net">https://sublime.wbond.net</a></p>
+<p class="entry-title public">Ctrl+`调出python控制台，输入下面代码并回车。</p>
+<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
+<h4 class="entry-title public">安装插件：</h4>
+<p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
+<h4 class="entry-title public">常用插件：</h4>
+<p class="entry-title public">js formater</p>
+<p class="entry-title public">Zen Coding</p>
+<p class="entry-title public">SublimeLinter</p>
+<p class="entry-title public">Alignment</p>
+<p class="entry-title public">Bracket Highlighter</p>
+        <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 
@@ -148,103 +215,6 @@
 </ul>
 <p>二、windows上共享wifi有手动的方法，也有好用的工具。ubuntu上手动的方法，一直没有成功。最后发现一个工具，&nbsp;<a href="http://code.google.com/p/wifi-hostapd-ap/" target="_blank">wifi-hostapd-ap</a>，非常方便的工具啊。我这里是编译安装的。先安装依赖的库： sudo apt-get install wireless-tools bridge-utils hostapd dnsmasq libqtgui4<br />编译：make<br />启动：./WiFi_Hostapd_AP<br />设置密码=》应用， 搞定！</p>
         <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1622">
-    2013-09-28
-    <center><h3><a href="/2013/9/28/Windows-multi-user-remote-desktop.html">windows多用户远程桌面</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>软件名称： Universal Termsrv.dll Patch (远程桌面多用户同时连接数破解通用补丁)<br />操作系统： Windows XP SP2 SP3; Vista SP1 SP2/Windows 7, 32bit(x86)/64bit(x64)<br />原理：　　破解 termsrv.dll, 解除远程桌面多用户同时连接（会话）数限制。<br />下载：　　<a href="http://yunpan.cn/QGiiFPBQ866ut">http://yunpan.cn/QGiiFPBQ866ut</a></p>
-<p>由于 Windows XP/Vista 的许可限制，在一台电脑上同一时间只允许一个用户登录（会话）。<br />如果有第二个用户通过远程桌面服务登录本机，那么在此之前本地已登录的用户、或远程已登录的用户将被踢出。<br />本补丁的功能就是去除这个限制，允许多人多用户同时并行访问登录XP/Vista，拥有一个终端服务器的功能。<br />通用补丁，适合所有语言的Windows！</p>
-<p>说明：<br />1, 请根据你的系统以管理员运行对应的程序：右键点程序，选择以管理员身份运行。<br />&nbsp; &nbsp; 32位系统请运行 UniversalTermsrvPatch-x86.exe;<br />&nbsp; &nbsp; 64位系统请运行 UniversalTermsrvPatch-x64.exe。<br />　 注：1重启生效，2备份文件： \windows\system32\termsrv.dll.backup。<br />2, 导入相应注册表文件，vista及以后的版本导入vista.reg，xp导入xp.reg<br />3, 用户必须拥有"Remote Desktop Users"或&ldquo;Administrators&rdquo;组的权限。</p>
-        <a href="/2013/9/28/Windows-multi-user-remote-desktop.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1621">
-    2013-09-27
-    <center><h3><a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">Windows下网络数据包的监听和拦截技术</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <div class="main_l_content_title">
-<h4>基于Windows个人防火墙下的网络数据包拦截技术概览</h4>
-</div>
-<div class="main_l_content_note">2009-08-09 15:46 &nbsp;来源:watchstor.com &nbsp; &nbsp;<a href="http://tech.watchstor.com/storage-network-115067.htm#pinglun"><br /></a></div>
-<div class="main_l_content_note1">
-<ul>
-<li>摘要：本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。</li>
-<li>标签：<a href="http://www.watchstor.com/php/search.php?keyword=%CD%F8%C2%E7%CA%FD%BE%DD%B0%FC%C0%B9%BD%D8%BC%BC%CA%F5" target="_blank">网络数据包拦截技术</a></li>
-</ul>
-</div>
-<div class="main_l_content_main">
-<p>所有基于Windows操作系统的个人防火墙核心技术点在于Windows操作系统下网络数据包拦截技术。本文主要讲述的是Windows操作系统下网络数据包拦截的技术。首先读者应该对Windows网络体系结构有一定了解，并且对开发Windows驱动程序有一定了解。</p>
-<p><strong>Windows 网络驱动程序结构</strong>&nbsp;&nbsp;</p>
-<p>微软和3Com公司在1989年制定了一套开发Windows下网络驱动程序的标准，称为NDIS（ Network Driver Interface Specification）。NDIS为网络驱动的开发提供了一套标准的接口，使得网络驱动程序的跨平台性更好。</p>
-<p><strong>NDIS提供以下几个层次的接口：</strong></p>
-<ol>
-<li>NDIS小端口驱动（Miniport driver）。这也就是我们常说的网卡驱动。</li>
-<li>NDIS 协议驱动（Protocol driver）。例如TCPIP协议驱动。</li>
-<li>NDIS 中间层驱动（Intermediate driver）。这是基于链路层和IP层之间的驱动。</li>
-</ol>
-<p>总的来说，要拦截Windows下的网络数据包可以在两个层面进行：用户态（user-mode）和内核态（kernel-mode）&nbsp;&nbsp;</p>
-<p><strong>在用户态下网络数据包拦截技术有以下几种：</strong></p>
-<p><strong>1)网络数据包拦截技术之LSP</strong></p>
-<p>Winsock Layered Service Provider (LSP)。这种方法在MSDN里有很详细的文档，并且给出了一个例子(SPI.CPP)。这种方法的好处是可以获得调用Winsock的进程详细信息。这就可以用来实现QoS，数据流加密等目的。但是，如果应用程序直接通过TDI（Transport Driver Inface）调用TCPIP来发送数据包，这种方法就无能为力了。</p>
-<p>对于一些木马和病毒来说要实现通过TDI直接调用TCPIP是一件很容易的事情。因此，大多数的个人防火墙都不使用这种方法。国内也有使用该方法实现的个人防火墙。</p>
-<p><strong>2)</strong>&nbsp;<strong>网络数据包拦截技术之Windows 2000 包过滤接口。</strong></p>
-<p>Windows 2000 IPHLP API提供了安装包过滤器的功能。但是，包过滤的规则有很多限制，对于个人防火墙来说是远远不够的。</p>
-<p><strong>3)</strong>&nbsp;<strong>网络数据包拦截技术之替换系统自带的WINSOCK动态连接库。</strong></p>
-<p>这种方法可以在很多文章里面找到详细的实现细节。 很显然，在用户态下进行数据包拦截最致命的缺点就是只能在Winsock层次上进行，而对于网络协议栈中底层协议的数据包无法进行处理。对于一些木马和病毒来说很容易避开这个层次的防火墙。</p>
-<p><strong>网络数据包拦截技术之利用驱动程序拦截网络数据包</strong></p>
-<p>大多数的个人防火墙都是利用网络驱动程序来实现的。</p>
-<ol>
-<li>TDI过滤驱动程序（TDI Filter Driver）</li>
-<li>NDIS中间层驱动程序（NDIS Intermediate Driver）</li>
-<li>Win2k Filter-Hook Driver</li>
-<li>NDIS Hook Driver</li>
-</ol>
-<p>以下我们大体介绍几种网络数据包拦截技术。具体的实现细节请参见Win2k DDK文档。</p>
-<p><strong>TDI过滤驱动程序。</strong></p>
-<p>当应用程序要发送或接收网络数据包的时候，都是通过与协议驱动所提供的接口来进行的。协议驱动提供了一套系统预定义的标准接口来和应用程序之间进行交互。在Windows 2000/NT下，ip,tcp,udp是在一个驱动程序里实现的，叫做tcp.sys，这个驱动程序创建了几个设备：</p>
-<p>DeviceRawIp，DeviceUdp，DeviceTcp，DeviceIp， DeviceMULTICAST。应用程序所有的网络数据操作都是通过这几个设备进行的。因此，我们只需要开发一个过滤驱动来截获这些交互的接口，就可以实现网络数据包的拦截。TDI层的网络数据拦截还可以得到操作网络数据包的进程详细信息，这也是个人防火墙的一个重要功能。</p>
-<p><strong>NDIS中间层驱动。</strong></p>
-<p>中间层驱动介于协议层驱动和小端口驱动之间，它能够截获所有的网络数据包（如果是以太网那就是以太帧）。NDIS中间层驱动的应用很广泛，不仅仅是个人防火墙，还可以用来实现VPN，NAT，PPPOverEthernet以及VLan。中间层驱动的概念是在Window NT SP4之后才有的，因此对于Windows9x来说无法直接利用中间层驱动的功能。</p>
-<p>Windows DDK提供了两个著名的中间层驱动例子：Passthru以及Mux。开发人员可以在Passthru的基础上进行开发，Mux则实现了VLan功能。目前个人防火墙的产品还很少用到这种技术，主要的原因在于中间层驱动的安装过于复杂，尤其是在Windows NT下。Windows 2000下可以通过程序实现自动安装，但是如果驱动没有经过数字签名的话，系统会提示用户是否继续安装。中间层驱动功能强大，应该是今后个人防火墙技术的趋势所在，特别是一些附加功能的实现。</p>
-<p><strong>Win2k Filter-Hook Driver。</strong></p>
-<p>这是从Windows2000开始系统所提供的一种驱动程序，该驱动程序主要是利用ipfiltdrv.sys所提供的功能来拦截网络数据包。Filter-Hook Driver在结构非常简单，易于实现。但是正因为其结构过于简单，并且依赖于ipfiltdrv.sys，Microsfot并不推荐使用Filter-Hook Driver。</p>
-<p>NDIS Hook Driver。这是目前大多数个人防火墙所使用的方法。Hook的概念在Windows9x下非常流行，而且实现也很容易。在Windows9x下，驱动程序（VxD）通过使用Hook_Device_Service可以挂接NDIS所提供的所有服务。在Windows NT/2000下面如何实现Hook呢？有两种不同的思路：</p>
-<p><strong>1) 通过修改NDIS.SYS的Export Table。</strong></p>
-<p>在Windows NT/2000下，可执行文件（包括DLL以及SYS）都是遵从PE（Portable Executable）格式的。所有向其他操作系统组件提供接口的驱动程序都有Export Table，因此只要修改NDIS.SYS的Export Table就可以实现对关键NDIS API的挂接。由于协议驱动程序在系统启动的时候会调用NdisRegisterProtocol来向系统进行协议注册，因此这种方法关键在于修改NDIS.SYS所提供的NdisRegisterProtocol/NdisDeRegisterProtocol/NdisOpenAdapter/NdisCloseAdapter/NdisSend函数的起始地址。</p>
-<p>我们知道，在用户态模式要修改PE文件格式可以用一些API来实现，而NDIS.SYS位于系统的核心内存区，因此要修改NDIS.SYS就不得不通过写驱动程序来实现，也就要求我们对PE文件格式有比较深入的了解。使用这种方法还要注意驱动程序的加载次序，显然Hook Driver必须在NDIS.SYS被加载之后，而在协议驱动程序如tcpip.sys被加载之前。另外，Windows2000还提供了系统文件保护机制，因此在修改ndis.sys还需要通过修改注册表屏蔽系统文件保护机制。</p>
-<p><strong>2) 向系统注册假协议（fake protocol）。</strong></p>
-<p>在Windows内核中，所有已注册的协议是通过一个单向的协议链表来维护的。这个单向链表保存了所有已注册协议的NDIS_PROTOCOL_BLOCK结构的地址，在这个结构中保存了协议驱动所指定的相应的派发函数的地址如RECEIVE_HANDLER等。并且，每个协议驱动还对应一个NDIS_OPEN_BLOCK的单向链表来维护其所绑定的网卡信息。</p>
-<p>当协议驱动调用NdisRegisterProtocol之后，NDIS总是会把新注册的协议放在协议链表的表头并返回这张表，所以只要我们注册一个新的协议通过新协议注册返回的链表头就可以轻而易举的遍历系统中所有协议表。</p>
-<p>但是，如果要成功地挂接派发函数，还需要对协议所对应的NDIS_OPEN_BLOCK结构里的派发函数进行挂接，因为NDIS并不是直接调用协议驱动在NDIS_PROTOCOL_CHARACTERISTICS所注册的派发函数地址，而是调用NDIS_OPEN_BLOCK里的派发函数。</p>
-<p>值得注意的是，在Windows9x/Me/NT的DDK中，NDIS_PROTOCOL_BLOCK的定义是很明确的，而在Windows 2000/xp的DDK中，并没有该结构的详细定义，也就是说该结构在Windows2000/xp下是非公开的，因此开发人员需要利用各种调试工具来发掘该结构的详细定义。也正是因为如此，这种方法对平台的依赖性比较大，需要在程序中判断不同的操作系统版本而使用不同的结构定义。</p>
-<p>本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。值得说明的是，网络数据包拦截技术不仅仅可以用来开发个人防火墙，还可以用来开发其他的产品。</p>
-</div>
-        <a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1619">
-    2013-09-16
-    <center><h3><a href="/2013/9/16/The-half-life-of-formula.html">半衰期公式</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>半衰期定义：半衰期是指某種特定物質的浓度经过某种反应降低到剩下初始时一半所消耗的時間，半衰期是研究反应动力学的一个容易测定的重要参数，数学上可以证明，只有一级反应的半衰期是恒定的数值，且知悉一个一级反应的半衰期便可以计算出该反应的所有动力学参数，所以人们通常只关心一级反应的半衰期。常见的一级反应有：放射性核素的衰变、一级化学反应、药物在体内的吸收和代谢等。(from wiki)</p>
-<p>半衰期的公式：m=M*(1/2)<sup>(t/T)</sup> <br />　　　　　即：T= t/log(m/M, 0.5)</p>
-<p style="margin-left: 30px;">其中M为反应前原子核质量，m为反应后原子核质量，t为反应时间，T为半衰期。</p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (m M t T)
-  (* M (expt 0.5 (/ t T))))
-(define (T m M t)
-  (let ([loga 
-         (lambda (n base) 
-           (/ (log n) (log base)))])
-  (/ t (loga (/ m M) 0.5))))
-
-(T 25 100 20)
-(m 100 20 10)</pre>
-        <a href="/2013/9/16/The-half-life-of-formula.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

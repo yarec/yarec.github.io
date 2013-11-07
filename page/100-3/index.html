@@ -30,7 +30,7 @@
 <body>
 
  <div class="mid-btn-left"> <a class="pre" target="_self" href="../../page/100-2">&nbsp;&nbsp;&nbsp;&nbsp;</a> </div> 
-
+ <div class="mid-btn-right"> <a class="nxt" target="_self" href="../../page/100-4">&nbsp;&nbsp;&nbsp;&nbsp;</a> </div> 
 
 <div id="left" class="mid-menu-left"></div>
 
@@ -73,6 +73,169 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1581">
+    2013-07-15
+    <center><h3><a href="/2013/7/15/Eight-Queens-sicp.html">SICP的八皇后实现</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><a href="http://zh.wikipedia.org/wiki/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98">八皇后问题</a>：</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; highlight: [28]; toolbar: false; ">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;一些实现基本功能的函数
+;函数accumulate：在list各元素上累积运算------------------
+(define (accumulate op initial seq)
+  (if (null? seq)
+    initial
+    (op (car seq) (accumulate op initial (cdr seq)))))
+
+;函数filter：list元素过滤
+(define (filter predicate sequence)
+  (cond ((null? sequence) '())
+        ((predicate (car sequence))
+         (cons (car sequence) (filter predicate (cdr sequence))))
+        (else (filter predicate (cdr sequence)))))
+
+;函数flatmap
+(define (flatmap proc seq)
+  (accumulate append '() (map proc seq)))
+
+;函数enumerate-interval：产生list
+(define (enumerate-interval low high)
+  (if (&gt; low high)
+    '()
+    (cons low (enumerate-interval (+ low 1) high))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;程序主要框架
+(define (queens board-size)
+  (define (queen-rows k)
+    (if (= k 0)
+      (list empty-board)
+      (filter
+        (lambda (positions) (safe? k positions))
+        ;根据K值，过滤掉不符合条件的表
+        ;将新的【board-size】个(k.new-col)分【board-size】次加入
+        ;(queen-rows (- k 1))中的每个表项
+        (flatmap
+          (lambda (rest-of-queens)
+            (map (lambda (new-col)
+                   (adjoin-position new-col k rest-of-queens))
+                 (enumerate-interval 1 board-size)))
+          (queen-rows (- k 1))))))
+  (show-all-solutions (queen-rows board-size) board-size 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;定义 empty-board
+(define empty-board '())
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;函数adjoin-position：将新位置插进rest-of-queens头部
+(define (adjoin-position new-col k rest-of-queens)
+  (cons (cons k new-col) rest-of-queens))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;check函数比较给出的new和exist位置是否在一行/列/斜线 是则返回#t&nbsp; 
+;--for safe?
+(define (check new exist)
+  (or
+    (= (car new) (car exist))
+    (= (cdr new) (cdr exist))
+    (= (abs (- (car new) (car exist)))
+       (abs (- (cdr new) (cdr exist))))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;safe?函数 根据k值判断当前的positions是否符合要求
+(define (safe? k positions)
+  (define (danger? new)
+    (check new (car positions)))
+  (if (= k 1)
+    #t
+    (null? (filter danger? (cdr positions)))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;函数show-row输出一行
+(define (show-row col board-size)
+  (define (show-next col board-size count)
+    ;一行的开始输出左括号
+    (cond 
+      ((= count 0)
+       (begin (display "(") (show-next col board-size (+ count 1))))
+      ((= count board-size) ;输入到末尾 判断该输出Q or * 输出并加右括号
+       (if (= count col)
+         (display "Q)")
+         (display "*)")))
+      ((= count col) ;第col列输出Q
+       (begin (display "Q ") 
+              (show-next col board-size (+ count 1))))
+      (else ;其余输出*
+        (begin (display "* ") 
+               (show-next col board-size (+ count 1))))))
+  (begin (show-next col board-size 0)
+         (newline)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;show-all-solutions 输出所有解法
+(define (show-all-solutions ls board-size count)
+  (define (show-one list);输出一个解法
+    (if (not(null? list))
+      (begin
+        (show-row (cdr (car list)) board-size)
+        (show-one (cdr list)))
+      '()))
+  (begin
+    (if (null? ls)
+      (begin
+        (newline)
+        (display "共")
+        (display (- count 1))
+        (display "种解法,输出完毕"))
+      (begin
+        (display "Solution No.")
+        (display count)
+        (display ":")
+        (newline)
+        (newline)
+        (+ count 1)
+        (show-one (car ls))
+        (newline)
+        (show-all-solutions (cdr ls) board-size (+ count 1))))))
+
+(queens 8);默认直接输出8皇后
+</pre>
+<p>保存为queen.scm，执行<span style="color: #ff0000;">racket -r queen.scm<br><span style="color: #000000;">输出：<br></span></span></p>
+<p><span style="color: #008000;">Solution No.1:</span></p>
+<p><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span></p>
+<p><span style="color: #008000;">Solution No.2:</span></p>
+<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">...</span></p>
+<p><span style="color: #008000;">Solution No.92:</span></p>
+<p><span style="color: #008000;">(* * * * Q * * *)</span><br><span style="color: #008000;">(* * * * * * Q *)</span><br><span style="color: #008000;">(* Q * * * * * *)</span><br><span style="color: #008000;">(* * * * * Q * *)</span><br><span style="color: #008000;">(* * Q * * * * *)</span><br><span style="color: #008000;">(Q * * * * * * *)</span><br><span style="color: #008000;">(* * * Q * * * *)</span><br><span style="color: #008000;">(* * * * * * * Q)</span></p>
+<p><br><span style="color: #008000;">共92种解法,输出完毕</span></p>
+<p><span style="color: #ff0000;"><span style="color: #000000;">&nbsp;</span></span></p>
+<p>&nbsp;参考地址：<a href="http://www.oschina.net/code/snippet_96184_10064">http://www.oschina.net/code/snippet_96184_10064</a></p>
+        <a href="/2013/7/15/Eight-Queens-sicp.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
+<article class="arc" aid="1579">
+    2013-07-09
+    <center><h3><a href="/2013/7/9/Touch-Music-midnight-blues.html">触动音乐-午夜怨曲</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>　　今天到家突然有一个旋律串到我的脑海里&mdash;&mdash;《<span>午夜怨曲</span>》，不是外面听到的，而是从心底里。最近工作上、生活上都没什么变化，不知道是什么原因，只是这几天一直下雨，人的情绪总是受天气影响啊。于是，翻出电脑里好久没光顾的music文件夹，单曲狂rock好几遍。读读它的歌词，是否心底也会有些感触呢？曾经有多少个旋律打动过内心中最敏感的部分，乘着它的翅膀一次次自由的翱翔。城市里紧张的工作占据了太多的梦想，现在把一切都放下，仔细读一读你曾经喜欢过的歌，慢慢的品味，也许可以发现埋藏在你心里的那一份最纯真的感觉。</p>
+<p>午夜怨曲<br />作词：叶世荣 作曲：黄家驹<br />演唱：Beyond</p>
+<p>从来不知想拥有多少的理想<br />还离不开种种困忧<br />勉强去掩饰失意的感觉<br />再次听到昨日的冷嘲</p>
+<p>徘徊於街中恐怕只得孤独<br />寻回思忆中的碎片<br />变作了一堆草芥风中散<br />与你奏过午夜的怨曲</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>从回忆中找不到天真的笑声<br />曾留不低心中斗争<br />每次去担当失意的主角<br />冷笑变作故事的作者</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>啊~啊~ 障碍能撕破</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+<p>总有挫折打碎我的心<br />紧抱过去抑压了的手<br />我与你也彼此一起艰苦过<br />写上每句冰冷冷的诗<br />不会放弃高唱这首歌<br />我与你也彼此真的相识过</p>
+        <a href="/2013/7/9/Touch-Music-midnight-blues.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
+<article class="arc" aid="1575">
+    2013-07-05
+    <center><h3><a href="/2013/7/5/PlanBox-box.html">PlanBox-计划盒子</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>&nbsp; &nbsp; &nbsp; PlanBox是我的一个web项目，其功能类似于云笔记，使用的技术包括perl、mongodb、extjs、catalyst（perl的mvc框架）。为了解决extjs库（压缩后1M多）加载慢的问题，将其封装到了chrome扩展。数据库使用的mongodb，程序部署在heroku（目前的免费服务已经够用了）。<br />&nbsp; &nbsp; &nbsp; 在云笔记还没有满天飞的年代，我就开始实现这个程序，以记载从网上搜集的各种知识。最开始使用的是java的经典框架（<a href="http://baike.baidu.com/view/2090973.htm">SSH</a>），当时直接用的<a href="http://appfuse.org/">appfuse</a>(后来国内有了springside)。界面用了<a href="http://echo.nextapp.com/">echo</a>(一个服务端的ajax框架，其nb之处在于有一个像visual studio的设计工具)，对于我这种对html和css不擅长的程序员来说，echo真的是一个神器啊。后来之所以换成了perl+extjs的方案，是因为想要把java放到线上成本是很大的。因为曾经用perl实现了一个脚本工具wt（work tool：旨在简化日常使用的命令行工具），对perl的精炼和强大深有体会。界面方面echo虽然强的不行，但唯一的缺陷是对java的绑定，于是另一个强大的ui框架extjs成了我折腾的对象。基本结构是extjs负责界面的显示和操作的处理，与后台perl程序通过REST以json格式来通信。经过一段时间的苦战，功能已经全部重写完成。planbox成为我重要的工具，记学习笔记、写工作计划和总结、写博客、生成博客文章...<br />&nbsp; &nbsp; &nbsp; planbox和wt是我写过的对我来说最有用的代码，几乎天天都会用到。最初原型（<a href="http://code.google.com/p/webechonote/">webechonote</a>）提交到googlecode的日期为Nov 6, 2009，数来也有四年多了，现在对之前的一些辛苦做一个小总结，也和大家分享一下softidy.com后台程序的故事。相信作为写代码的人，总有一些程序就像自己的孩子一样，永远是那么漂亮，愿意用最宝贵的时间去呵护它、培养它，即使它看上去总是笨手笨脚的。</p>
+        <a href="/2013/7/5/PlanBox-box.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1574">
     2013-07-04
     <center><h3><a href="/2013/7/4/Tai-Chi-classic.html">太极经典</a></h3><br></center> 
@@ -334,17 +497,6 @@ Y Combinator<span style="font-size: medium;">：</span>
 </div>
 </div>
         <a href="/2013/6/18/Scheme-resource-list.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1557">
-    2013-06-09
-    <center><h3><a href="/2013/6/9/The-zero-based-compiler.html">零基础构建编译器</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>&nbsp; &nbsp; &nbsp; 作为MIT计算机科学学科入门课程基础的<a href="http://mitpress.mit.edu/sicp/">SICP</a>，在前言中说到“设计这门课程的基础是我们的一种信念，‘计算机科学’并不是一种科学，而且其重要性与计算机本身并无太大关系”。开篇强调和更正一些普遍的错误看法有助于对后面内容的正确理解。本文标题“零基础构建编译器”也必须说明一下，以避免理解上的分歧。首先，“零基础”的含义不是没有任何编写编译器知识和经验，正确的含义是不依赖其它已经存在的语言，如：c、asm 或者其它任何一门语言。看来标题名字起的不好，会带来好多麻烦啊。产生歧义这种事情并不只存在于自然语言，在编写程序时，如果使用了“++i”这种“简洁”语法，歧义就很容易产生。对于语义明确的原则在此不再赘述。现在起一个稍微好一点的名字吧，“<a href="http://homepage.ntlworld.com/edmund.grimley-evans/bcompiler.html">Bootstrapping a simple compiler from nothing</a>”。这是Edmund GRIMLEY EVANS的文章，本文大部分内容也都是源于此。<br>&nbsp; &nbsp; &nbsp; 现在进入正题，已经存在的不使用其它语言的编译器有很多，它们的编译器都是用自己来写的。比如，c编译器用c写，c++编译器用c++写。英文名子叫“<a href="http://en.wikipedia.org/wiki/Self-hosting">Self-hosting</a>”，解释是“a compiler that can compile its own source code”，即“一个能编译自己源代码的编译器”。也有大量的没有这一特性的语言，如perl5, python, ruby等，其中perl5的下一版perl6将支持这一特性。那么不依赖其它语言要如何开始呢？以源代码的方式去写程序需要一个前题：这种程序的编译器已经存在。从源代码到可执行程序的转换过程，必须通过一个已经编译好的编译器才能完成。似乎现在陷入了一个鸡生蛋、蛋生鸡的难题。所以别无选择，只有一个方法可以实现——以机器语言为起点。计算机在发明的初期，所有的程序都是以这种方式实现的，那时候使用的工具是<a href="http://zh.wikipedia.org/wiki/%E6%89%93%E5%AD%94%E5%8D%A1">打孔卡</a>。我们现在可以使用更高级的工具：十六进制编辑器（vim，emacs等）。<br>&nbsp; &nbsp; &nbsp; 用机器语言写程序，可想而知，当程序有一定规模以后会复杂的没有人可以维护。所以机器语言在这里的职责仅仅是一个起步的方法，是火箭点火的那个小装置。通过一步步的演进，最终达到想实现的编译器。其中每一个阶段都实现一个编译器，作为下一级编译器的基础语言。<br>hex1:<br>这是第一个起步阶段的语言。<br>其语法为：<br>注释：以"#" 开头，直到行末<br>代码：/([0-9a-f]{2})*/<br>可执行程序以16进制打开（vim hex1 :%!xxd）看到如下内容：</p>
-<p style="margin-left: 30px;"><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000000: 7f45 4c46 0101 0100 0000 0000 0000 0000 .ELF............</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000010: 0200 0300 0100 0000 5480 0408 3400 0000 ........T...4...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000020: 0000 0000 0000 0000 3400 2000 0100 0000 ........4. .....</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000030: 0000 0000 0100 0000 0000 0000 0080 0408 ................</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000040: 0080 0408 bf00 0000 bf00 0000 0500 0000 ................</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000050: 0010 0000 e825 0000 00c1 e004 50e8 1c00 .....%......P...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000060: 0000 0104 24e8 0300 0000 58eb e731 db43 ....$.....X..1.C</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000070: 8d4c 2404 89da b804 0000 00cd 80c3 e81f .L$.............</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000080: 0000 0083 f823 750c e815 0000 0083 f80a .....#u.........</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">0000090: 75f6 ebea 83e8 307c e583 f830 7c03 83e8 u.....0|...0|...</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000a0: 27c3 6a00 31db 89e1 89da 42b8 0300 0000 '.j.1.....B.....</span><br><span style="color: #0000ff; font-size: small; font-family: 'courier new', courier;">00000b0: cd80 85c0 7402 58c3 31c0 89c3 40cd 80 &nbsp; ....t.X.1...@..</span></p>
-<p>&nbsp; &nbsp; &nbsp; 上面第6行开始为真正的代码部分，之前的为elf header（linux程序的头信息）。这个头用于描述此程序的相关信息，提供给操作系统以加载此程序到内存。如果想要让程序运行于win32系统，那么这个头就得换成pe header。有了以上的内容，我们完全可以在没有编译器的情况下用编辑器制作出这个可执行程序。以vim为例：<br>打开一个空文件hex1: vim hex1<br>复制以上全部内容到vim<br>在vim中执行 :%!xxd -r 以恢复为二进制<br>保存退出 :wq<br><a href="http://softidy.com/2013/6/9/Hex1.he.html">源码在此</a>， 如果去掉注释部分，和上面看到的应该是一样的。<br>将源码保存为hex1.he<br>现在就可以测试这个编译器了。<br>执行 ./hex1 &lt; hex1.he &gt; hex1.out<br>执行 diff hex1 hex1.out 可以验证编译出的结果和用vim直接制作的程序是一样的。<br>到此， 起步的编译程序已经有了， 接下来就可以用这个编译器开始构建具有新语法的下一级的程序。</p>
-        <a href="/2013/6/9/The-zero-based-compiler.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

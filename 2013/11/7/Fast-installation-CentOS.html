@@ -5,12 +5,12 @@
     
     
     
-    <title>tag/Tai-Chi | 软轶-SofTidy.com</title>
+    <title>快速安装centos | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="tag/Tai-Chi | 软轶-SofTidy.com" />
+    <meta name="Keywords" content="快速安装centos" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -72,22 +72,40 @@
     <div class="ym-wrapper">
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
-                
-<article class="arc" >
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-04
-            <a href="/2013/7/4/Tai-Chi-classic.html"> <h3> <center>太极经典</center> </h3> </a>
-            <br>
-            <p>       老话讲“打拳先明理,理通拳法精”，学太极拳若不读读经典，细细琢磨，就算套路练的拈手即来，至多也就起到一个活动活动四肢的作用，这是任何一门运动都能达到的效果。所以作为中国的传统文化和宝贝，有必要认真的深入理解、发扬。本人初学太极，以下摘自互联网，备于此与君共勉。
-
-       中国人对于著作常喜好托古，假借古人之名为作者，传承给后世的人。太极拳界重要的拳论有两篇，一是张三丰的《太极拳 ...  <a href="/2013/7/4/Tai-Chi-classic.html">详细内容</a></p>
-        </div>
+                <article class="arc" aid="">
+    2013-11-07
+    <center><h3>快速安装centos</h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4>启动安装内核：</h4>
+<p>window用户推荐使用<a href="https://code.google.com/p/burg4dos/">https://code.google.com/p/burg4dos/</a>来设置，/isolinux目录可以从安装镜像中找到，复制到要安装的机器。</p>
+<p>grub配置：</p>
+<p>1. grub-legacy</p>
+<p>title install linux <br /> root (hd0,0) <br /> kernel /isolinux/vmlinuz <br /> initrd /isolinux/initrd.img</p>
+<p>2. grub2</p>
+<p>set root=(hd0,0)<br /> linux /isolinux/vmlinuz<br /> initrd /isolinux/initrd.img<br /> boot</p>
+<h4>安装选项：</h4>
+<p>启动之后，经过一些基本的选择就到达&ldquo;Installation Methed&rdquo;界面。这个地方我喜欢使用URL方式，即是在局域网内部署一个http服务，把centos镜像解压后放在一个目录中。这种方法适合经常安装，不用把好几个G的iso拷来拷去的。设置好url后，自动下载一个&ldquo;/images/install.img&rdquo;文件，这个是安装主程序。安装程序运行以后，其它的就方便操作了。</p>
+    </div>
 </article>
-
 
             </section>
         </div>
 
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'softidy';
+            var disqus_identifier = '1659';
+            var disqus_url = 'http://softidy.com/2013/11/7/Fast-installation-CentOS.html';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         
     </div>
 </div>

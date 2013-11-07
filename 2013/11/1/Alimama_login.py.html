@@ -5,12 +5,12 @@
     
     
     
-    <title>tag/Tai-Chi | 软轶-SofTidy.com</title>
+    <title>alimama_login.py | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="tag/Tai-Chi | 软轶-SofTidy.com" />
+    <meta name="Keywords" content="alimama_login.py" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -72,22 +72,80 @@
     <div class="ym-wrapper">
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
-                
-<article class="arc" >
-        <div class="ym-gbox-left ym-clearfix inner" >
-            2013-07-04
-            <a href="/2013/7/4/Tai-Chi-classic.html"> <h3> <center>太极经典</center> </h3> </a>
-            <br>
-            <p>       老话讲“打拳先明理,理通拳法精”，学太极拳若不读读经典，细细琢磨，就算套路练的拈手即来，至多也就起到一个活动活动四肢的作用，这是任何一门运动都能达到的效果。所以作为中国的传统文化和宝贝，有必要认真的深入理解、发扬。本人初学太极，以下摘自互联网，备于此与君共勉。
+                <article class="arc" aid="">
+    2013-11-01
+    <center><h3>alimama_login.py</h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <pre>#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import urllib,urllib2,cookielib,re,time
+from hashlib import md5
+from datetime import datetime
 
-       中国人对于著作常喜好托古，假借古人之名为作者，传承给后世的人。太极拳界重要的拳论有两篇，一是张三丰的《太极拳 ...  <a href="/2013/7/4/Tai-Chi-classic.html">详细内容</a></p>
-        </div>
+username=
+password=
+
+class alimama:
+    def __init__(self):
+        self.header = {&#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36&#39;}
+        self.cookie_handle = cookielib.CookieJar()
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookie_handle))
+        urllib2.install_opener(self.opener)
+    def login(self,username,passwd):
+        login_data = {
+            &#39;logname&#39;:&#39;&#39;,
+            &#39;originalLogpasswd&#39;:&#39;&#39;,
+            &#39;logpasswd&#39;:&#39;&#39;,
+            &#39;proxy&#39;:&#39;&#39;,
+            &#39;redirect&#39;:&#39;&#39;,
+            &#39;style&#39;:&#39;&#39;
+        }
+        login_data[&#39;logname&#39;] =username
+        login_data[&#39;originalLogpasswd&#39;] =passwd
+        login_data[&#39;logpasswd&#39;] = md5(login_data[&#39;originalLogpasswd&#39;]).hexdigest()
+        source = urllib2.urlopen(&#39;http://www.alimama.com/member/minilogin.htm&#39;).read()
+        token_list = re.findall(r&quot;input name=&#39;_tb_token_&#39; type=&#39;hidden&#39; value=&#39;([a-zA-Z0-9]+)&#39;&quot;, source)
+        login_data[&#39;_tb_token_&#39;] = token_list[0] if token_list else &#39;&#39;
+        loginurl = &#39;https://www.alimama.com/member/minilogin_act.htm&#39;
+
+        login_data = urllib.urlencode(login_data)
+        self.header[&#39;Referer&#39;] = &#39;http://www.alimama.com/member/minilogin.htm&#39;
+        try:
+            req = urllib2.Request(url=loginurl,data=login_data,headers=self.header)
+            resp =urllib2.urlopen(req)
+            html = resp.read()
+            #print resp.info()
+            #print html
+            #print self.cookie_handle
+            if str(resp.url).find(&#39;success&#39;)!=-1:
+                return True
+        except Exception,e:
+            print e
+            return False
+
+a = alimama()
+print a.login(username, password)
+    </div>
 </article>
-
 
             </section>
         </div>
 
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'softidy';
+            var disqus_identifier = '1653';
+            var disqus_url = 'http://softidy.com/2013/11/1/Alimama_login.py.html';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         
     </div>
 </div>
