@@ -73,6 +73,29 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1664">
+    2013-11-19
+    <center><h3><a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html">PowerDesigner逆向工程mysql</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4>软件版本：</h4>
+<ul>
+<li>PowerDesigner15</li>
+<li>MySQL5</li>
+<li>MyODBC-standard-3.51.0.7-win.msi <a href="http://yunpan.cn/QUKf2upvZmLW8">下载地址</a></li>
+<li>mysql-connector-odbc-5.1.5-win.msi&nbsp;<a href="http://yunpan.cn/QUKfE3xQtBzhi">下载地址</a></li>
+</ul>
+<p>逆向工程的目的是把mysql数据库中的表结构导入到PowerDesigner中，以便于基于现有的表来使用PowerDesigner做设计。需要这样操作的原因有两个，第一是数据库的设计模型（cdm或pdm）搞丢了或者一时找不到，另一种情况是之前的表没有使用PowerDesigner设计。这时就需要把数据库表转换为设计模型。上面4个软件包中，前两个应该已经安装好了（不然也不会考虑逆向的问题），后两个就是逆向操作需要的驱动程序。<br />安装完成后，</p>
+<ul>
+<li>打开PowerDesigner，依次点开&rdquo;File -&gt; Reverse Engineer -&gt; Database...&ldquo;</li>
+<li>打开"New Physical Data Model"窗口，DBMS选择&ldquo;Mysql 5.0&rdquo;，选择&ldquo;Using a data source&rdquo;，</li>
+<li>点击右边的数据库图标的小按钮，配置好数据库链接，点击确定</li>
+<li>这时应该打开了&ldquo;Database Reverse Engineering&rdquo;窗口，并显示出数据库中的表。</li>
+<li>选择要逆向的表，完成逆向操作，生成pdm。</li>
+</ul>
+        <a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1657">
     2013-11-06
     <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
@@ -181,40 +204,6 @@
 <h4>OS信息类：</h4>
 <p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
         <a href="/2013/10/15/The-Linux-view-hardware-information.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1631">
-    2013-10-02
-    <center><h3><a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">ubuntu拨号上网和wifi共享</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：</p>
-<ol>
-<li>拨号上网</li>
-<li>共享wifi</li>
-</ol>
-<p>解决方法<br />一、拨号上网的方法： pppoeconf</p>
-<ol>
-<li>打开终端，Ctrl+Alt+t</li>
-<li>以root身份启动，执行 sudo pppoeconf</li>
-<li>启动后会提示一些问题，一路选&ldquo;Yes"即可，直到要求输入ADSL账号，填好账号，下一步是密码，再之后一路"Yes"就ok了</li>
-<li>其中最后一步是设置是否开机自动拨号，如果不想自动拨就选&ldquo;No&rdquo;，手动拨号的命令是&nbsp;pon dsl-provider</li>
-</ol>
-<p>我一直是用的这个方法，另外网上有人说有图形操作的方法： 系统-》首选项-》网络连接 选择 DSL 然后添加 输入用户名和密码 勾上自动连接 在点应用 就OK 了<br />这个方法我试了不好使，不知道是不是得重启电脑才行，前一种方法已经满足我了，不折腾了。<br />pppoeconf和NetworkManager是相冲突的，用过pppoeconf的想要换为nm需要下面的设置（此方法我没有试成功，大家可以试试）：</p>
-<ol>
-<li>更改/etc/NetworkManager/NetworkManager.conf中的managed＝true</li>
-<li>更改/etc/network/interfaces，只保留<br />auto lo<br />iface lo inet loopback</li>
-<li>删除，rm /etc/resolv.conf</li>
-<li>重启nm，sudo /etc/init.d/network-manager restart （如果面板没有nm图标，ALT+F2然后输入nm-applet回车）</li>
-</ol>
-<p>一些命令：</p>
-<ul>
-<li>Ubuntu ADSL手工断线：sudo poff</li>
-<li>查看连接情况：sudo plog</li>
-<li>可查询本机的上网IP: sudo ifconfig ppp0</li>
-</ul>
-<p>二、windows上共享wifi有手动的方法，也有好用的工具。ubuntu上手动的方法，一直没有成功。最后发现一个工具，&nbsp;<a href="http://code.google.com/p/wifi-hostapd-ap/" target="_blank">wifi-hostapd-ap</a>，非常方便的工具啊。我这里是编译安装的。先安装依赖的库： sudo apt-get install wireless-tools bridge-utils hostapd dnsmasq libqtgui4<br />编译：make<br />启动：./WiFi_Hostapd_AP<br />设置密码=》应用， 搞定！</p>
-        <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

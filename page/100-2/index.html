@@ -73,6 +73,40 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1631">
+    2013-10-02
+    <center><h3><a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">ubuntu拨号上网和wifi共享</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：</p>
+<ol>
+<li>拨号上网</li>
+<li>共享wifi</li>
+</ol>
+<p>解决方法<br />一、拨号上网的方法： pppoeconf</p>
+<ol>
+<li>打开终端，Ctrl+Alt+t</li>
+<li>以root身份启动，执行 sudo pppoeconf</li>
+<li>启动后会提示一些问题，一路选&ldquo;Yes"即可，直到要求输入ADSL账号，填好账号，下一步是密码，再之后一路"Yes"就ok了</li>
+<li>其中最后一步是设置是否开机自动拨号，如果不想自动拨就选&ldquo;No&rdquo;，手动拨号的命令是&nbsp;pon dsl-provider</li>
+</ol>
+<p>我一直是用的这个方法，另外网上有人说有图形操作的方法： 系统-》首选项-》网络连接 选择 DSL 然后添加 输入用户名和密码 勾上自动连接 在点应用 就OK 了<br />这个方法我试了不好使，不知道是不是得重启电脑才行，前一种方法已经满足我了，不折腾了。<br />pppoeconf和NetworkManager是相冲突的，用过pppoeconf的想要换为nm需要下面的设置（此方法我没有试成功，大家可以试试）：</p>
+<ol>
+<li>更改/etc/NetworkManager/NetworkManager.conf中的managed＝true</li>
+<li>更改/etc/network/interfaces，只保留<br />auto lo<br />iface lo inet loopback</li>
+<li>删除，rm /etc/resolv.conf</li>
+<li>重启nm，sudo /etc/init.d/network-manager restart （如果面板没有nm图标，ALT+F2然后输入nm-applet回车）</li>
+</ol>
+<p>一些命令：</p>
+<ul>
+<li>Ubuntu ADSL手工断线：sudo poff</li>
+<li>查看连接情况：sudo plog</li>
+<li>可查询本机的上网IP: sudo ifconfig ppp0</li>
+</ul>
+<p>二、windows上共享wifi有手动的方法，也有好用的工具。ubuntu上手动的方法，一直没有成功。最后发现一个工具，&nbsp;<a href="http://code.google.com/p/wifi-hostapd-ap/" target="_blank">wifi-hostapd-ap</a>，非常方便的工具啊。我这里是编译安装的。先安装依赖的库： sudo apt-get install wireless-tools bridge-utils hostapd dnsmasq libqtgui4<br />编译：make<br />启动：./WiFi_Hostapd_AP<br />设置密码=》应用， 搞定！</p>
+        <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1622">
     2013-09-28
     <center><h3><a href="/2013/9/28/Windows-multi-user-remote-desktop.html">windows多用户远程桌面</a></h3><br></center> 
@@ -361,45 +395,6 @@ done</pre>
 <li>胡 蓉 周建中：基于数据挖掘的知识发现在水电站优化调度中的应用研究．计算机与现代化，2O05．(2)</li>
 </ul>
         <a href="/2013/8/6/Knowledge-discovery-(turn).html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1586">
-    2013-07-26
-    <center><h3><a href="/2013/7/26/Non-root-node-installation.html">非root安装node</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
-cd node
-mkdir ~/opt
-export PREFIX=~/opt; ./configure
-make
-make install
-echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
-source ~/.bashrc</pre>
-<p>&nbsp;测试一下：</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
-v0.11.5-pre
-$ npm -v
-1.3.4</pre>
-<p>再测试一下webapp，以下代码保存到app.js</p>
-<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
-server = http.createServer(function (req, res) {
-res.writeHeader(200, {"Content-Type": "text/plain"});
-res.end("Hello Node");
-})
-server.listen(3000);</pre>
-<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
-<p>试用Express:</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">npm install -g express
-mkdir site &amp;&amp; cd site
-express .
-cd . &amp;&amp; npm install
-node app.js</pre>
-<p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
-<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
-<p>&nbsp;</p>
-        <a href="/2013/7/26/Non-root-node-installation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

@@ -73,6 +73,45 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1586">
+    2013-07-26
+    <center><h3><a href="/2013/7/26/Non-root-node-installation.html">非root安装node</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
+cd node
+mkdir ~/opt
+export PREFIX=~/opt; ./configure
+make
+make install
+echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+<p>&nbsp;测试一下：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
+v0.11.5-pre
+$ npm -v
+1.3.4</pre>
+<p>再测试一下webapp，以下代码保存到app.js</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
+server = http.createServer(function (req, res) {
+res.writeHeader(200, {"Content-Type": "text/plain"});
+res.end("Hello Node");
+})
+server.listen(3000);</pre>
+<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
+<p>试用Express:</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">npm install -g express
+mkdir site &amp;&amp; cd site
+express .
+cd . &amp;&amp; npm install
+node app.js</pre>
+<p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
+<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
+<p>&nbsp;</p>
+        <a href="/2013/7/26/Non-root-node-installation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1581">
     2013-07-15
     <center><h3><a href="/2013/7/15/Eight-Queens-sicp.html">SICP的八皇后实现</a></h3><br></center> 
@@ -433,70 +472,6 @@ console.log(sqrt(9));</pre>
 <p><br />过程抽象：</p>
 <p>上面Js版本描述了一个模型，即<a href="http://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9#.E7.89.9B.E9.A0.93.E6.B3.95">牛顿法</a>的递归函数。<br />scm版本与Js版类似，只不过这个版本抽象出了几个更基本的函数。<br />多了这一层的抽象，对于解平方根只起到了一个语义清晰的作用，某些时候这种做法会导致性能的降低。<br />然而对一个复杂系统来说，其内部可以有成千上万的模型，对于这种复杂度的控制，抽象是最有效的工具。<br />通过抽象，将基本的模型组织成高级的模型，再用高级模型再组织成更高级的模型，这样在高层次思考问题时复杂度就降低了。<br />优秀的程序设计者应该能够对系统的复杂度充分了解，并设计出具有适当抽象层次的程序模型结构。<br />fixed-point版本使用了更多的抽象层次，sqrt &gt;&nbsp;fixed-point-of-transform&nbsp;&gt; fixed-point &gt; average-damp &gt; average 。<br />Newton's method以另外一个模型来构建这一功能，sqrt &gt;&nbsp;fixed-point-of-transform &gt; fixed-point &gt; newton-transform &gt; deriv<br /><br /></p>
         <a href="/2013/6/20/The-square-root-of-evaluation-algorithm.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1562">
-    2013-06-18
-    <center><h3><a href="/2013/6/18/Scheme-resource-list.html">scheme资源列表</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>&nbsp; &nbsp; &nbsp; &nbsp;Scheme 语言是 Lisp 的一个现代变种、方言，诞生于1975年，由 MIT 的 Gerald J. Sussman and Guy L. Steele Jr. 完成<br />&nbsp; &nbsp; &nbsp; &nbsp;Scheme语言的规范很短，总共只有50页，甚至连Common Lisp 规范的索引的长度都不到，但是却被称为是现代编程语言王国的皇后。它与以前和以后的 Lisp 实现版本都存在一些差异，但是却易学易用。</p>
-<p>在线社区：</p>
-<ul>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.schemers.org/">schemers.org</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://groups.csail.mit.edu/mac/projects/scheme/">mit scheme</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://lisp.org.cn/">lisp.org.cn</a></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div><span style="font-family: arial;">方言：</span></div>
-<div>
-<ul>
-<li><span style="font-size: medium;"><a href="http://racket-lang.org/"><span style="font-family: arial;">racket</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/guile/"><span style="font-family: arial;">guile</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.call-cc.org/">chicken</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://dynamo.iro.umontreal.ca/wiki/index.php/Main_Page">gambit</a></span></span></li>
-<li><span style="font-size: medium;"><a href="http://www.scheme.com/"><span style="font-family: arial;">chez</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.canonical.org/~kragen/sw/urscheme/">urscheme</a>*</span></span></li>
-<li><span style="font-size: medium;"><a href="http://www.gnu.org/software/kawa/"><span style="font-family: arial;">kawa</span></a></span></li>
-<li><span style="font-size: medium;"><a href="http://www.biwascheme.org/"><span style="font-family: arial;">biwaschrme</span></a></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="https://github.com/schani/jscreme">jscreme</a>*</span></span></li>
-<li><a href="http://bluishcoder.co.nz/jsscheme/">http://bluishcoder.co.nz/jsscheme/</a></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="https://github.com/dyoo/whalesong">whalesong</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://fargo.jcoglan.com/">fargo</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://sourceforge.net/projects/minty/">minty</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.omnigia.com/scheme/cpscm/home/">cpscm</a></span></span></li>
-<li><span style="font-size: medium;"><span style="font-family: arial;"><a href="http://www.t3x.org/s9fes">s9fes</a></span></span></li>
-</ul>
-<div><span style="font-family: arial;">&nbsp;</span></div>
-<div>学习资源：</div>
-<div>
-<ul>
-<li><span style="font-family: arial; font-size: medium;">little schemer (<a href="https://github.com/pkrumins/the-little-schemer">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">SICP</a>&nbsp;(<a href="http://mitpress.mit.edu/sicp/code/index.html">code</a>)</span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://cn.paradigmx.net/blog/2013/05/02/why-sicp-matters/">why-sicp-matters</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.scheme.com/tspl4/">TLSP4</a></span></li>
-<li><span style="font-family: arial; font-size: medium;"><a href="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-1.html">Teach Yourself Scheme in Fixnum Days</a></span></li>
-<li><span style="font-size: medium;"><a href="http://practical-scheme.net/wiliki/schemexref.cgi?RRS">RRS</a>&nbsp;<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/">R5RS</a></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://www.iro.umontreal.ca/~boucherd/mslug/meetings/20041020/minutes-en.html">The 90 Minute Scheme to C compiler</a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://stackoverflow.com/questions/1669/learning-to-write-a-compiler">learning-to-write-a-compiler</a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://www.cs.indiana.edu/eip/96workshops.html">96workshops</a><a href="http://www.cs.indiana.edu/eip/compile/"><br /></a></strong></span></li>
-<li><span style="font-size: medium;"><strong><a href="http://icem-www.folkwang-hochschule.de/~finnendahl/cm_kurse/doc/schintro/schintro_toc.html">schintro(An Introduction to Scheme and its Implementation</a>)</strong></span></li>
-<li><span style="font-size: medium;"><a href="http://en.wikipedia.org/wiki/Scheme_(programming_language)">wikipedia</a></span></li>
-<li><span style="font-size: medium;"><a href="http://schemewiki.org/">schemewiki.org</a></span></li>
-<li><span style="font-size: medium;"><a href="http://readscheme.org/">readscheme.org</a></span></li>
-<li><span style="font-size: medium;"><a href="http://ceaude.twoticketsplease.de/js-lisps.html">js-lisps</a></span></li>
-</ul>
-Y Combinator<span style="font-size: medium;">：</span>
-<ul>
-<li><a style="font-size: 10px;" href="http://cuipengfei.me/blog/2013/04/09/make-y/">如何一步一步推导出Y Combinator</a></li>
-<li><a href="https://github.com/cuipengfei/SICP-Practice-Code/blob/master/ycombinator.rkt">cuipengfei　ycombinator.rkt</a></li>
-<li><a href="https://github.com/zhewuzhou/js-y-combinator/blob/master/y-combinator.js">zhewuzhou　y-combinator.js</a></li>
-<li><a href="https://bitbucket.org/egi/lambda-calculator">egi/lambda-calculator</a></li>
-<li><a href="http://docs.huihoo.com/homepage/shredderyin/wiki/SchemeYcombinator.html">Y Combinator 的 Scheme 实现(王垠</a></li>
-</ul>
-</div>
-</div>
-        <a href="/2013/6/18/Scheme-resource-list.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 
