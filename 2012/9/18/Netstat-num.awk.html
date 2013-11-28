@@ -76,19 +76,19 @@
     2012-09-18
     <center><h3>netstat-num.awk</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre> awk &#39;BEGIN{
-    while(&quot;netstat -an&quot;|getline){
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; "> awk 'BEGIN{
+    while("netstat -an"|getline){
         if( $5 ~ /[1-255]/)
         {
-            split($5,t1,&quot;:&quot;);
+            split($5,t1,":");
             tarr[t1[1]]++;
         }
     }
     for(k in tarr)
         {
-            print k,tarr[k] | &quot;sort -r -n -k2&quot;;
+            print k,tarr[k] | "sort -r -n -k2";
         }
-};&#39;
+};'</pre>
     </div>
 </article>
 

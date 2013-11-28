@@ -76,7 +76,7 @@
     2012-12-14
     <center><h3>mutex</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env python
+        <pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env python
 # encoding: utf8
 import threading
 import time
@@ -100,7 +100,7 @@ def calc(no):
     _num = num
     time.sleep(random.randint(0,1)/1.8)
     num = _num+1
-    msg = str(no) +&#39; set num to &#39;+str(num)
+    msg = str(no) +' set num to '+str(num)
     print msg
 
 
@@ -110,8 +110,8 @@ def test():
     for i in range(5):
         t = MyThread(i)
         t.start()
-if __name__ == &#39;__main__&#39;:
-    test()
+if __name__ == '__main__':
+    test()</pre>
     </div>
 </article>
 

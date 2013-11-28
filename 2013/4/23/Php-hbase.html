@@ -76,7 +76,7 @@
     2013-04-23
     <center><h3>php-hbase</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env php
+        <pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env php
 
 &lt;?php
 
@@ -97,12 +97,12 @@ EOF;
 
 error_reporting(E_ERROR);
 
-require_once __DIR__.&#39;/lib/Thrift/ClassLoader/ThriftClassLoader.php&#39;;
+require_once __DIR__.'/lib/Thrift/ClassLoader/ThriftClassLoader.php';
 use Thrift\ClassLoader\ThriftClassLoader;
 
 $loader = new ThriftClassLoader();
-$loader-&gt;registerNamespace(&#39;Thrift&#39;, __DIR__ . &#39;/lib&#39;);
-$loader-&gt;registerDefinition(&#39;shared&#39;, &#39;gen-php-hbase&#39;);
+$loader-&gt;registerNamespace('Thrift', __DIR__ . '/lib');
+$loader-&gt;registerDefinition('shared', 'gen-php-hbase');
 $loader-&gt;register();
 
 use Thrift\Protocol\TBinaryProtocol;
@@ -111,18 +111,18 @@ use Thrift\Transport\THttpClient;
 use Thrift\Transport\TBufferedTransport;
 use Thrift\Exception\TException;
 
-require_once __DIR__.&#39;/gen-php-hbase/Hbase.php&#39;;
-require_once __DIR__.&#39;/gen-php-hbase/Types.php&#39;;
+require_once __DIR__.'/gen-php-hbase/Hbase.php';
+require_once __DIR__.'/gen-php-hbase/Types.php';
 
 class Test {
     var $client;
-    var $tableName = &quot;student&quot;;
-    var $row_name = &#39;2&#39;;
+    var $tableName = "student";
+    var $row_name = '2';
 
     function run(){
         try {
 
-            $socket = new TSocket(&#39;192.168.1.72&#39;, 9090);
+            $socket = new TSocket('192.168.1.72', 9090);
             $transport = new TBufferedTransport($socket, 1024, 1024);
             $protocol = new TBinaryProtocol($transport);
             $this-&gt;client = new HbaseClient($protocol);
@@ -139,19 +139,19 @@ class Test {
             $transport-&gt;close();
 
         } catch (TException $tx) {
-            print &#39;TException: &#39;.$tx-&gt;getMessage().&quot;\n&quot;;
+            print 'TException: '.$tx-&gt;getMessage()."\n";
         }
     }
     function cr_table(){
         $columns = array(
-            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;id:&#39;,  &#39;maxVersions&#39; =&gt; 10  ) ),
-            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;name:&#39;  ) ),
-            new ColumnDescriptor( array(  &#39;name&#39; =&gt; &#39;score:&#39; ) ),
+            new ColumnDescriptor( array(  'name' =&gt; 'id:',  'maxVersions' =&gt; 10  ) ),
+            new ColumnDescriptor( array(  'name' =&gt; 'name:'  ) ),
+            new ColumnDescriptor( array(  'name' =&gt; 'score:' ) ),
         );
         try {
             $this-&gt;client-&gt;createTable($this-&gt;tableName, $columns);
         } catch (AlreadyExists $ae) {
-            echo( &quot;WARN: {$ae-&gt;message}\n&quot; );
+            echo( "WARN: {$ae-&gt;message}\n" );
         }
     }
 
@@ -159,7 +159,7 @@ class Test {
         $tables = $this-&gt;client-&gt;getTableNames();
         sort($tables);
         foreach ($tables as $name) {
-            echo( &quot;  found: {$name}\n&quot; );
+            echo( "  found: {$name}\n" );
         }
     }
 
@@ -167,27 +167,27 @@ class Test {
         $descriptors = $this-&gt;client-&gt;getColumnDescriptors($this-&gt;tableName);
         asort($descriptors);
         foreach ($descriptors as $col) {
-            echo( &quot;  column: {$col-&gt;name}, maxVer: {$col-&gt;maxVersions}\n&quot; );
+            echo( "  column: {$col-&gt;name}, maxVer: {$col-&gt;maxVersions}\n" );
         }
     }
 
     function mutate(){
-        $row = &#39;2&#39;;
-        $valid = &quot;foobar-&#x6D4B;&#x8BD5;&quot;. rand();
+        $row = '2';
+        $valid = "foobar-测试". rand();
         $mutations = array(
-            new Mutation(array(  &#39;column&#39; =&gt; &#39;score&#39;,  &#39;value&#39; =&gt; $valid  )),
+            new Mutation(array(  'column' =&gt; 'score',  'value' =&gt; $valid  )),
         );
         $this-&gt;client-&gt;mutateRow($this-&gt;tableName, $row, $mutations);
     }
 
     function get(){
-        $fam_col_name = &#39;score&#39;;
+        $fam_col_name = 'score';
         $arr = $this-&gt;client-&gt;get($this-&gt;tableName, $this-&gt;row_name, $fam_col_name);
         // $arr = array  
         foreach ($arr as $k =&gt; $v) {
             // $k = TCell  
-            echo (&quot;value = {$v-&gt;value} \n&quot;);
-            echo (&quot;timestamp = {$v-&gt;timestamp} \n&quot;);
+            echo ("value = {$v-&gt;value} \n");
+            echo ("timestamp = {$v-&gt;timestamp} \n");
         }
     }
 
@@ -206,7 +206,7 @@ $test = new Test();
 $test-&gt;run();
 
 ?&gt;
-
+</pre>
     </div>
 </article>
 

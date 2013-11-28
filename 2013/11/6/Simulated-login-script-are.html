@@ -77,11 +77,14 @@
     <center><h3>模拟登录的脚本们</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
-<p>一、python</p>
-<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
-<p>二、nodejs</p>
-<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
-<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如perl，c++，scheme。</p>
+<p>一、python<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
+<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。</p>
+<p>二、nodejs<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
+<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。</p>
+<p>三、perl<a href="http://softidy.com/2013/11/22/Alimama_login.pl.html">示例</a></p>
+<p>这个我折腾了半天，还是不好使。怀疑是<span>SendTE头的问题，强行去掉也没成功，哪位大侠搞定了教教我啊：D</span></p>
+<p><span>&nbsp;</span></p>
+<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如c++，scheme。</p>
     </div>
 </article>
 

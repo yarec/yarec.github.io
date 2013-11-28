@@ -73,6 +73,83 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1674">
+    2013-11-27
+    <center><h3><a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html">python编码的str-unicode与QByteArray-QString</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/babykick/archive/2011/05/16/2048155.html">PyQt的QString和python的string的区别</a>(转)</h4>
+<p>python的string和PyQt的QString的区别<br />python string和PyQt的QString的区别 以下在Python2.6和PyQt4.4.4 for Python2,6环境下讨论： Python中有两种有关字符的类型：Python string object和Python Unicode object。主要使用Python string object进行数据输入<br />　　</p>
+<p>python string和PyQt的QString的区别</p>
+<p>以下在 Python2.6和PyQt4.4.4 for Python2,6环境下讨论：<br />Python中有两种有关字符的类型：Python string object和Python Unicode object。主要使用Python string object进行数据输入输出。<br />PyQt中与之相对应的字符有关类型是：QByteArray和QString。主要使用QString操作数据。</p>
+<p><br />1. Python和PyQt中的类型对应</p>
+<p><br />注意是类型相似，不是相等。<br />需要先了解编码：ascii、gb2312、big5，这些是各国自己文字不同的编码；unicode，国际通用编码，就是穷尽这个世界上所有的文字，给 每个文字编一个，又分utf-8方案--最常使用的128个英文字母用一个字节来表示，而中文使用三个字节来表示，utf-16方案--其中英文和中文都 使用两个字节来表示，而其它字符采用四个字节，utf-32方案--所有的文字都用四个字节来表示。<br />unicode就可用来作为各种独立编码如ascii、gb2312、big5的转换中介。<br />Python中gkb == gb2312。</p>
+<p><br />1）Python string object可以理解为一个接一个字节（byte，8位）的字节组，至于表示什么编码，与表示文字有关，如："python string"，"中文"。注意它是有不同编码区分的！<br />PyQt中与之相当的是QByteArray，注意不是QString！</p>
+<p>A built-in string object (plain or Unicode) is a sequence of characters used to store and represent text-based information (plain strings are also sometimes used to store and represent arbitrary sequences of binary bytes). （摘自《Python in a NutShell》）</p>
+<p>QByteArray can be used to store both raw bytes (including '0's) and traditional 8-bit '0'-terminated.（摘自《PyQt手册》）</p>
+<p>2）Python Unicode object可以理解为固定使用utf-16编码的字节组，其中英文和中文都使用两个字节（16位）来表示，如：u"Python Unicode object"、u"中文"。<br />PyQt中与之对应的就是QString了。</p>
+<p>Unicode string literals have the same syntax as other string literals, with a u or U immediately before the leading quote. （摘自《Python in a NutShell》）</p>
+<p>Qt also provides the QString class to store string data. It stores 16-bit Unicode characters, making it easy to store non-ASCII/non-Latin-1 characters in your application.（摘自《PyQt手册》）<br />QString stores a string of 16-bit QChars, where each QChar corresponds one Unicode 4.0 character.（摘自《PyQt手册》）</p>
+<p>2. PyQt内部类型转换</p>
+<p><br />QString有 toAscii()、toUtf8()函数转换为QByteArray类型，（这个基本不用，因为很少直接用QByteArray类型）有 __init__ (self, QByteArray a)函数将QByteArray类型转为QString。</p>
+<p>&nbsp;</p>
+<p>3. Python string object和Python Unicode object相互转换</p>
+<p><br />1）Python string object是原始编码是有区分的，通过 decode('原始编码') 函数解码得到通用utf16编码即Python Unicode object。<br />&gt;&gt;&gt;"python string".decode('ascii')<br />或者<br />&gt;&gt;&gt;"python string".decode()<br />得到 u"python string"<br />因为默认按ascii解码。<br />&gt;&gt;&gt;"中文".decode('gbk')<br />得到 u"u4e2du6587" ，打印出来就是 中文 二字。(注意结果是2字节一组，共两组，对应两个汉字)<br />又："python string".decode('gkb') ，即按汉字来解码，也可以得到 u"python string"，因为gbk编码也支持英文字母；<br />但是"中文".decode('ascii') 即按ascii解码是错误的，因为ascii编码不支持汉字！</p>
+<p>&gt;&gt;&gt; "dfdf".decode()<br />u'dfdf'<br />&gt;&gt;&gt; "dfdf".decode("ascii")<br />u'dfdf'<br />&gt;&gt;&gt; "dfdf".decode("gbk")<br />u'dfdf'<br />&gt;&gt;&gt; "中文".decode("gbk")<br />u'u4e2du6587'<br />&gt;&gt;&gt;print "中文".decode("gbk")<br />中文<br />&gt;&gt;&gt; "中文".decode("gb2312")<br />u'u4e2du6587'<br />&gt;&gt;&gt; "中文".decode("ascii")<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeDecodeError: 'ascii' codec can't decode byte 0xd6 in position 0: ordinal not in range(128)</p>
+<p>2）Python Unicode object原始编码固定是utf16，通过 encode('目的编码') 编码来得到Python string object。<br />&gt;&gt;&gt;u"unicode string".encode()<br />或者<br />&gt;&gt;&gt;u"unicode string".encode('ascii')<br />得到<br />'unicode string'，默认目的编码为ascii。<br />&gt;&gt;&gt;u"中文".encode("gbk")<br />得到'xd4xd0xcexc4'，打印出来就是 中文。(注意结果是1字节一组，共4组)</p>
+<p>&gt;&gt;&gt; u"sdff".encode()<br />'sdff'<br />&gt;&gt;&gt; u"sdff".encode('ascii')<br />'sdff'<br />&gt;&gt;&gt; u"sdff".encode('gbk')<br />'sdff'<br />&gt;&gt;&gt; u"sdff".encode('gb2312')<br />'sdff'<br />&gt;&gt;&gt; u"中文".encode('gbk')<br />'xd6xd0xcexc4'<br />&gt;&gt;&gt; print u"中文".encode('gbk')<br />中文<br />&gt;&gt;&gt; u"中文".encode('ascii')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordin<br />al not in range(128)<br />注意：执行&gt;&gt;&gt; u"中文".encode('gbk')命令需要你的IDE支持gbk编码，在官方shell下执行肯定没问题，但如果你的IDE比如PyWin中文输入 异常，则可能报错。</p>
+<p>&nbsp;</p>
+<p>4. Python string object和Python Unicode object向QString的转换。</p>
+<p><br />Qt一般不直接操作QByteArray，只需关注Python string object和Python Unicode object向QString的转换。<br />很多关于PyQt4的英文书籍说：PyQt函数需要QString参数的地方都可以直接用Python string object或者Python Unicode object，如果非要转换可以直接用QtCore.QString()构造。比如《GUI Programming with PyQt》，再如《PyQt手册》：</p>
+<p>Whenever PyQt expects a QString as a function argument, a Python string object or a Python Unicode object can be provided instead, and PyQt will do the necessary conversion automatically.</p>
+<p>You may also manually convert Python string and Unicode objects to QString instances by using the QString constructor as demonstrated in the following code fragment:</p>
+<p>qs1 = QtCore.QString("Converted Python string object")<br />qs2 = QtCore.QString(u"Converted Python Unicode object")</p>
+<p>但可惜这只适用于英文 即ascii编码，对于中文则行不通！</p>
+<p>直接的 QString：<br />&gt;&gt;&gt; QtCore.QString('中文')<br />PyQt4.QtCore.QString(u'xd6xd0xcexc4')<br />&gt;&gt;&gt; print QtCore.QString('中文')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-3: ordin<br />al not in range(128)<br />&gt;&gt;&gt;<br />&gt;&gt;&gt; QtCore.QString(u'中文')<br />PyQt4.QtCore.QString(u'u4e2du6587')<br />&gt;&gt;&gt; print QtCore.QString(u'中文')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordin<br />al not in range(128)<br />&gt;&gt;&gt;<br />因为它们都是默认按ascii编码转换！</p>
+<p>GUI编程：<br />可以创建一个QTextEdit对象myTextEdit， 检验：<br />myTextEdit.append("中文")<br />或者<br />myTextEdit.append(u"中文")<br />或者<br />myTextEdit.append(QtCore.QString('中文'))<br />或者<br />myTextEdit.append(QtCore.QString(u'中文'))<br />你会发现显示都是乱码...因为它们都是默认按ascii编码进行内部转换得到QString相应utf16编码的。</p>
+<p>解决方法是:<br />利用unicode()函数显示指定gb2312编码进行中文编码转换，转换后的Python Unicode object则是可以直接作为QString参数代入用的:</p>
+<p>&gt;&gt;&gt; unicode('中文', 'gb2312', 'ignore')<br />u'u4e2du6587'<br />&gt;&gt;&gt; print unicode('中文', 'gb2312', 'ignore')<br />中文<br />&gt;&gt;&gt;</p>
+<p>myTextEdit.append(unicode(' 中文', 'gb2312', 'ignore'))<br />#用以替代myTextEdit.append(u"中文")<br />或者多此一举下：<br />myTextEdit.append(QtCore.QString(unicode('中文', 'gb2312', 'ignore')))<br />#用以替代myTextEdit.append(QtCore.QString(u'中文'))</p>
+<p>&nbsp;</p>
+<p>5. QString向Python string object和Python Unicode object的转换。</p>
+<p><br />Python中需要用Python string object和Python Unicode object的地方可就不一定可以直接用QString了!!!<br />QString向Python string object转换可以理解，因为编码不同。<br />QString向Python Unicode object的转换？需要转换吗？不都是utf16编码吗？<br />QString是tuf16编码，但是它的实现并非Python Unicode object那样直接的utf16码，而实际是一个QChar串，每个QChar才对应unicode符，所以地位相当但并不相同。<br />许多英文书籍写到：可以使用str()函数直接将QString转换为Python string object，可以使用unicode()直接将QString转换为Python Unicode object。如《PyQt手册》：</p>
+<p>In order to convert a QString to a Python string object use the Python str() builtin. Applying str() to a null QString and an empty QString both result in an empty Python string object.</p>
+<p>In order to convert a QString to a Python Unicode object use the Python unicode() builtin. Applying unicode() to a null QString and an empty QString both result in an empty Python Unicode object.</p>
+<p>但同样只适用于英文， 具体见下面分别分析。<br />1）QString向Python Unicode object的转换。<br />&gt;&gt;&gt; from PyQt4 import QtGui, QtCore<br />&gt;&gt;&gt; unicode(QtCore.QString('def'))<br />u'def'<br />&gt;&gt;&gt; print unicode(QtCore.QString('def'))<br />def</p>
+<p>对于中 文，unicode()必须要指定编码后有效。（这样也只针对直接的QString有效？对于Qt GUI编程中，从QWidget取得的QString无效？）</p>
+<p>&gt;&gt;&gt; from PyQt4 import QtGui, QtCore<br />&gt;&gt;&gt; unicode(QtCore.QString('中文'))<br />u'xd6xd0xcexc4'<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文'))<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'gbk' codec can't encode character u'xd6' in position 0: il<br />legal multibyte sequence</p>
+<p>指定原始编码后：<br />&gt;&gt;&gt; unicode(QtCore.QString('中文'),'gbk','ignore')<br />u'u4e2du6587'<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文'),'gbk','ignore')<br />中文</p>
+<p>&gt;&gt;&gt;</p>
+<p>&nbsp;</p>
+<p>GUI编程中:<br />但这种方法在GUI编程中似乎无效？<br />比如创建一个QLineEdit对象myLineEdit，写入汉字，则：<br />myText = unicode(self.myLineEdit.text(),'gb2312','ignore')<br />myText = unicode(QtCore.QString(self.myLineEdit.text()),'gb2312','ignore')<br />print myText都是乱码.</p>
+<p>尝试将 unicode()的参数改为QByteArray，但QString没有toGbk()或toGb2312()函数，只有toUtf8()和 toAsciii()函数，利用下试试：<br />myText = unicode(self.myLineEdit.text().toUtf8(),'utf8', 'ignore')<br />myText = unicode(self.myLineEdit.text().toAscii(),'ascii', 'ignore')<br />因为不是gbk编码，所以打印都还是乱码。</p>
+<p>不过python中一 般从文件、终端、网络数据流或者其它外部输入中读取的都是Python string object类型，而且向文件、终端、网络也只能输出Python string object类型。所以这个问题可以跳过，通过下面讲的内容，发现可以在此基础上转为Python string object使用。</p>
+<p>2）QString向 Python string object的转换。<br />A. 第一种方法：<br />可以直接借助上一步得到的Python Unicode object和encode()函数获得Python string object。<br />&gt;&gt;&gt; unicode(QtCore.QString('dfd')).encode('gb2312')<br />'dfd'<br />&gt;&gt;&gt; unicode(QtCore.QString('dfd')).encode('ascii')<br />'dfd'<br />&gt;&gt;&gt;<br />&gt;&gt;&gt; unicode(QtCore.QString('中文'),'gbk','ignore').encode('gbk')<br />'xd6xd0xcexc4'<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文'),'gbk','ignore').encode('gbk')<br />中文<br />&gt;&gt;&gt;</p>
+<p>B. 第二种方法：<br />也可利用str()：<br />&gt;&gt;&gt; str(QtCore.QString('def'))<br />'def'<br />&gt;&gt;&gt; print str(QtCore.QString('def'))<br />def<br />&gt;&gt;&gt;</p>
+<p>但是对于中文，直接调 用str()是无效的！<br />&gt;&gt;&gt; str(QtCore.QString('中文'))<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-3: ordin<br />al not in range(128)<br />对于str()函数默认以ascii编码转换，而str()函数又只能接受一个参数，改不了别的编码，所以对汉字自然不行。<br />先用unicode()指定gb2312解码再利用str()呢？：<br />&gt;&gt;&gt; str(unicode(QtCore.QString('中文'), 'gb2312', 'ignore'))<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordin<br />al not in range(128)<br />还是----str()函数默认以ascii编码转换！</p>
+<p>C. 对于中文考虑第一种方法：</p>
+<p>&gt;&gt;&gt; unicode(QtCore.QString('中文'),'gbk','ignore').encode('gbk')<br />'xd6xd0xcexc4'<br />&gt;&gt;&gt; unicode(QtCore.QString('中文'),'gbk','ignore').encode('gb2312')<br />'xd6xd0xcexc4'<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文'),'gbk','ignore').encode('gb2312')<br />中文<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文'),'gbk','ignore')<br />中文<br />&gt;&gt;&gt;</p>
+<p>GUI编程中:<br />但是对于前面myLineEdit的情况怎么处理呢？<br />myText = unicode(self.myLineEdit.text(),'gb2312','ignore')是乱码，encode('gb2312')之后 呢？<br />myText = unicode(self.myLineEdit.text(),'gb2312','ignore').encode('gb2312')<br />打印依然是乱码！？<br />后面尝试将unicode()的参数改为QByteArray、利用QString的toUtf8()得到的虽然不是gbk编码，但是进一步 encode('gb2312')又如何呢：<br />myText = unicode(self.myLineEdit.text().toUtf8(),'utf8', 'ignore').encode('gb2312')<br />发现print myText显示正常!!!：<br />中文<br />且python方式打开文件后查找该字符串也正常，证明myText是转换成功的Python string object!!!</p>
+<p>注意：1）借助 toAscii()函数（除了toUtf8只有这个...）不行?!<br />myText = unicode(self.myLineEdit.text().toAscii(),'ascii', 'ignore').encode('gb2312')<br />打印是乱码。<br />难道PyQt的Ascii和Python的ascii不一样？<br />2）这种借助utf8码的方式对于直接的QString反而不行！？<br />&gt;&gt;&gt; unicode(QtCore.QString('中文').toUtf8(),'utf8','ignore').encode('gb2312')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeEncodeError: 'gb2312' codec can't encode character u'xd6' in position 0:<br />illegal multibyte sequence<br />&gt;&gt;&gt; unicode(QtCore.QString('中文 ').toAscii(),'ascii','ignore').encode('gb2312')<br />''<br />&gt;&gt;&gt; print unicode(QtCore.QString('中文').toAscii(),'ascii','ignore').encode('gb2<br />312')</p>
+<p>&gt;&gt;&gt;</p>
+<p>D. 对于中文考虑第二种方法：<br />利用QString的toAscii()函数后再使用str()函数：<br />&gt;&gt;&gt; str(QtCore.QString('中文').toAscii())<br />'xd6xd0xcexc4'<br />&gt;&gt;&gt; print str(QtCore.QString('中文').toAscii())<br />中文<br />&gt;&gt;&gt;<br />str(QtCore.QString('中文').toAscii())得到的是ascii编码？尝试将其转为unicode？<br />&gt;&gt;&gt; unicode(str(QtCore.QString('中文').toAscii())).encode('gbk')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeDecodeError: 'ascii' codec can't decode byte 0xd6 in position 0: ordinal<br />not in range(128)<br />&gt;&gt;&gt; unicode(str(QtCore.QString('中文').toAscii()),'ascii').encode('gbk')<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeDecodeError: 'ascii' codec can't decode byte 0xd6 in position 0: ordinal<br />not in range(128)<br />&gt;&gt;&gt; unicode(str(QtCore.QString('中文 ').toAscii()),'ascii','ignore').encode('gbk'<br />)<br />''<br />&gt;&gt;&gt;<br />&gt;&gt;&gt; unicode(str(QtCore.QString('中文').toAscii()))<br />Traceback (most recent call last):<br />File "", line 1, in <br />UnicodeDecodeError: 'ascii' codec can't decode byte 0xd6 in position 0: ordinal<br />not in range(128)<br />难道PyQt的Ascii和Python的ascii不一样？</p>
+<p>GUI编程中:<br />myText = str(self.myLineEdit.text().toAscii())<br />打印发现还是乱码！？<br />myText = unicode(str(self.myLineEdit.text().toAscii())).encode('gb2312')<br />打印发现还是乱码！？</p>
+<p>&nbsp;</p>
+<p>6. 总结:</p>
+<p><br />1）Python string object是原始编码是有区分的，通过 decode('原始编码') 解码得到utf16类型即Python Unicode object。Python Unicode object原始编码固定是utf16，通过 encode('目的编码') 编码来得到Python string object。</p>
+<p>2）对于英 文，PyQt函数需要QString参数的地方都可以直接用Python string object或者Python Unicode object。对于中文，利用unicode()函数显示指定gb2312编码进行中文编码转换，转换后的Python Unicode object可以直接作为QString参数代入。</p>
+<p>unicode('中 文', 'gb2312', 'ignore')</p>
+<p>3）对于英文，可以使 用unicode()直接将QString转换为Python Unicode object，并进一步encode()得到Python string object，也可以使用str()函数直接将QString转换为Python string object。对于中文，利用unicode()指定原始编码gbk来解决QString转换为Python Unicode object问题，但对于GUI使用仍有缺陷，不过无碍；进一步利用encode('gb2<br />312')得到Python string object，或者结合QString的toUtf8()再利用str()函数；但对于GUI编程str()方法还是不行，只可结合QString的 toUtf8()进行unicode()转换后再利用encode('gb2<br />312')。</p>
+<p>str(QtCore.QString(' 中文').toAscii())<br />unicode(QtCore.QString('中文'),'gbk','ignore').encode('gb2312')<br />myText = unicode(self.myLineEdit.text().toUtf8(),'utf8', 'ignore').encode('gb2312')</p>
+<p>&nbsp;</p>
+<p>7. 中文？为什么不用类似C++中Qt的方法解决上面中文的使用？</p>
+<p><br />C++中Qt一般是利用tr()方法翻译（便于国际化），或者简单设置：<br /> QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312"));<br /> QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));<br /> QTextCodec::setCodecForLocale(QTextCodec::codecForName("GB2312"));<br /> <br /> 1）前者PyQt4中对应是QCoreApplication.translate()，比如pyuic4自动生成的.py文件中可以看到：<br /> def retranslateUi(self, mainWindow):<br /> mainWindow.setWindowTitle(QtGui.QApplication.translate("mainWindow", "名称", None, QtGui.QApplication.UnicodeUTF8))<br /> <br /> QtGui.QApplication.UnicodeUTF8继承自QCoreApplication的<br /> enum Encoding { CodecForTr, UnicodeUTF8, DefaultCodec }<br /> 但这需保证写入的汉字是UnicodeUTF8编码，比如前面myLineEdit读入的ini文件中汉字就需用utf8表示？CodecForTr是使 用QTextCodec.codecForTr() (Latin-1 if none has been set).但后面可看到PyQt4中无code包？</p>
+<p>PyQt4手册说明如下：<br /> Unfortunately, because of the way Qt implements tr() (and trUtf8()) it is not possible for PyQt to exactly reproduce its behaviour. The PyQt implementation of tr() (and trUtf8()) uses the class name of the instance as the context. The key difference, and the source of potential problems, is that the context is determined dynamically in PyQt, but is hardcoded in Qt. In other words, the context of a translation may change depending on an instance's class hierarchy. <br />The PyQt behaviour is unsatisfactory and may be changed in the future. It is recommended that QCoreApplication.translate() be used in preference to tr() (and trUtf8()). This is guaranteed to work with current and future versions of PyQt and makes it much easier to share message files between Python and C++ code. Below is the alternative implementation of A that uses QCoreApplication.translate():</p>
+<p>class A(QtCore.QObject):<br /> def hello(self):<br /> return QtCore.QCoreApplication.translate("A", "Hello")</p>
+<p>2） 但后者方法在PyQt中未能成功：<br /> QtCore.QTextCodec.setCodecForTr(QtCore.QTextCodec.codecForName("gb2312"))<br /> QtCore.QTextCodec.setCodecForCStrings(QtCore.QTextCodec.codecForName("gb2312"))<br /> QtCore.QTextCodec.setCodecForLocale(QtCore.QTextCodec.codecForName("gb2312"))<br /> 后证实PyQt4中无code包？ascii也没有？...<br /> if not QtCore.QTextCodec.codecForName("gb2312"):<br /> print 'no code'</p>
+        <a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1664">
     2013-11-19
     <center><h3><a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html">PowerDesigner逆向工程mysql</a></h3><br></center> 
@@ -101,11 +178,14 @@
     <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
-<p>一、python</p>
-<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
-<p>二、nodejs</p>
-<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
-<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如perl，c++，scheme。</p>
+<p>一、python<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
+<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。</p>
+<p>二、nodejs<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
+<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。</p>
+<p>三、perl<a href="http://softidy.com/2013/11/22/Alimama_login.pl.html">示例</a></p>
+<p>这个我折腾了半天，还是不好使。怀疑是<span>SendTE头的问题，强行去掉也没成功，哪位大侠搞定了教教我啊：D</span></p>
+<p><span>&nbsp;</span></p>
+<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如c++，scheme。</p>
         <a href="/2013/11/6/Simulated-login-script-are.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -179,31 +259,6 @@
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
         <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1636">
-    2013-10-15
-    <center><h3><a href="/2013/10/15/The-Linux-view-hardware-information.html">linux查看硬件信息</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>linux查看硬件信息的命令</p>
-<h4>软件类：</h4>
-<p>用硬件检测程序kuduz探测新硬件：service kudzu start ( or restart)<br />查看系统硬盘信息和使用情况：fdisk &amp; disk - l &amp; df &amp;&nbsp;hdparm -I /dev/sda&nbsp;<br />dmidecode查看硬件信息，包括bios、cpu、内存等信息<br />dmesg | more 查看硬件信息<br />lshw(<a class="external text" style="font-size: 10px;" href="http://ezix.org/project/wiki/HardwareLiSter" rel="nofollow" target="_blank">Hardware Lister</a>可以把硬件的详细信息导出</p>
-<h4>proc信息类：</h4>
-<p>查看CPU信息：cat /proc/cpuinfo<br />查看板卡信息：</p>
-<ol>
-<li>cat /proc/pci</li>
-<li>lspci (相比cat /proc/pci更直观） 例子： lspci |grep Ethernet 查看网卡型号</li>
-</ol>
-<p>查看内存信息：cat /proc/meminfo<br />查看USB设备：</p>
-<ol>
-<li>cat /proc/bus/usb/devices</li>
-<li>lsusb</li>
-</ol>
-<p>查看键盘和鼠标:cat /proc/bus/input/devices<br />查看各设备的中断请求(IRQ):cat /proc/interrupts</p>
-<h4>OS信息类：</h4>
-<p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
-        <a href="/2013/10/15/The-Linux-view-hardware-information.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

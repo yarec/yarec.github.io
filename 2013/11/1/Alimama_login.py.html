@@ -76,7 +76,7 @@
     2013-11-01
     <center><h3>alimama_login.py</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env python
+        <pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib,urllib2,cookielib,re,time
 from hashlib import md5
@@ -87,29 +87,29 @@ password=
 
 class alimama:
     def __init__(self):
-        self.header = {&#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36&#39;}
+        self.header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36'}
         self.cookie_handle = cookielib.CookieJar()
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookie_handle))
         urllib2.install_opener(self.opener)
     def login(self,username,passwd):
         login_data = {
-            &#39;logname&#39;:&#39;&#39;,
-            &#39;originalLogpasswd&#39;:&#39;&#39;,
-            &#39;logpasswd&#39;:&#39;&#39;,
-            &#39;proxy&#39;:&#39;&#39;,
-            &#39;redirect&#39;:&#39;&#39;,
-            &#39;style&#39;:&#39;&#39;
+            'logname':'',
+            'originalLogpasswd':'',
+            'logpasswd':'',
+            'proxy':'',
+            'redirect':'',
+            'style':''
         }
-        login_data[&#39;logname&#39;] =username
-        login_data[&#39;originalLogpasswd&#39;] =passwd
-        login_data[&#39;logpasswd&#39;] = md5(login_data[&#39;originalLogpasswd&#39;]).hexdigest()
-        source = urllib2.urlopen(&#39;http://www.alimama.com/member/minilogin.htm&#39;).read()
-        token_list = re.findall(r&quot;input name=&#39;_tb_token_&#39; type=&#39;hidden&#39; value=&#39;([a-zA-Z0-9]+)&#39;&quot;, source)
-        login_data[&#39;_tb_token_&#39;] = token_list[0] if token_list else &#39;&#39;
-        loginurl = &#39;https://www.alimama.com/member/minilogin_act.htm&#39;
+        login_data['logname'] =username
+        login_data['originalLogpasswd'] =passwd
+        login_data['logpasswd'] = md5(login_data['originalLogpasswd']).hexdigest()
+        source = urllib2.urlopen('http://www.alimama.com/member/minilogin.htm').read()
+        token_list = re.findall(r"input name='_tb_token_' type='hidden' value='([a-zA-Z0-9]+)'", source)
+        login_data['_tb_token_'] = token_list[0] if token_list else ''
+        loginurl = 'https://www.alimama.com/member/minilogin_act.htm'
 
         login_data = urllib.urlencode(login_data)
-        self.header[&#39;Referer&#39;] = &#39;http://www.alimama.com/member/minilogin.htm&#39;
+        self.header['Referer'] = 'http://www.alimama.com/member/minilogin.htm'
         try:
             req = urllib2.Request(url=loginurl,data=login_data,headers=self.header)
             resp =urllib2.urlopen(req)
@@ -117,14 +117,14 @@ class alimama:
             #print resp.info()
             #print html
             #print self.cookie_handle
-            if str(resp.url).find(&#39;success&#39;)!=-1:
+            if str(resp.url).find('success')!=-1:
                 return True
         except Exception,e:
             print e
             return False
 
 a = alimama()
-print a.login(username, password)
+print a.login(username, password)</pre>
     </div>
 </article>
 

@@ -5,19 +5,19 @@
     
     
     
-    <title>软轶-SofTidy.com</title>
+    <title>python编码的str-unicode与QByteArray-QString | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="软轶-SofTidy.com" />
+    <meta name="Keywords" content="python编码的str-unicode与QByteArray-QString" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
 
-	<link href="../../css/flexible-grids.css" rel="stylesheet" type="text/css"/>
-	<link href="../../css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
-	<link href="../../js/toTop.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/flexible-grids.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/screen/screen_index.css" rel="stylesheet" type="text/css"/>
+	<link href="/js/toTop.css" rel="stylesheet" type="text/css"/>
 	<!--[if lte IE 7]>
 	<link href="css/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
 	<![endif]-->
@@ -30,7 +30,7 @@
 <body>
 
 
- <div class="mid-btn-right"> <a class="nxt" target="_self" href="../../page/100-2">&nbsp;&nbsp;&nbsp;&nbsp;</a> </div> 
+
 
 <div id="left" class="mid-menu-left"></div>
 
@@ -72,10 +72,9 @@
     <div class="ym-wrapper">
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
-                
-<article class="arc" aid="1674">
+                <article class="arc" aid="">
     2013-11-27
-    <center><h3><a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html">python编码的str-unicode与QByteArray-QString</a></h3><br></center> 
+    <center><h3>python编码的str-unicode与QByteArray-QString</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <h4 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/babykick/archive/2011/05/16/2048155.html">PyQt的QString和python的string的区别</a>(转)</h4>
 <p>python的string和PyQt的QString的区别<br />python string和PyQt的QString的区别 以下在Python2.6和PyQt4.4.4 for Python2,6环境下讨论： Python中有两种有关字符的类型：Python string object和Python Unicode object。主要使用Python string object进行数据输入<br />　　</p>
@@ -146,126 +145,27 @@
 <p>PyQt4手册说明如下：<br /> Unfortunately, because of the way Qt implements tr() (and trUtf8()) it is not possible for PyQt to exactly reproduce its behaviour. The PyQt implementation of tr() (and trUtf8()) uses the class name of the instance as the context. The key difference, and the source of potential problems, is that the context is determined dynamically in PyQt, but is hardcoded in Qt. In other words, the context of a translation may change depending on an instance's class hierarchy. <br />The PyQt behaviour is unsatisfactory and may be changed in the future. It is recommended that QCoreApplication.translate() be used in preference to tr() (and trUtf8()). This is guaranteed to work with current and future versions of PyQt and makes it much easier to share message files between Python and C++ code. Below is the alternative implementation of A that uses QCoreApplication.translate():</p>
 <p>class A(QtCore.QObject):<br /> def hello(self):<br /> return QtCore.QCoreApplication.translate("A", "Hello")</p>
 <p>2） 但后者方法在PyQt中未能成功：<br /> QtCore.QTextCodec.setCodecForTr(QtCore.QTextCodec.codecForName("gb2312"))<br /> QtCore.QTextCodec.setCodecForCStrings(QtCore.QTextCodec.codecForName("gb2312"))<br /> QtCore.QTextCodec.setCodecForLocale(QtCore.QTextCodec.codecForName("gb2312"))<br /> 后证实PyQt4中无code包？ascii也没有？...<br /> if not QtCore.QTextCodec.codecForName("gb2312"):<br /> print 'no code'</p>
-        <a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
-
-<article class="arc" aid="1664">
-    2013-11-19
-    <center><h3><a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html">PowerDesigner逆向工程mysql</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h4>软件版本：</h4>
-<ul>
-<li>PowerDesigner15</li>
-<li>MySQL5</li>
-<li>MyODBC-standard-3.51.0.7-win.msi <a href="http://yunpan.cn/QUKf2upvZmLW8">下载地址</a></li>
-<li>mysql-connector-odbc-5.1.5-win.msi&nbsp;<a href="http://yunpan.cn/QUKfE3xQtBzhi">下载地址</a></li>
-</ul>
-<p>逆向工程的目的是把mysql数据库中的表结构导入到PowerDesigner中，以便于基于现有的表来使用PowerDesigner做设计。需要这样操作的原因有两个，第一是数据库的设计模型（cdm或pdm）搞丢了或者一时找不到，另一种情况是之前的表没有使用PowerDesigner设计。这时就需要把数据库表转换为设计模型。上面4个软件包中，前两个应该已经安装好了（不然也不会考虑逆向的问题），后两个就是逆向操作需要的驱动程序。<br />安装完成后，</p>
-<ul>
-<li>打开PowerDesigner，依次点开&rdquo;File -&gt; Reverse Engineer -&gt; Database...&ldquo;</li>
-<li>打开"New Physical Data Model"窗口，DBMS选择&ldquo;Mysql 5.0&rdquo;，选择&ldquo;Using a data source&rdquo;，</li>
-<li>点击右边的数据库图标的小按钮，配置好数据库链接，点击确定</li>
-<li>这时应该打开了&ldquo;Database Reverse Engineering&rdquo;窗口，并显示出数据库中的表。</li>
-<li>选择要逆向的表，完成逆向操作，生成pdm。</li>
-</ul>
-        <a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1657">
-    2013-11-06
-    <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
-<p>一、python<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
-<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。</p>
-<p>二、nodejs<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
-<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。</p>
-<p>三、perl<a href="http://softidy.com/2013/11/22/Alimama_login.pl.html">示例</a></p>
-<p>这个我折腾了半天，还是不好使。怀疑是<span>SendTE头的问题，强行去掉也没成功，哪位大侠搞定了教教我啊：D</span></p>
-<p><span>&nbsp;</span></p>
-<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如c++，scheme。</p>
-        <a href="/2013/11/6/Simulated-login-script-are.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1645">
-    2013-10-24
-    <center><h3><a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html">使用cloudera快速部署hadoop环境</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h4>一、资源准备</h4>
-<p>centos镜像:&nbsp;CentOS-6</p>
-<p>cloudera:</p>
-<p><a href="http://archive.cloudera.com/cdh4/repo-as-tarball/">CDH(Cloudera&rsquo;s Distribution Including Apache Hadoop)</a><br /><a href="http://archive.cloudera.com/cm4/repo-as-tarball/">CM(Cloudera Manager)<br /></a><a href="https://ccp.cloudera.com/display/SUPPORT/Downloads">CMI(Cloudera Manager Installer)</a></p>
-<h4>二、安装配置centos</h4>
-<p>选择最小安装，共２０４个包，其它需要的软件在系统安装好之后使用脚本一次安装。</p>
-<p>我选择的<a href="http://softidy.com/2013/11/7/Fast-installation-CentOS.html">安装方法</a>为网络安装，其好处是安装速度快。系统镜像是放到一个http服务器上，被装机器只要能启动安装内核，其它安装包通过网络（内网）在线下载比读光盘要快多了。</p>
-<p>系统配置：</p>
-<ol>
-<li>关闭SELinux</li>
-<li>配置yum源</li>
-<li>配置网络</li>
-<li>安装需要的软件包</li>
-</ol>
-<p>操作写在了一个<a href="http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html">shell脚本</a>中，可以作为参考，使用时需要做一些相应的修改。</p>
-<h4>三、安装cloudera</h4>
-<p>安装cm：cm安装使用官方推荐的cmi，取消在线下载安装包（使用已经下载的本地源），./cmi.bin --skip_repo_package=1</p>
-<p>通过cm安装cdh</p>
-<h4>四、使用cloudera部署hadoop</h4>
-<h4>五、一些简单测试</h4>
-<ul>
-<li>hbase</li>
-<li>hive</li>
-<li>impala</li>
-</ul>
-        <a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1642">
-    2013-10-23
-    <center><h3><a href="/2013/10/23/Reading.html">读书</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p align="left">由于一个偶然的机会，促使我对读书这个事情产生一些疑问和想法。读书的目的是什么？在生活中占有怎么样的地位？一生当中要花多少时间？去读哪些书？次序性是怎样的？是否每天都安排固定的时间去读书？</p>
-<p align="left">摘录一些网上整理的&ldquo;<span style="text-decoration: underline;"><a href="http://softidy.com/2013/10/24/On-the-reading-of-famous-quotes.html"><span style="color: #000000; text-decoration: underline;">关于读书的名人名言</span></a></span>&rdquo;，从这些言语中总能发现一些让人决心去读书的冲动。这种冲动在很久以前产生过，但由于三分钟热度一过就丟在一边了。这一次有机会重新确认读书的重要性，必须坚持下去。</p>
-        <a href="/2013/10/23/Reading.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1639">
-    2013-10-20
-    <center><h3><a href="/2013/10/20/Sublime-text-configuration.html">sublime text配置</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h4 class="entry-title public">安装Package Control</h4>
-<p class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/wbond/sublime_package_control">sublime_package_control</a>：　</strong>A full-featured package manager for Sublime Text　<a href="https://sublime.wbond.net">https://sublime.wbond.net</a></p>
-<p class="entry-title public">Ctrl+`调出python控制台，输入下面代码并回车。</p>
-<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
-<h4 class="entry-title public">安装插件：</h4>
-<p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
-<h4 class="entry-title public">常用插件：</h4>
-<p class="entry-title public">js formater</p>
-<p class="entry-title public">Zen Coding</p>
-<p class="entry-title public">SublimeLinter</p>
-<p class="entry-title public">Alignment</p>
-<p class="entry-title public">Bracket Highlighter</p>
-        <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1638">
-    2013-10-18
-    <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
-        <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
 
             </section>
         </div>
 
+        
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            var disqus_shortname = 'softidy';
+            var disqus_identifier = '1674';
+            var disqus_url = 'http://softidy.com/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html';
+
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         
     </div>
 </div>
@@ -296,12 +196,12 @@
 
 </body>
 </html>
-<script src="../../js/jquery.js"></script>
-<script src="../../js/toTop.js"></script>
-<script src="../../js/softidy.js"></script>
-<link href="../../syntaxhighlighter/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
-<script src="../../syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
-<script src="../../syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
+<script src="/js/jquery.js"></script>
+<script src="/js/toTop.js"></script>
+<script src="/js/softidy.js"></script>
+<link href="/syntaxhighlighter/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+<script src="/syntaxhighlighter/scripts/shCore.js" type="text/javascript"></script>
+<script src="/syntaxhighlighter/scripts/shAutoloader.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

@@ -76,7 +76,7 @@
     2013-04-26
     <center><h3>php-hive</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env php
+        <pre class="brush: php; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env php
 
 &lt;?php
 
@@ -86,7 +86,7 @@ work on hiveserver(1)
 gen-thrift: 
 http://blog.csdn.net/hzcyclone/article/details/7708327
 svn co http://svn.apache.org/repos/asf/hive/tags/release-0.10.0
-find ./ -name &quot;*.thrift&quot; | xargs -I{} cp {} thrift
+find ./ -name "*.thrift" | xargs -I{} cp {} thrift
 cp thrift-src/fb303.thrift thrift
 thrift -r --gen php hive_metastore.thrift
 thrift -r --gen php hive_service.thrift
@@ -98,23 +98,23 @@ hive --service hiveserver -v -p 10001
 
 EOF;
 
-$GLOBALS[&#39;THRIFT_ROOT&#39;] = &#39;libs/&#39;;
-require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;packages/hive_service/ThriftHive.php&#39;;
-require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;transport/TSocket.php&#39;;
-require_once $GLOBALS[&#39;THRIFT_ROOT&#39;] . &#39;protocol/TBinaryProtocol.php&#39;;
+$GLOBALS['THRIFT_ROOT'] = 'libs/';
+require_once $GLOBALS['THRIFT_ROOT'] . 'packages/hive_service/ThriftHive.php';
+require_once $GLOBALS['THRIFT_ROOT'] . 'transport/TSocket.php';
+require_once $GLOBALS['THRIFT_ROOT'] . 'protocol/TBinaryProtocol.php';
 
-$transport = new TSocket(&#39;192.168.1.72&#39;, 10001);
+$transport = new TSocket('192.168.1.72', 10001);
 $protocol = new TBinaryProtocol($transport);
 $client = new ThriftHiveClient($protocol);
 $transport-&gt;open();
 
-#$client-&gt;execute(&#39;SELECT * from sample_07 limit 3&#39;);
-$client-&gt;execute(&#39;show tables&#39;);
+#$client-&gt;execute('SELECT * from sample_07 limit 3');
+$client-&gt;execute('show tables');
 var_dump($client-&gt;fetchAll());
 
 var_dump($client-&gt;getClusterStatus());
 
-$transport-&gt;close();
+$transport-&gt;close();</pre>
     </div>
 </article>
 

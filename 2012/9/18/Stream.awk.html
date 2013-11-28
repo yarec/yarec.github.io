@@ -76,37 +76,37 @@
     2012-09-18
     <center><h3>stream.awk</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>awk &#39;BEGIN{
-OFMT=&quot;%.3f&quot;;
-devf=&quot;/proc/net/dev&quot;;
-while((&quot;cat &quot;devf) | getline)
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">awk 'BEGIN{
+OFMT="%.3f";
+devf="/proc/net/dev";
+while(("cat "devf) | getline)
 {
     if($0 ~ /:/ &amp;&amp; ($10+0) &gt; 0)
     {
-        split($1,tarr,&quot;:&quot;);
+        split($1,tarr,":");
         net[tarr[1]]=$10+tarr[2];
         print tarr[1],$10+tarr[2];
     }
 }
 close(devf);
-while((system(&quot;sleep 1 &quot;)) &gt;=0)
+while((system("sleep 1 ")) &gt;=0)
 {
-    system(&quot;clear&quot;);
+    system("clear");
     while( getline &lt; devf )
     {
         if($0 ~ /:/ &amp;&amp; ($10+0) &gt; 0)
             {
-                split($1,tarr,&quot;:&quot;);
+                split($1,tarr,":");
                 if(tarr[1] in net)
                 {
-                    print tarr[1],&quot;:&quot;,($10+tarr[2]-net[tarr[1]])*8/1024,&quot;kb/s&quot;;
+                    print tarr[1],":",($10+tarr[2]-net[tarr[1]])*8/1024,"kb/s";
                     net[tarr[1]]=$10+tarr[2];
                 }       
             }    
     }
     close(devf);
 }
-}&#39;
+}'</pre>
     </div>
 </article>
 

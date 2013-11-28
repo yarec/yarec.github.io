@@ -76,17 +76,15 @@
     2013-11-02
     <center><h3>生成构建号</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>
-
-#!/bin/sh
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">#!/bin/sh
 # For GIT
 
-DIR=&#39;./&#39;
-count=`git rev-list HEAD | wc -l | sed -e &#39;s/ *//g&#39; | xargs -n1 printf %04d`
-commit=`git show --abbrev-commit HEAD | grep &#39;^commit&#39; | sed -e &#39;s/commit //&#39;`
-buildno=b&quot;$count.$commit&quot;
+DIR='./'
+count=`git rev-list HEAD | wc -l | sed -e 's/ *//g' | xargs -n1 printf %04d`
+commit=`git show --abbrev-commit HEAD | grep '^commit' | sed -e 's/commit //'`
+buildno=b"$count.$commit"
 
-echo $buildno &gt; &quot;${DIR}/subdir/version.txt&quot;
+echo $buildno &gt; "${DIR}/subdir/version.txt"</pre>
     </div>
 </article>
 

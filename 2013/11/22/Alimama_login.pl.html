@@ -5,12 +5,12 @@
     
     
     
-    <title>ra.awk | 软轶-SofTidy.com</title>
+    <title>alimama_login.pl | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="ra.awk" />
+    <meta name="Keywords" content="alimama_login.pl" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,56 +73,75 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2012-09-18
-    <center><h3>ra.awk</h3><br></center> 
+    2013-11-22
+    <center><h3>alimama_login.pl</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">awk 'BEGIN{
-print "Enter log file:";
-getline logs;
-#logs="/var/log/nginx/access.log-20101008";
-OFMT="%.3f";
-while(getline &lt; logs)
-{
-    split($7,atmp,"?");
-    aListNum[atmp[1]]+=1;
-    aListTime[atmp[1]]+=$NF;
-    ilen++;
-}
-close(logs);
-print "\r\ntotal:",ilen,"\r\n======================================\r\n";
-for(k in aListNum)
-{
-    print k,aListNum[k],aListTime[k]/aListNum[k] | "sort -r -n -k3";
-}
-}'
+        <p>/usr/share/perl5/LWP/Protocol/http.pm &nbsp;(SendTE &nbsp; &nbsp;=&gt; 1 改成&nbsp;SendTE &nbsp; &nbsp;=&gt; 0）</p>
+<p>/usr/share/perl5/HTTP/Cookies.pm</p>
+<pre class="brush: perl; fontsize: 100; first-line: 1; toolbar: false; ">use strict;
+use warnings;
+use LWP;
+use HTTP::Cookies;
+use HTTP::Response;
+use LWP::ConnCache;
+use Encode;
+use Digest::MD5 qw(md5_hex);
+use 5.010;
+use Data::Dumper;
 
-awk 'BEGIN{
-        #print "Enter log file:";
-        getline logs;
-        #logs="up.shtml";
-        OFMT="%.3f";
-        while(getline &lt; logs)
-        {
-                split($7,atmp,"?");
-                split(atmp[2],params,"&amp;");
-                for(i in params){
-                        if ( params[i] ~ /^cv=.*$/){
-                                cv = params[i];
-                        }
-                        if ( params[i] ~ /^pf=.*$/){
-                                pf = params[i];
-                        }
-                }
-                aListNum[cv,pf]+=1;
-                ilen++;
-        }
-        close(logs);
+my $username = '';
+my $password = '';
 
-        print ilen;
-        for(k in aListNum) {
-                print k,aListNum[k]| "sort -r -n -k2";
-        }
-}'</pre>
+my $lwp        = LWP::UserAgent-&gt;new();
+my $cookie_jar = HTTP::Cookies-&gt;new(hide_cookie2=&gt;1);
+$lwp-&gt;agent( 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36');
+$lwp-&gt;cookie_jar($cookie_jar);
+$lwp-&gt;timeout(60);
+$lwp-&gt;protocols_allowed([ 'http', 'https'] );
+
+my $param = &amp;get_login_param;
+say "get param is $param\n";
+
+&amp;login_in_act( $username, $password, $param );
+
+sub get_login_param {
+    my $req_f = HTTP::Request-&gt;new( GET =&gt; 'http://www.alimama.com/member/minilogin.htm' );
+    my $login_response_f = $lwp-&gt;request($req_f);
+    my $res_f            = $login_response_f-&gt;as_string;
+    $res_f =~ /input name='_tb_token_' type='hidden' value='([a-zA-Z0-9]+)'/ig;
+    return $1;
+}
+
+sub login_in_act {
+    my ( $username, $password, $param ) = @_;
+
+    my $form                   = {};
+    $form-&gt;{logname}           = $username;
+    $form-&gt;{originalLogpasswd} = $password;
+    $form-&gt;{logpasswd}         = md5_hex($password);
+    $form-&gt;{_tb_token_}        = $param;
+    $form-&gt;{proxy}             = '';
+    $form-&gt;{redirect}          = '';
+    $form-&gt;{style}             = '';
+
+    my $login_url = "https://www.alimama.com/member/minilogin_act.htm";
+
+    # set for http debug
+    #$lwp-&gt;default_header( 'Accept-Encoding' =&gt; scalar HTTP::Message::decodable() );
+    #$lwp-&gt;add_handler( "request_send",  sub { shift-&gt;dump; return } );
+    #$lwp-&gt;add_handler( "response_done", sub { shift-&gt;dump; return } );
+    $lwp-&gt;default_header( Referer =&gt; 'http://www.alimama.com/member/minilogin.htm' );
+    $lwp-&gt;default_header( 'Accept-Encoding'=&gt; 'identity' );
+    my $res = $lwp-&gt;post( $login_url =&gt; $form );
+    print $res-&gt;content;    # or whatever
+#    if ( $res-&gt;is_success ) {
+#        print $res-&gt;decoded_content;    # or whatever
+#    }
+#    else {
+#        die $res-&gt;status_line;
+#    }
+    say "get content =&gt; " . $res-&gt;content;
+}</pre>
     </div>
 </article>
 
@@ -133,8 +152,8 @@ awk 'BEGIN{
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1452';
-            var disqus_url = 'http://softidy.com/2012/9/18/Ra.awk.html';
+            var disqus_identifier = '1668';
+            var disqus_url = 'http://softidy.com/2013/11/22/Alimama_login.pl.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -76,22 +76,22 @@
     2013-10-28
     <center><h3>统计单词频率</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/usr/bin/env bash
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">#!/usr/bin/env bash
 #Name: word_freq.sh  
 #Description: Find out frequency of words in a file  
 #Usage: ./word_freq.sh words_file.txt|sort -n
   
 if [ $# -ne 1 ];
 then
-    echo &quot;Usage: $0 filename&quot;;
+    echo "Usage: $0 filename";
     exit -1
 fi
   
 filename=$1
   
-egrep -o &quot;\b[[:alpha:]]+\b&quot; $filename | \
-awk &#39;{ count[$0]++ } END{ printf(&quot;%-10s%s\n&quot;,&quot;Word&quot;,&quot;Count&quot;) ; \
- for(ind in count) { printf(&quot;%-10d%s\n&quot;,count[ind],ind); } }&#39;
+egrep -o "\b[[:alpha:]]+\b" $filename | \
+awk '{ count[$0]++ } END{ printf("%-10s%s\n","Word","Count") ; \
+ for(ind in count) { printf("%-10d%s\n",count[ind],ind); } }'</pre>
     </div>
 </article>
 

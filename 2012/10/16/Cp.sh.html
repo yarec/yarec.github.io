@@ -76,46 +76,46 @@
     2012-10-16
     <center><h3>cp.sh</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>#!/bin/bash
-trap &#39;exit_fun&#39; 2
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">#!/bin/bash
+trap 'exit_fun' 2
 
 usage(){
-        echo &quot;Usage: `basename $0` \&quot;src file\&quot; \&quot;dst file\&quot;&quot;
+        echo "Usage: `basename $0` \"src file\" \"dst file\""
         exit 1
 }
 
 exit_fun(){
-        echo -e &quot;\033[?25h&quot;
-        kill -9 $(ps -ef|awk &#39;/ [c]p /{print $2}&#39;) &amp;&gt;/dev/null
+        echo -e "\033[?25h"
+        kill -9 $(ps -ef|awk '/ [c]p /{print $2}') &amp;&gt;/dev/null
         exit 1
 }
 
 
-[ &quot;$#&quot; -ne &quot;2&quot; ] &amp;&amp; usage
-[ -d &quot;$2&quot; ] &amp;&amp; k=${2%%/}/`basename $1` || k=$2
+[ "$#" -ne "2" ] &amp;&amp; usage
+[ -d "$2" ] &amp;&amp; k=${2%%/}/`basename $1` || k=$2
 
-fromsize=`ls -s $1|cut -d&quot; &quot; -f1`
+fromsize=`ls -s $1|cut -d" " -f1`
 cp $1 $k &amp;
 start=`date +%s`
 sleep 0.2
-echo -ne &quot;\033[?25l&quot;
+echo -ne "\033[?25l"
 while :;do
-        tosize=`ls -s $k|cut -d&quot; &quot; -f1`
-        x=`echo &quot;$tosize $fromsize&quot;|awk &#39;{print int($1*100/$2)}&#39;`
+        tosize=`ls -s $k|cut -d" " -f1`
+        x=`echo "$tosize $fromsize"|awk '{print int($1*100/$2)}'`
         [ $x -eq 99 ] &amp;&amp; x=100
-        echo -n &quot;[&quot;
-        for((i=0;i&lt;x;i=$i+2));do echo -n &quot;=&quot;;done
-        echo -n &quot;&gt;&quot;
-        for((j=i;j&lt;=99;j=$j+2));do echo -n &quot; &quot;;done
+        echo -n "["
+        for((i=0;i&lt;x;i=$i+2));do echo -n "=";done
+        echo -n "&gt;"
+        for((j=i;j&lt;=99;j=$j+2));do echo -n " ";done
         now=$[`date +%s` - $start]
         [ $now -eq 0 ] &amp;&amp; now=1
         avg=$[$tosize/$now/1024]
-        printf &quot;]  %4s%%  %4sM/s&quot; $i $avg
+        printf "]  %4s%%  %4sM/s" $i $avg
         [ $x -ge 100 ] &amp;&amp; break
         sleep 0.1
-        echo -ne &quot;\r&quot;
+        echo -ne "\r"
 done
-echo -e &quot;\033[?25h&quot;
+echo -e "\033[?25h"</pre>
     </div>
 </article>
 

@@ -76,42 +76,42 @@
     2013-11-06
     <center><h3>alimama_login.js</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre>var username=
+        <pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var username=
 var password=
 
-var crypto = require(&#39;crypto&#39;);
-var httpreq = require(&#39;httpreq&#39;);
+var crypto = require('crypto');
+var httpreq = require('httpreq');
 
-var tb_token_url =  &#39;http://www.alimama.com/member/minilogin.htm&#39;;
+var tb_token_url =  'http://www.alimama.com/member/minilogin.htm';
 httpreq.get(tb_token_url, function (err, res){
     if (err) return console.log(err);
 
-    var re = /input name=&#39;_tb_token_&#39; type=&#39;hidden&#39; value=&#39;([a-zA-Z0-9]+)&#39;/;
+    var re = /input name='_tb_token_' type='hidden' value='([a-zA-Z0-9]+)'/;
     res.body.match(re);
     var tb_token = RegExp.$1;
 
-    var cookies = res.headers[&#39;set-cookie&#39;];
+    var cookies = res.headers['set-cookie'];
     for(var i in cookies){
-        cookies[i] = cookies[i].split(&#39;;&#39;)[0];
+        cookies[i] = cookies[i].split(';')[0];
     }
 
-    var login_url = &#39;https://www.alimama.com/member/minilogin_act.htm&#39;;
+    var login_url = 'https://www.alimama.com/member/minilogin_act.htm';
     var login_data = {
-            &#39;logname&#39;:username,
-            &#39;originalLogpasswd&#39;:password,
-            &#39;logpasswd&#39;:crypto.createHash(&#39;md5&#39;).update(password).digest(&#39;hex&#39;),
-            &#39;proxy&#39;:&#39;&#39;,
-            &#39;redirect&#39;:&#39;&#39;,
-            &#39;_tb_token_&#39;:tb_token,
-            &#39;style&#39;:&#39;&#39;
+            'logname':username,
+            'originalLogpasswd':password,
+            'logpasswd':crypto.createHash('md5').update(password).digest('hex'),
+            'proxy':'',
+            'redirect':'',
+            '_tb_token_':tb_token,
+            'style':''
         };
 
     httpreq.post(login_url, {
         parameters: login_data,
     &nbsp;&nbsp;&nbsp;&nbsp;headers: {
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Accept&#39;: &#39;text/html&#39;,
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;Referer&#39;: &#39;http://www.alimama.com/member/minilogin.htm&#39;,
-            &#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36&#39;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Accept': 'text/html',
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Referer': 'http://www.alimama.com/member/minilogin.htm',
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36'
     &nbsp;&nbsp;&nbsp;&nbsp;},
         cookies: cookies
     },function (err1, res1){
@@ -119,7 +119,7 @@ httpreq.get(tb_token_url, function (err, res){
         console.log(res1.headers);
         console.log(res1.body);
     });
-});
+});</pre>
     </div>
 </article>
 
