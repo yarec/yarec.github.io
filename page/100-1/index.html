@@ -73,6 +73,34 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1681">
+    2013-12-14
+    <center><h3><a href="/2013/12/14/Hadoop-resource-list.html">hadoop资源列表</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><img src="http://pic002.cnblogs.com/images/2012/79891/2012060400463595.jpg" alt="" width="394" height="284" /></p>
+<p>&nbsp;</p>
+<p><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html">http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html</a></p>
+<p><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html">https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html</a></p>
+<p><a href="http://www.javacodegeeks.com/2013/08/writing-a-hadoop-mapreduce-task-in-java.html">http://www.javacodegeeks.com/2013/08/writing-a-hadoop-mapreduce-task-in-java.html</a></p>
+<p>Hadoop管理员的十个最佳实践: &nbsp;<a href="http://www.infoq.com/cn/articles/hadoop-ten-best-practice">http://www.infoq.com/cn/articles/hadoop-ten-best-practice</a></p>
+<p><a href="http://developer.yahoo.com/hadoop/tutorial/">http://developer.yahoo.com/hadoop/tutorial/</a></p>
+<p><a href="http://www.coreservlets.com/hadoop-tutorial/">http://www.coreservlets.com/hadoop-tutorial/</a></p>
+<p>急性子的开源大数据: &nbsp;<a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1209hadoopbigdata/">http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1209hadoopbigdata/</a></p>
+<p><a href="http://bigdatauniversity.com/">http://bigdatauniversity.com/</a></p>
+<p>驾驭大数据: &nbsp;<a href="http://www.ibm.com/developerworks/cn/data/dmmag/dbt16n2/BigData/index.html">http://www.ibm.com/developerworks/cn/data/dmmag/dbt16n2/BigData/index.html</a></p>
+<p>&nbsp;<a href="http://www.infoq.com/cn/news/2010/07/facebook-hadoop-summit">http://www.infoq.com/cn/news/2010/07/facebook-hadoop-summit</a></p>
+<p>Spark与Hadoop计算模型比较分析: &nbsp;<a href="http://yanbohappy.sinaapp.com/?p=16">http://yanbohappy.sinaapp.com/?p=16</a></p>
+<p>用Hadoop,还是不用Hadoop？： &nbsp;<a href="http://datacenter.ctocio.com.cn/7/12747007.shtml">http://datacenter.ctocio.com.cn/7/12747007.shtml</a></p>
+<p>Hadoop不是万能的： &nbsp;<a href="http://www.gissky.net/Article/2329.htm">http://www.gissky.net/Article/2329.htm</a></p>
+<p>Hadoop Reading List &nbsp;： &nbsp;<a href="http://duanple.blog.163.com/blog/static/709717672011330101333271/">http://duanple.blog.163.com/blog/static/709717672011330101333271/</a></p>
+<p><a href="http://blog.itpub.net/15592508/viewspace-769431/">Hadoop学习路线图</a><span>&nbsp;</span></p>
+<p class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/shitouer/archive/2012/06/04/2533518.html">HBase 系统架构</a></p>
+<p>videos:</p>
+<p><a href="http://www.cloudera.com/content/cloudera/en/resources.html">http://www.cloudera.com/content/cloudera/en/resources.html</a></p>
+        <a href="/2013/12/14/Hadoop-resource-list.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1674">
     2013-11-27
     <center><h3><a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html">python编码的str-unicode与QByteArray-QString</a></h3><br></center> 
@@ -177,15 +205,15 @@
     2013-11-06
     <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
+        <p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享。</p>
+<p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
 <p>一、python<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
 <p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。</p>
 <p>二、nodejs<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
 <p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。</p>
 <p>三、perl<a href="http://softidy.com/2013/11/22/Alimama_login.pl.html">示例</a></p>
 <p>这个我折腾了半天，还是不好使。怀疑是<span>SendTE头的问题，强行去掉也没成功，哪位大侠搞定了教教我啊：D</span></p>
-<p><span>&nbsp;</span></p>
-<p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享，以后有时间再添加一些其它的实现，比如c++，scheme。</p>
+<p>&nbsp;</p>
         <a href="/2013/11/6/Simulated-login-script-are.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
@@ -194,10 +222,11 @@
     2013-10-24
     <center><h3><a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html">使用cloudera快速部署hadoop环境</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <h4>一、资源准备</h4>
+        <h4>一、依赖资源</h4>
 <p>centos镜像:&nbsp;CentOS-6</p>
 <p>cloudera:</p>
-<p><a href="http://archive.cloudera.com/cdh4/repo-as-tarball/">CDH(Cloudera&rsquo;s Distribution Including Apache Hadoop)</a><br /><a href="http://archive.cloudera.com/cm4/repo-as-tarball/">CM(Cloudera Manager)<br /></a><a href="https://ccp.cloudera.com/display/SUPPORT/Downloads">CMI(Cloudera Manager Installer)</a></p>
+<p><a href="http://archive.cloudera.com/cdh4/repo-as-tarball/">CDH(Cloudera&rsquo;s Distribution Including Apache Hadoop)</a><br /><a href="http://archive.cloudera.com/cm4/repo-as-tarball/">CM(Cloudera Manager)<br /></a><a href="http://archive.cloudera.com/cm4/installer/">CMI(Cloudera Manager Installer)<br /></a><a href="http://archive.cloudera.com/impala/">Impala</a><a href="http://archive.cloudera.com/cm4/installer/"><br /></a></p>
+<p><a href="http://www.cloudera.com/content/support/en/documentation.html">Cloudera Documentation</a></p>
 <h4>二、安装配置centos</h4>
 <p>选择最小安装，共２０４个包，其它需要的软件在系统安装好之后使用脚本一次安装。</p>
 <p>我选择的<a href="http://softidy.com/2013/11/7/Fast-installation-CentOS.html">安装方法</a>为网络安装，其好处是安装速度快。系统镜像是放到一个http服务器上，被装机器只要能启动安装内核，其它安装包通过网络（内网）在线下载比读光盘要快多了。</p>
@@ -209,8 +238,46 @@
 <li>安装需要的软件包</li>
 </ol>
 <p>操作写在了一个<a href="http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html">shell脚本</a>中，可以作为参考，使用时需要做一些相应的修改。</p>
+<p>如果是在vmware中搞的，在clone出来的虚拟机中配置网卡会出现 "eth0: unknown interface: No such device"</p>
+<p>解决方法：&nbsp;</p>
+<ol>
+<li>rm /etc/udev/rules.d/70-persistent-net.rules</li>
+<li>删除&nbsp;/etc/sysconfig/network-scripts/ifcfg-eth0 中的HWADDR一行</li>
+<li>reboot</li>
+<li>配置eth0</li>
+</ol>
 <h4>三、安装cloudera</h4>
-<p>安装cm：cm安装使用官方推荐的cmi，取消在线下载安装包（使用已经下载的本地源），./cmi.bin --skip_repo_package=1</p>
+<p>安装cm：</p>
+<p>准备yum源：&nbsp;</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">cd /media/f/cdh/pkg
+# 下载并解压 cm tarball
+axel http://archive.cloudera.com/cm4/repo-as-tarball/4.8.0/cm4.8.0-centos6.tar.gz
+tar xvf cm4.8.0-centos6.tar.gz
+
+# 下载并解压 cdh tarball
+axel http://archive.cloudera.com/cdh4/repo-as-tarball/4.5.0/cdh4.5.0-centos6.tar.gz
+tar xvf cdh4.5.0-centos6.tar.gz
+
+# 下载impala
+wget -A rpm,gz,xml,asc, -r -m -p -E -k -K -np http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.2.1/
+
+# 调整http目录
+cd /usr/share/nginx/www
+sudo mkdir -p cm4/redhat/6/x86_64/
+sudo mkdir -p cdh4/redhat/6/x86_64/
+sudo ln -s /media/f/cdh/pkg/cm cm4/redhat/6/x86_64
+sudo ln -s /media/f/cdh/pkg/cdh cdh4/redhat/6/x86_64
+sudo ln -s /media/f/cdh/pkg/impala
+
+curl -k -L http://192.168.1.129/cdh/in.sh &gt; in.sh
+
+curl -k -L http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html \
+| perl -e 'undef $/; $_=&lt;&gt;; if(/.*pre.*?\&gt;(.*)\&lt;\/pre.*/msi){print $1;}' \
+| sed 's@&amp;gt;@&gt;@g' \
+| sed 's@&amp;lt;@&lt;@g' \
+| sed 's@&amp;nbsp;@ @g' \
+&gt; initcm.sh</pre>
+<p>cm安装使用官方推荐的cmi，./cmi.bin&nbsp;</p>
 <p>通过cm安装cdh</p>
 <h4>四、使用cloudera部署hadoop</h4>
 <h4>五、一些简单测试</h4>
@@ -250,15 +317,6 @@
 <p class="entry-title public">Alignment</p>
 <p class="entry-title public">Bracket Highlighter</p>
         <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1638">
-    2013-10-18
-    <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
-        <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

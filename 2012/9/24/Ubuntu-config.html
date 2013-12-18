@@ -5,12 +5,12 @@
     
     
     
-    <title>centos-init-for-cm4.sh | 软轶-SofTidy.com</title>
+    <title>ubuntu-config | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="centos-init-for-cm4.sh" />
+    <meta name="Keywords" content="ubuntu-config" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,90 +73,67 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-04-22
-    <center><h3>centos-init-for-cm4.sh</h3><br></center> 
+    2012-09-24
+    <center><h3>ubuntu-config</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">################
-# global conf
-repo=129
-hosts=(86 87 88 250)
-ipre=192.168.1
+        <pre>
+## .zshrc
 
-################
-# network conf
-conf_net() {
-hostno=$1
+    sudo-command-line() {
+        [[ -z $BUFFER ]] &amp;&amp; zle up-history
+        [[ $BUFFER != sudo\ * ]] &amp;&amp; BUFFER=&quot;sudo $BUFFER&quot;
+        zle end-of-line
+    }
+    zle -N sudo-command-line
+    bindkey &quot;\e\e&quot; sudo-command-line
 
-rm -f /etc/udev/rules.d/70-persistent-net.rules
+    alias ins=&#39;sudo apt-get install&#39;
+    alias czip=&quot;find -name &#39;*.zip&#39; |xargs rm -v&quot;
 
-cat &gt; /etc/sysconfig/network &lt;&lt; EOF
-NETWORKING=yes
-HOSTNAME=n$hostno.ex.com
-GATEWAY=$ipre.1
-EOF
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors &amp;&amp; eval &quot;$(dircolors -b ~/.dircolors)&quot; || eval &quot;$(dircolors -b)&quot;
+        alias ls=&#39;ls --color=auto&#39;
 
-cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth0 &lt;&lt; EOF
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=static
-IPADDR=$ipre.$hostno
-NETMASK=255.255.255.0
-EOF
+        alias grep=&#39;grep --color=auto&#39;
+        alias fgrep=&#39;fgrep --color=auto&#39;
+        alias egrep=&#39;egrep --color=auto&#39;
+    fi
 
-cat &gt; /etc/resolv.conf &lt;&lt; EOF
-nameserver $ipre.1
-EOF
+    alias ll=&#39;ls -alF&#39;
+    alias la=&#39;ls -A&#39;
+    alias l=&#39;ls -CF&#39;
 
-cat &gt; /etc/hosts &lt;&lt; EOF
-127.0.0.1       localhost
-$ipre.$repo repo
-$ipre.$repo archive.cloudera.com
-EOF
+    alias alert=&#39;notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e &#39;\&#39;&#39;s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//&#39;\&#39;&#39;)&quot;&#39;
 
-for x in "${hosts[@]}";do
-echo "$ipre.$x n$x.ex.com n$x" &gt;&gt; /etc/hosts
-done
 
-}
+## environment
 
-################
-# yum conf
-conf_yum() {
-rm /etc/yum.repos.d/*
-cat &gt; /etc/yum.repos.d/local.repo &lt;&lt; "EOF"
-[local-centos]
-baseurl=http://repo/centos
-gpgcheck=0
-EOF
-}
+    PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/app/jdk1.6.0_30/bin:.&quot;
+    JAVA_HOME=&quot;/app/jdk1.6.0_30/&quot;
 
-#################
-# turn of selinux
-turnoff_se() {
-chkconfig iptables off
-cat &gt; /etc/selinux/config &lt;&lt; "EOF"
-SELINUX=disabled
-SELINUXTYPE=targeted
-EOF
-}
+## fstab
 
-#################
-# main script
-if [ -z "$1" ]; then
-    echo 'a host no needed!'
-else
-    turnoff_se
-    conf_yum
-    conf_net $1
+    UUID=463aa47f-6719-452a-99ce-ec20c18e0048 /rt reiserfs users,exec 0 0
+    UUID=69bc80d9-3b2f-4fd5-864c-54111d79eee5 /dat xfs users,exec 0 0
+    /dev/sda5 /media/d ntfs-3g users,exec,locale=zh_CN.UTF-8 0 0
+    /dev/sda6 /media/e ntfs-3g users,exec,locale=zh_CN.UTF-8 0 0
+    /dev/sda7 /media/f ntfs-3g users,exec,locale=zh_CN.UTF-8 0 0
 
-    yum -y install perl openssh-clients postgresql-server bind-utils libxslt cyrus-sasl-gssapi parted vim wget
-    mv /usr/bin/host /usr/bin/host.bak
 
-    wget http://repo/cmi.bin
-    chmod +x cmi.bin
-    echo './cmi.bin --skip_repo_package=1' &gt; inscm 
-    chmod +x inscm
-fi</pre>
+## ~/.ssh/config 
+
+    GSSAPIAuthentication no
+
+ 
+## lndir
+
+    ln -s /dat/dld /dld
+    ln -s /dat/misc /misc
+    ln -s /rt/app /app
+    ln -s /rt/scm /scm
+    ln -s /rt/upg /upg
+    ln -s /rt/ws /ws
+
     </div>
 </article>
 
@@ -167,8 +144,8 @@ fi</pre>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1536';
-            var disqus_url = 'http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html';
+            var disqus_identifier = '1457';
+            var disqus_url = 'http://softidy.com/2012/9/24/Ubuntu-config.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

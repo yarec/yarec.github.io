@@ -77,8 +77,15 @@
     <center><h3>shell常用命令-快捷键-配置</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <h3 class="entry-title public">常用命令：</h3>
-<p style="margin-left: 30px;">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*<br />列出文件大小并排序：du -sh *|sort -h -r<br />简单循环：for ((i=2; i&lt;=10; i++)); do &nbsp;或&nbsp;for i in $(seq 2 10); do<br />基于日期循环：</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">function dojob {
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*
+# 列出文件大小并排序：
+du -sh *|sort -h -r
+
+# 简单循环：
+for ((i=2; i&lt;=10; i++)); do  或 for i in $(seq 2 10); do
+
+# 基于日期循环：
+function dojob {
   echo $1
 }
 b=$1
@@ -86,7 +93,24 @@ e=$2
 while [ $b -le $e ]; do
   dojob $b
   b=`date -d "$b UTC +1 day" +"%Y%m%d"`
-done</pre>
+done
+
+# 从标准输入找出正则匹配的内容并输出
+perl -e 'undef $/; $_=&lt;&gt;; if(/.*pre.*?\&gt;(.*)\&lt;\/pre.*/msi){print $1;}'
+
+# 替换文本
+sed 's@&amp;gt;@&gt;@g'
+
+# 下载镜像目录
+wget -A rpm,gz,xml,asc, -r -m -p -E -k -K -np http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.2.1/
+
+删除第N行：
+sed -i 'Nd' filename 
+
+删除第M到N行：
+sed -i 'M,Nd' filename
+
+</pre>
 <h3 class="entry-title public">快捷键：</h3>
 <h4 style="margin-left: 30px;">编辑命令</h4>
 <ul>

@@ -5,12 +5,12 @@
     
     
     
-    <title>centos-init-for-cm4.sh | 软轶-SofTidy.com</title>
+    <title>hadoop资源列表 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="centos-init-for-cm4.sh" />
+    <meta name="Keywords" content="hadoop资源列表" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,90 +73,29 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2013-04-22
-    <center><h3>centos-init-for-cm4.sh</h3><br></center> 
+    2013-12-14
+    <center><h3>hadoop资源列表</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">################
-# global conf
-repo=129
-hosts=(86 87 88 250)
-ipre=192.168.1
-
-################
-# network conf
-conf_net() {
-hostno=$1
-
-rm -f /etc/udev/rules.d/70-persistent-net.rules
-
-cat &gt; /etc/sysconfig/network &lt;&lt; EOF
-NETWORKING=yes
-HOSTNAME=n$hostno.ex.com
-GATEWAY=$ipre.1
-EOF
-
-cat &gt; /etc/sysconfig/network-scripts/ifcfg-eth0 &lt;&lt; EOF
-DEVICE=eth0
-ONBOOT=yes
-BOOTPROTO=static
-IPADDR=$ipre.$hostno
-NETMASK=255.255.255.0
-EOF
-
-cat &gt; /etc/resolv.conf &lt;&lt; EOF
-nameserver $ipre.1
-EOF
-
-cat &gt; /etc/hosts &lt;&lt; EOF
-127.0.0.1       localhost
-$ipre.$repo repo
-$ipre.$repo archive.cloudera.com
-EOF
-
-for x in "${hosts[@]}";do
-echo "$ipre.$x n$x.ex.com n$x" &gt;&gt; /etc/hosts
-done
-
-}
-
-################
-# yum conf
-conf_yum() {
-rm /etc/yum.repos.d/*
-cat &gt; /etc/yum.repos.d/local.repo &lt;&lt; "EOF"
-[local-centos]
-baseurl=http://repo/centos
-gpgcheck=0
-EOF
-}
-
-#################
-# turn of selinux
-turnoff_se() {
-chkconfig iptables off
-cat &gt; /etc/selinux/config &lt;&lt; "EOF"
-SELINUX=disabled
-SELINUXTYPE=targeted
-EOF
-}
-
-#################
-# main script
-if [ -z "$1" ]; then
-    echo 'a host no needed!'
-else
-    turnoff_se
-    conf_yum
-    conf_net $1
-
-    yum -y install perl openssh-clients postgresql-server bind-utils libxslt cyrus-sasl-gssapi parted vim wget
-    mv /usr/bin/host /usr/bin/host.bak
-
-    wget http://repo/cmi.bin
-    chmod +x cmi.bin
-    echo './cmi.bin --skip_repo_package=1' &gt; inscm 
-    chmod +x inscm
-fi</pre>
+        <p><img src="http://pic002.cnblogs.com/images/2012/79891/2012060400463595.jpg" alt="" width="394" height="284" /></p>
+<p>&nbsp;</p>
+<p><a href="http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html">http://www.cloudera.com/content/cloudera-content/cloudera-docs/HadoopTutorial/CDH4/Hadoop-Tutorial.html</a></p>
+<p><a href="https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html">https://hadoop.apache.org/docs/r1.2.1/mapred_tutorial.html</a></p>
+<p><a href="http://www.javacodegeeks.com/2013/08/writing-a-hadoop-mapreduce-task-in-java.html">http://www.javacodegeeks.com/2013/08/writing-a-hadoop-mapreduce-task-in-java.html</a></p>
+<p>Hadoop管理员的十个最佳实践: &nbsp;<a href="http://www.infoq.com/cn/articles/hadoop-ten-best-practice">http://www.infoq.com/cn/articles/hadoop-ten-best-practice</a></p>
+<p><a href="http://developer.yahoo.com/hadoop/tutorial/">http://developer.yahoo.com/hadoop/tutorial/</a></p>
+<p><a href="http://www.coreservlets.com/hadoop-tutorial/">http://www.coreservlets.com/hadoop-tutorial/</a></p>
+<p>急性子的开源大数据: &nbsp;<a href="http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1209hadoopbigdata/">http://www.ibm.com/developerworks/cn/data/library/techarticle/dm-1209hadoopbigdata/</a></p>
+<p><a href="http://bigdatauniversity.com/">http://bigdatauniversity.com/</a></p>
+<p>驾驭大数据: &nbsp;<a href="http://www.ibm.com/developerworks/cn/data/dmmag/dbt16n2/BigData/index.html">http://www.ibm.com/developerworks/cn/data/dmmag/dbt16n2/BigData/index.html</a></p>
+<p>&nbsp;<a href="http://www.infoq.com/cn/news/2010/07/facebook-hadoop-summit">http://www.infoq.com/cn/news/2010/07/facebook-hadoop-summit</a></p>
+<p>Spark与Hadoop计算模型比较分析: &nbsp;<a href="http://yanbohappy.sinaapp.com/?p=16">http://yanbohappy.sinaapp.com/?p=16</a></p>
+<p>用Hadoop,还是不用Hadoop？： &nbsp;<a href="http://datacenter.ctocio.com.cn/7/12747007.shtml">http://datacenter.ctocio.com.cn/7/12747007.shtml</a></p>
+<p>Hadoop不是万能的： &nbsp;<a href="http://www.gissky.net/Article/2329.htm">http://www.gissky.net/Article/2329.htm</a></p>
+<p>Hadoop Reading List &nbsp;： &nbsp;<a href="http://duanple.blog.163.com/blog/static/709717672011330101333271/">http://duanple.blog.163.com/blog/static/709717672011330101333271/</a></p>
+<p><a href="http://blog.itpub.net/15592508/viewspace-769431/">Hadoop学习路线图</a><span>&nbsp;</span></p>
+<p class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/shitouer/archive/2012/06/04/2533518.html">HBase 系统架构</a></p>
+<p>videos:</p>
+<p><a href="http://www.cloudera.com/content/cloudera/en/resources.html">http://www.cloudera.com/content/cloudera/en/resources.html</a></p>
     </div>
 </article>
 
@@ -167,8 +106,8 @@ fi</pre>
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             var disqus_shortname = 'softidy';
-            var disqus_identifier = '1536';
-            var disqus_url = 'http://softidy.com/2013/4/22/Centos-init-for-cm4.sh.html';
+            var disqus_identifier = '1681';
+            var disqus_url = 'http://softidy.com/2013/12/14/Hadoop-resource-list.html';
 
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

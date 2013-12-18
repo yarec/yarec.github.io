@@ -85,6 +85,9 @@
 <p>set root=(hd0,0)<br /> linux /isolinux/vmlinuz<br /> initrd /isolinux/initrd.img<br /> boot</p>
 <h4>安装选项：</h4>
 <p>启动之后，经过一些基本的选择就到达&ldquo;Installation Methed&rdquo;界面。这个地方我喜欢使用URL方式，即是在局域网内部署一个http服务，把centos镜像解压后放在一个目录中。这种方法适合经常安装，不用把好几个G的iso拷来拷去的。设置好url后，自动下载一个&ldquo;/images/install.img&rdquo;文件，这个是安装主程序。安装程序运行以后，其它的就方便操作了。</p>
+<h4>配置网络：</h4>
+<p>以网络安装的方式是不需要这一步的，这里对应的是使用虚拟机安装时，安装完成后，用下面命令来配置网络</p>
+<p>ifconfig eth0 192.168.1.101 up</p>
     </div>
 </article>
 
