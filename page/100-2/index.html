@@ -83,13 +83,10 @@
 <pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
 <h4 class="entry-title public">安装插件：</h4>
 <p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
-<h4 class="entry-title public">常用插件：</h4>
-<p class="entry-title public">js formater</p>
-<p class="entry-title public">Zen Coding</p>
-<p class="entry-title public">SublimeLinter</p>
-<p class="entry-title public">Alignment</p>
-<p class="entry-title public">Bracket Highlighter</p>
+<br>  <a class="ym-button" href="/2013/10/20/Sublime-text-configuration.html">more</a>
+<!--
         <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -98,7 +95,9 @@
     <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
+<!--
         <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -123,7 +122,9 @@
 <p>查看键盘和鼠标:cat /proc/bus/input/devices<br />查看各设备的中断请求(IRQ):cat /proc/interrupts</p>
 <h4>OS信息类：</h4>
 <p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
+<!--
         <a href="/2013/10/15/The-Linux-view-hardware-information.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -156,8 +157,10 @@
 <li>查看连接情况：sudo plog</li>
 <li>可查询本机的上网IP: sudo ifconfig ppp0</li>
 </ul>
-<p>二、windows上共享wifi有手动的方法，也有好用的工具。ubuntu上手动的方法，一直没有成功。最后发现一个工具，&nbsp;<a href="http://code.google.com/p/wifi-hostapd-ap/" target="_blank">wifi-hostapd-ap</a>，非常方便的工具啊。我这里是编译安装的。先安装依赖的库： sudo apt-get install wireless-tools bridge-utils hostapd dnsmasq libqtgui4<br />编译：make<br />启动：./WiFi_Hostapd_AP<br />设置密码=》应用， 搞定！</p>
+<br>  <a class="ym-button" href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">more</a>
+<!--
         <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -168,7 +171,9 @@
         <p>软件名称： Universal Termsrv.dll Patch (远程桌面多用户同时连接数破解通用补丁)<br />操作系统： Windows XP SP2 SP3; Vista SP1 SP2/Windows 7, 32bit(x86)/64bit(x64)<br />原理：　　破解 termsrv.dll, 解除远程桌面多用户同时连接（会话）数限制。<br />下载：　　<a href="http://yunpan.cn/QGiiFPBQ866ut">http://yunpan.cn/QGiiFPBQ866ut</a></p>
 <p>由于 Windows XP/Vista 的许可限制，在一台电脑上同一时间只允许一个用户登录（会话）。<br />如果有第二个用户通过远程桌面服务登录本机，那么在此之前本地已登录的用户、或远程已登录的用户将被踢出。<br />本补丁的功能就是去除这个限制，允许多人多用户同时并行访问登录XP/Vista，拥有一个终端服务器的功能。<br />通用补丁，适合所有语言的Windows！</p>
 <p>说明：<br />1, 请根据你的系统以管理员运行对应的程序：右键点程序，选择以管理员身份运行。<br />&nbsp; &nbsp; 32位系统请运行 UniversalTermsrvPatch-x86.exe;<br />&nbsp; &nbsp; 64位系统请运行 UniversalTermsrvPatch-x64.exe。<br />　 注：1重启生效，2备份文件： \windows\system32\termsrv.dll.backup。<br />2, 导入相应注册表文件，vista及以后的版本导入vista.reg，xp导入xp.reg<br />3, 用户必须拥有"Remote Desktop Users"或&ldquo;Administrators&rdquo;组的权限。</p>
+<!--
         <a href="/2013/9/28/Windows-multi-user-remote-desktop.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -192,48 +197,10 @@
 <p>微软和3Com公司在1989年制定了一套开发Windows下网络驱动程序的标准，称为NDIS（ Network Driver Interface Specification）。NDIS为网络驱动的开发提供了一套标准的接口，使得网络驱动程序的跨平台性更好。</p>
 <p><strong>NDIS提供以下几个层次的接口：</strong></p>
 <ol>
-<li>NDIS小端口驱动（Miniport driver）。这也就是我们常说的网卡驱动。</li>
-<li>NDIS 协议驱动（Protocol driver）。例如TCPIP协议驱动。</li>
-<li>NDIS 中间层驱动（Intermediate driver）。这是基于链路层和IP层之间的驱动。</li>
-</ol>
-<p>总的来说，要拦截Windows下的网络数据包可以在两个层面进行：用户态（user-mode）和内核态（kernel-mode）&nbsp;&nbsp;</p>
-<p><strong>在用户态下网络数据包拦截技术有以下几种：</strong></p>
-<p><strong>1)网络数据包拦截技术之LSP</strong></p>
-<p>Winsock Layered Service Provider (LSP)。这种方法在MSDN里有很详细的文档，并且给出了一个例子(SPI.CPP)。这种方法的好处是可以获得调用Winsock的进程详细信息。这就可以用来实现QoS，数据流加密等目的。但是，如果应用程序直接通过TDI（Transport Driver Inface）调用TCPIP来发送数据包，这种方法就无能为力了。</p>
-<p>对于一些木马和病毒来说要实现通过TDI直接调用TCPIP是一件很容易的事情。因此，大多数的个人防火墙都不使用这种方法。国内也有使用该方法实现的个人防火墙。</p>
-<p><strong>2)</strong>&nbsp;<strong>网络数据包拦截技术之Windows 2000 包过滤接口。</strong></p>
-<p>Windows 2000 IPHLP API提供了安装包过滤器的功能。但是，包过滤的规则有很多限制，对于个人防火墙来说是远远不够的。</p>
-<p><strong>3)</strong>&nbsp;<strong>网络数据包拦截技术之替换系统自带的WINSOCK动态连接库。</strong></p>
-<p>这种方法可以在很多文章里面找到详细的实现细节。 很显然，在用户态下进行数据包拦截最致命的缺点就是只能在Winsock层次上进行，而对于网络协议栈中底层协议的数据包无法进行处理。对于一些木马和病毒来说很容易避开这个层次的防火墙。</p>
-<p><strong>网络数据包拦截技术之利用驱动程序拦截网络数据包</strong></p>
-<p>大多数的个人防火墙都是利用网络驱动程序来实现的。</p>
-<ol>
-<li>TDI过滤驱动程序（TDI Filter Driver）</li>
-<li>NDIS中间层驱动程序（NDIS Intermediate Driver）</li>
-<li>Win2k Filter-Hook Driver</li>
-<li>NDIS Hook Driver</li>
-</ol>
-<p>以下我们大体介绍几种网络数据包拦截技术。具体的实现细节请参见Win2k DDK文档。</p>
-<p><strong>TDI过滤驱动程序。</strong></p>
-<p>当应用程序要发送或接收网络数据包的时候，都是通过与协议驱动所提供的接口来进行的。协议驱动提供了一套系统预定义的标准接口来和应用程序之间进行交互。在Windows 2000/NT下，ip,tcp,udp是在一个驱动程序里实现的，叫做tcp.sys，这个驱动程序创建了几个设备：</p>
-<p>DeviceRawIp，DeviceUdp，DeviceTcp，DeviceIp， DeviceMULTICAST。应用程序所有的网络数据操作都是通过这几个设备进行的。因此，我们只需要开发一个过滤驱动来截获这些交互的接口，就可以实现网络数据包的拦截。TDI层的网络数据拦截还可以得到操作网络数据包的进程详细信息，这也是个人防火墙的一个重要功能。</p>
-<p><strong>NDIS中间层驱动。</strong></p>
-<p>中间层驱动介于协议层驱动和小端口驱动之间，它能够截获所有的网络数据包（如果是以太网那就是以太帧）。NDIS中间层驱动的应用很广泛，不仅仅是个人防火墙，还可以用来实现VPN，NAT，PPPOverEthernet以及VLan。中间层驱动的概念是在Window NT SP4之后才有的，因此对于Windows9x来说无法直接利用中间层驱动的功能。</p>
-<p>Windows DDK提供了两个著名的中间层驱动例子：Passthru以及Mux。开发人员可以在Passthru的基础上进行开发，Mux则实现了VLan功能。目前个人防火墙的产品还很少用到这种技术，主要的原因在于中间层驱动的安装过于复杂，尤其是在Windows NT下。Windows 2000下可以通过程序实现自动安装，但是如果驱动没有经过数字签名的话，系统会提示用户是否继续安装。中间层驱动功能强大，应该是今后个人防火墙技术的趋势所在，特别是一些附加功能的实现。</p>
-<p><strong>Win2k Filter-Hook Driver。</strong></p>
-<p>这是从Windows2000开始系统所提供的一种驱动程序，该驱动程序主要是利用ipfiltdrv.sys所提供的功能来拦截网络数据包。Filter-Hook Driver在结构非常简单，易于实现。但是正因为其结构过于简单，并且依赖于ipfiltdrv.sys，Microsfot并不推荐使用Filter-Hook Driver。</p>
-<p>NDIS Hook Driver。这是目前大多数个人防火墙所使用的方法。Hook的概念在Windows9x下非常流行，而且实现也很容易。在Windows9x下，驱动程序（VxD）通过使用Hook_Device_Service可以挂接NDIS所提供的所有服务。在Windows NT/2000下面如何实现Hook呢？有两种不同的思路：</p>
-<p><strong>1) 通过修改NDIS.SYS的Export Table。</strong></p>
-<p>在Windows NT/2000下，可执行文件（包括DLL以及SYS）都是遵从PE（Portable Executable）格式的。所有向其他操作系统组件提供接口的驱动程序都有Export Table，因此只要修改NDIS.SYS的Export Table就可以实现对关键NDIS API的挂接。由于协议驱动程序在系统启动的时候会调用NdisRegisterProtocol来向系统进行协议注册，因此这种方法关键在于修改NDIS.SYS所提供的NdisRegisterProtocol/NdisDeRegisterProtocol/NdisOpenAdapter/NdisCloseAdapter/NdisSend函数的起始地址。</p>
-<p>我们知道，在用户态模式要修改PE文件格式可以用一些API来实现，而NDIS.SYS位于系统的核心内存区，因此要修改NDIS.SYS就不得不通过写驱动程序来实现，也就要求我们对PE文件格式有比较深入的了解。使用这种方法还要注意驱动程序的加载次序，显然Hook Driver必须在NDIS.SYS被加载之后，而在协议驱动程序如tcpip.sys被加载之前。另外，Windows2000还提供了系统文件保护机制，因此在修改ndis.sys还需要通过修改注册表屏蔽系统文件保护机制。</p>
-<p><strong>2) 向系统注册假协议（fake protocol）。</strong></p>
-<p>在Windows内核中，所有已注册的协议是通过一个单向的协议链表来维护的。这个单向链表保存了所有已注册协议的NDIS_PROTOCOL_BLOCK结构的地址，在这个结构中保存了协议驱动所指定的相应的派发函数的地址如RECEIVE_HANDLER等。并且，每个协议驱动还对应一个NDIS_OPEN_BLOCK的单向链表来维护其所绑定的网卡信息。</p>
-<p>当协议驱动调用NdisRegisterProtocol之后，NDIS总是会把新注册的协议放在协议链表的表头并返回这张表，所以只要我们注册一个新的协议通过新协议注册返回的链表头就可以轻而易举的遍历系统中所有协议表。</p>
-<p>但是，如果要成功地挂接派发函数，还需要对协议所对应的NDIS_OPEN_BLOCK结构里的派发函数进行挂接，因为NDIS并不是直接调用协议驱动在NDIS_PROTOCOL_CHARACTERISTICS所注册的派发函数地址，而是调用NDIS_OPEN_BLOCK里的派发函数。</p>
-<p>值得注意的是，在Windows9x/Me/NT的DDK中，NDIS_PROTOCOL_BLOCK的定义是很明确的，而在Windows 2000/xp的DDK中，并没有该结构的详细定义，也就是说该结构在Windows2000/xp下是非公开的，因此开发人员需要利用各种调试工具来发掘该结构的详细定义。也正是因为如此，这种方法对平台的依赖性比较大，需要在程序中判断不同的操作系统版本而使用不同的结构定义。</p>
-<p>本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。值得说明的是，网络数据包拦截技术不仅仅可以用来开发个人防火墙，还可以用来开发其他的产品。</p>
-</div>
+</ol></div><br>  <a class="ym-button" href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">more</a>
+<!--
         <a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
@@ -254,7 +221,9 @@
 
 (T 25 100 20)
 (m 100 20 10)</pre>
+<!--
         <a href="/2013/9/16/The-half-life-of-formula.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
     </div>
 </article>
 
