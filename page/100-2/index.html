@@ -73,6 +73,26 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
+<article class="arc" aid="1639">
+    2013-10-20
+    <center><h3><a href="/2013/10/20/Sublime-text-configuration.html">sublime text配置</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h4 class="entry-title public">安装Package Control</h4>
+<p class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/wbond/sublime_package_control">sublime_package_control</a>：　</strong>A full-featured package manager for Sublime Text　<a href="https://sublime.wbond.net">https://sublime.wbond.net</a></p>
+<p class="entry-title public">Ctrl+`调出python控制台，输入下面代码并回车。</p>
+<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
+<h4 class="entry-title public">安装插件：</h4>
+<p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
+<h4 class="entry-title public">常用插件：</h4>
+<p class="entry-title public">js formater</p>
+<p class="entry-title public">Zen Coding</p>
+<p class="entry-title public">SublimeLinter</p>
+<p class="entry-title public">Alignment</p>
+<p class="entry-title public">Bracket Highlighter</p>
+        <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+    </div>
+</article>
+
 <article class="arc" aid="1638">
     2013-10-18
     <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
@@ -235,38 +255,6 @@
 (T 25 100 20)
 (m 100 20 10)</pre>
         <a href="/2013/9/16/The-half-life-of-formula.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
-    </div>
-</article>
-
-<article class="arc" aid="1607">
-    2013-08-28
-    <center><h3><a href="/2013/8/28/CPS-(Continuation-Passing-Style).html">CPS（Continuation-Passing-Style）</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h3>&nbsp;</h3>
-<h3 id="sec-1"><span class="section-number-2">1、</span>什么是Continuation-passing Style:</h3>
-<div id="text-1" class="outline-text-2">
-<p style="margin-left: 30px;">Continuation-passing style(CPS)是指将控制流(Control flow)<sup><a class="footref" name="fnr.1" href="http://blog.csdn.net/cnnzp/article/details/7832106#fn.1"></a></sup>显式的当做参数传递的编程风格。 函数的返回不在通过return语句，而是将返回值当做参数，调用控制流。<br />CPS风格的函数都会有一个额外的参数k，显式的表示了continuation（可以理解成控制流的流向，what comes next）。当CPS函数需要返回的时候，调用k，并将返回值作为k的参数。</p>
-<h3>２、CPS程序与普通程序相比有如下明显的不同：</h3>
-<p style="margin-left: 30px;">CPS函数都有一个额外的参数&nbsp;<em>k</em>&nbsp;，表示控制流。函数需要返回，必须显式的调用&nbsp;<em>k</em>&nbsp;.<br />在函数的末尾调用了另外一个函数，这种调用称为尾调用，tail call。相应的在尾部递归调用，称之为尾递归，tail recursion。&nbsp;<strong>CPS所有函数都是尾调用。</strong></p>
-<h3>３、具有突出表现的场景</h3>
-<p style="margin-left: 30px;">使用CPS最初主要用于<span style="color: #ff0000;">编译高级语言</span>时一种中间代码表示，有了这种中间代码，编译器的复杂度大大降低。<br />现在发现CPS在<span style="color: #ff0000;">异步编程</span>里，<span style="color: #ff0000;">分布式编程</span>里大显身手。</p>
-<h3>４、CPS风格代码也有自己的缺点：</h3>
-<p style="margin-left: 30px;">CPS代码基本没法阅读和理解，看上面递归的例子就知道有多晦涩。<br />CPS代码不断的嵌套调用，在不支持尾递归的语言中，可能出现栈溢出。</p>
-<p>相关文章：&nbsp;</p>
-</div>
-<ul>
-<li><a href="http://docs.huihoo.com/homepage/shredderyin/wiki/ContinuationPassingStyle.html">一个 CPS 的例子</a></li>
-<li><a href="http://blog.csdn.net/hikaliv/article/details/4548561">函数式编程魅力：Continuation-Passing Style，说为何 C#、C++ 引入 Lambda 意义重大及 C++ 和 C# 的缺憾</a></li>
-<li><a href="http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/">programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/</a></li>
-<li><a href="http://matt.might.net/articles/by-example-continuation-passing-style/">by-example-continuation-passing-style/</a></li>
-<li><a href="http://matt.might.net/articles/cps-conversion/">http://matt.might.net/articles/cps-conversion/</a></li>
-<li><a href="http://blog.sina.com.cn/s/blog_698213630101bj0q.html"><span>理解Continuation和CPS（Continuation&nbsp;Passing&nbsp;Style）</span></a></li>
-<li><a href="http://www.zhihu.com/question/20259086"><span>怎样理解 Continuation-passing style?</span></a></li>
-<li><a href="http://en.wikipedia.org/wiki/Continuation-passing_style">wikipedia-cps</a></li>
-<li><a href="http://blog.csdn.net/cnnzp/article/details/7832106">Continuation-passing Style介绍及应用</a></li>
-<li></li>
-</ul>
-        <a href="/2013/8/28/CPS-(Continuation-Passing-Style).html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
     </div>
 </article>
 

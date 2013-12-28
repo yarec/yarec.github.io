@@ -76,10 +76,16 @@
     2013-08-06
     <center><h3>cmd_svn</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p><span style="font-size: large;">一、复制修改且未提交的文件到　/tmp/tt　目录下：</span></p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">svn st|sed -e '/^?.*$/d'|sed -e 's/^[MA]/cp --parents/g'|sed -e 's/$/ \/tmp\/tt/' | sh</pre>
-<p>二、列出指定版本这间修改过的所有文件</p>
-<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">svn log -r 724:HEAD -v|egrep '\.php|\.js|\.css|\.jpg|\.png|\.gif'|sort|uniq|sed 's@^\s*M\s*@.@'|sed 's@^\s*A\s*@.@'|sed '/^\s*D.*$/d'</pre>
+        <pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; "># 复制修改且未提交的文件到　/tmp/tt　目录下：</pre>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">svn st|sed -e '/^?.*$/d'|sed -e 's/^[MA]/cp --parents/g'|sed -e 's/$/ \/tmp\/tt/' | sh
+
+# 列出指定版本这间修改过的所有文件
+svn log -r 724:HEAD -v|egrep '\.php|\.js|\.css|\.jpg|\.png|\.gif'|sort|uniq|sed 's@^\s*M\s*@.@'|sed 's@^\s*A\s*@.@'|sed '/^\s*D.*$/d'
+
+# check out trunk from github 
+svn co --depth empty https://github.com/${username}/${project}
+cd ${project}
+svn up trunk</pre>
     </div>
 </article>
 
