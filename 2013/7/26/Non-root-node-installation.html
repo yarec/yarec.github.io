@@ -105,8 +105,16 @@ express .
 cd . &amp;&amp; npm install
 node app.js</pre>
 <p>在浏览器中访问&nbsp;<a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></p>
-<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express<a href="http://127.0.0.1:3000"><br /></a></p>
-<p>&nbsp;</p>
+<p><a href="http://127.0.0.1:3000"><br /></a>-&gt; Welcome to Express</p>
+<p>使用npm安装package时，可以指定npm源以提高访问速度，具体方法如下：</p>
+<p>1.通过config命令</p>
+<pre class="prettyprint"><code><span class="pln">npm config </span><span class="kwd">set</span><span class="pln"> registry http</span><span class="pun">:</span><span class="com">//registry.cnpmjs.org </span><span class="pln">
+npm info underscore </span><span class="pun">（如果上面配置正确这个命令会有字符串</span><span class="pln">response</span><span class="pun">）</span></code></pre>
+<p>2.命令行指定</p>
+<pre class="prettyprint"><code><span class="pln">npm </span><span class="pun">--</span><span class="pln">registry http</span><span class="pun">:</span><span class="com">//registry.cnpmjs.org info underscore </span></code></pre>
+<p>3.编辑 <code>~/.npmrc</code> 加入下面内容</p>
+<pre class="prettyprint"><code><span class="pln">registry </span><span class="pun">=</span><span class="pln"> http</span><span class="pun">:</span><span class="com">//registry.cnpmjs.org</span></code></pre>
+<p><br /><span>如果出现问题，可以先试试npm cache clean</span></p>
     </div>
 </article>
 

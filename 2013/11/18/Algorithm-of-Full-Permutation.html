@@ -5,12 +5,12 @@
     
     
     
-    <title>hg-ins | 软轶-SofTidy.com</title>
+    <title>全排列算法 | 软轶-SofTidy.com</title>
 
 	<!-- Mobile viewport optimisation -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="Keywords" content="hg-ins" />
+    <meta name="Keywords" content="全排列算法" />
     <meta name="Description" content="" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
@@ -73,25 +73,69 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 <article class="arc" aid="">
-    2010-11-09
-    <center><h3>hg-ins</h3><br></center> 
+    2013-11-18
+    <center><h3>全排列算法</h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
         <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.1-1.el5.rf.i386.rpm</p>
-<p>rpm -ivh&nbsp;</p>
-<p>yum install mercurial&nbsp;</p>
+<ul>
+<li><a class="title" href="http://www.coderli.com/datastructure-c-perm" rel="bookmark">数组全排列递归算法 C语言实现</a></li>
+<li><a href="http://my.oschina.net/cpulwt/blog/78213">全排列算法思想</a></li>
+<li><a href="http://mengliao.blog.51cto.com/876134/824079" target="_blank">全排列的六种算法</a></li>
+<li><a href="http://www.quickperm.org/">http://www.quickperm.org/</a></li>
+<li><a href="http://dongxicheng.org/structure/permutation-combination/" rel="bookmark">算法之排列与组合算法</a></li>
+</ul>
 <p>&nbsp;</p>
-<p>~/.hgrc</p>
-<p>[ui]<br />username=softidy</p>
-<p>[http]<br />sslverify=false</p>
-<p>[hostfingerprints]<br />bitbucket.org = 24:9c:45:8b:9c:aa:ba:55:4e:01:6d:58:ff:e4:28:7d:2a:14:ae:3b</p>
-<p>[http_proxy]<br />host=192.168.1.229:8087</p>
-<p>[web]<br />cacerts=~/.ssh/CA.crt</p>
-<pre><code>[auth]
-repo.prefix = https://server/repo_path
-repo.username = username
-repo.password = password</code></pre>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (cart lst)
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;  product-tree                    ;;;;;;
+  ;;;; '(a b) =&gt; ((a (b)) (b (a)))      ;;;;;;
+  ;;;; '(a b c) =&gt; ((a (b (c)) (c (b))) ;;;;;;
+  ;;;;              (b (a (c)) (c (a))) ;;;;;;
+  ;;;               (c (a (b)) (b (a))));;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (define (product-tree lst)
+    (if (symbol? lst)
+    lst
+    (map (lambda (ls)
+           (let ((tail (remv ls lst)))
+         (cons ls (product-tree tail))))
+         lst)))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;; leaf?                   &iexcl;&iexcl;&iexcl;&iexcl;&iexcl;&iexcl;&iexcl;&iexcl;          ;;;
+  ;;; '(x) is a leaf,reference the product-tree ;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (define (leaf? ls)
+    (and (pair? ls) (eqv? 1 (length ls))))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;; product-result                                      ;;;;
+  ;;; walk through the tree, append the node in "result"  ;;;;
+  ;;; if it's a leaf then get one result, and append it in;;;;
+  ;;; the "sum"                                           ;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (define (product-result ls result)
+    (cond ((leaf? ls)  ;; is the leaf and get one result
+       (set! sum  (append sum (list (append result (list (car ls)))))))
+      (else
+       (map (lambda (x) ;;; map the child tree
+          (product-result x (append result (list (car ls)))))   ;;; walk next tree and append the node to "result"
+        (cdr ls)))))
+;  (let ((sum '()))
+  (define sum '())
+  (map (lambda (x)  ;; walk every tree in list product by
+     (product-result x '()) )        ;; product-tree
+       (product-tree lst))
+  sum)
+
+(define (print l)
+  (for-each
+   (lambda (x)
+     (display x)(newline))
+   l))
+
+(print (cart '(a b c d e f g)))</pre>
     </div>
 </article>
 

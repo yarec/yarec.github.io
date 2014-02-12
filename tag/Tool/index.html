@@ -128,16 +128,32 @@ lshw(Hardwa ...  <a href="/2013/10/15/The-Linux-view-hardware-information.html">
 <article class="arc" >
         <div class="ym-gbox-left ym-clearfix inner" >
             2013-10-01
-            <a href=""> <h3> <center>访问日志统计分析</center> </h3> </a>
+            <a href="/2013/10/1/Access-log-statistical-analysis.html"> <h3> <center>访问日志统计分析</center> </h3> </a>
             <br>
-            <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：
-    1、拨号上网
-    2、共享wifi
-解决方法
-一、拨号上网的方法： pppoeconf
-    1、打开终端，Ctrl+Alt+t
-    2、以root身份启动，执行 sudo pppoeconf
-    3、启动后会提示一些问题，一路选“Yes"即可，直到要求输入ADSL账号 ...  <a href="">详细内容</a></p>
+            <p>目标：
+
+访问统计
+
+业务统计
+
+日志中各个ip访问页面的次数
+
+ 
+
+ 
+
+linux下用awk统计日志中各个ip访问页面的次数
+awk '{a[$1]+=1;}END{for(i in a){print a[i]" "i;}}' a.log
+
+ 
+
+使用 awstats 分析 Nginx 的访问日志
+
+用HBase如何设计全新的日志统计系统
+
+ 
+
+http://awstats.sourcef ...  <a href="/2013/10/1/Access-log-statistical-analysis.html">详细内容</a></p>
         </div>
 </article>
 

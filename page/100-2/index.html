@@ -73,156 +73,144 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
-<article class="arc" aid="1639">
-    2013-10-20
-    <center><h3><a href="/2013/10/20/Sublime-text-configuration.html">sublime text配置</a></h3><br></center> 
+<article class="arc" aid="1678">
+    2013-12-03
+    <center><h3><a href="/2013/12/3/Ubuntu-development-environment-of-mine.html">我的开发开发环境之ubuntu</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <h4 class="entry-title public">安装Package Control</h4>
-<p class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/wbond/sublime_package_control">sublime_package_control</a>：　</strong>A full-featured package manager for Sublime Text　<a href="https://sublime.wbond.net">https://sublime.wbond.net</a></p>
-<p class="entry-title public">Ctrl+`调出python控制台，输入下面代码并回车。</p>
-<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
-<h4 class="entry-title public">安装插件：</h4>
-<p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
-<br>  <a class="ym-button" href="/2013/10/20/Sublime-text-configuration.html">more</a>
+        <p>一、系统配置</p>
+<p><a href="http://softidy.com/2012/9/24/Ubuntu-config.html">ubuntu-config</a></p>
+<p><a href="http://softidy.com/2012/2/17/Gnome-shell-extensions.html">gnome-shell-extensions</a></p>
+<p>三、软件列表</p>
+<p><a href="http://softidy.com/2010/3/14/Ubuntu-software-list.html">ubuntu-software-list</a></p>
+<p>四、版本控制</p>
 <!--
-        <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/12/3/Ubuntu-development-environment-of-mine.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>
 
-<article class="arc" aid="1638">
-    2013-10-18
-    <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
+<article class="arc" aid="1674">
+    2013-11-27
+    <center><h3><a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html">python编码的str-unicode与QByteArray-QString</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
+        <h4 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/babykick/archive/2011/05/16/2048155.html">PyQt的QString和python的string的区别</a>(转)</h4>
+<p>python的string和PyQt的QString的区别<br />python string和PyQt的QString的区别 以下在Python2.6和PyQt4.4.4 for Python2,6环境下讨论： Python中有两种有关字符的类型：Python string object和Python Unicode object。主要使用Python string object进行数据输入<br />　　</p>
+<p>python string和PyQt的QString的区别</p>
+<p>以下在 Python2.6和PyQt4.4.4 for Python2,6环境下讨论：<br />Python中有两种有关字符的类型：Python string object和Python Unicode object。主要使用Python string object进行数据输入输出。<br />PyQt中与之相对应的字符有关类型是：QByteArray和QString。主要使用QString操作数据。</p>
+<p><br />1. Python和PyQt中的类型对应</p>
+<p><br />注意是类型相似，不是相等。<br />需要先了解编码：ascii、gb2312、big5，这些是各国自己文字不同的编码；unicode，国际通用编码，就是穷尽这个世界上所有的文字，给 每个文字编一个，又分utf-8方案--最常使用的128个英文字母用一个字节来表示，而中文使用三个字节来表示，utf-16方案--其中英文和中文都 使用两个字节来表示，而其它字符采用四个字节，utf-32方案--所有的文字都用四个字节来表示。<br />unicode就可用来作为各种独立编码如ascii、gb2312、big5的转换中介。<br />Python中gkb == gb2312。</p>
+<p></p><br>  <a class="ym-button" href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html">more</a>
 <!--
-        <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/11/27/Python-code-str-unicode-and-QByteArray-QString.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>
 
-<article class="arc" aid="1636">
-    2013-10-15
-    <center><h3><a href="/2013/10/15/The-Linux-view-hardware-information.html">linux查看硬件信息</a></h3><br></center> 
+<article class="arc" aid="1664">
+    2013-11-19
+    <center><h3><a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html">PowerDesigner逆向工程mysql</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>linux查看硬件信息的命令</p>
-<h4>软件类：</h4>
-<p>用硬件检测程序kuduz探测新硬件：service kudzu start ( or restart)<br />查看系统硬盘信息和使用情况：fdisk &amp; disk - l &amp; df &amp;&nbsp;hdparm -I /dev/sda&nbsp;<br />dmidecode查看硬件信息，包括bios、cpu、内存等信息<br />dmesg | more 查看硬件信息<br />lshw(<a class="external text" style="font-size: 10px;" href="http://ezix.org/project/wiki/HardwareLiSter" rel="nofollow" target="_blank">Hardware Lister</a>可以把硬件的详细信息导出</p>
-<h4>proc信息类：</h4>
-<p>查看CPU信息：cat /proc/cpuinfo<br />查看板卡信息：</p>
-<ol>
-<li>cat /proc/pci</li>
-<li>lspci (相比cat /proc/pci更直观） 例子： lspci |grep Ethernet 查看网卡型号</li>
-</ol>
-<p>查看内存信息：cat /proc/meminfo<br />查看USB设备：</p>
-<ol>
-<li>cat /proc/bus/usb/devices</li>
-<li>lsusb</li>
-</ol>
-<p>查看键盘和鼠标:cat /proc/bus/input/devices<br />查看各设备的中断请求(IRQ):cat /proc/interrupts</p>
-<h4>OS信息类：</h4>
-<p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
-<!--
-        <a href="/2013/10/15/The-Linux-view-hardware-information.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1631">
-    2013-10-02
-    <center><h3><a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">ubuntu拨号上网和wifi共享</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：</p>
-<ol>
-<li>拨号上网</li>
-<li>共享wifi</li>
-</ol>
-<p>解决方法<br />一、拨号上网的方法： pppoeconf</p>
-<ol>
-<li>打开终端，Ctrl+Alt+t</li>
-<li>以root身份启动，执行 sudo pppoeconf</li>
-<li>启动后会提示一些问题，一路选&ldquo;Yes"即可，直到要求输入ADSL账号，填好账号，下一步是密码，再之后一路"Yes"就ok了</li>
-<li>其中最后一步是设置是否开机自动拨号，如果不想自动拨就选&ldquo;No&rdquo;，手动拨号的命令是&nbsp;pon dsl-provider</li>
-</ol>
-<p>我一直是用的这个方法，另外网上有人说有图形操作的方法： 系统-》首选项-》网络连接 选择 DSL 然后添加 输入用户名和密码 勾上自动连接 在点应用 就OK 了<br />这个方法我试了不好使，不知道是不是得重启电脑才行，前一种方法已经满足我了，不折腾了。<br />pppoeconf和NetworkManager是相冲突的，用过pppoeconf的想要换为nm需要下面的设置（此方法我没有试成功，大家可以试试）：</p>
-<ol>
-<li>更改/etc/NetworkManager/NetworkManager.conf中的managed＝true</li>
-<li>更改/etc/network/interfaces，只保留<br />auto lo<br />iface lo inet loopback</li>
-<li>删除，rm /etc/resolv.conf</li>
-<li>重启nm，sudo /etc/init.d/network-manager restart （如果面板没有nm图标，ALT+F2然后输入nm-applet回车）</li>
-</ol>
-<p>一些命令：</p>
+        <h4>软件版本：</h4>
 <ul>
-<li>Ubuntu ADSL手工断线：sudo poff</li>
-<li>查看连接情况：sudo plog</li>
-<li>可查询本机的上网IP: sudo ifconfig ppp0</li>
+<li>PowerDesigner15</li>
+<li>MySQL5</li>
+<li>MyODBC-standard-3.51.0.7-win.msi <a href="http://yunpan.cn/QUKf2upvZmLW8">下载地址</a></li>
+<li>mysql-connector-odbc-5.1.5-win.msi&nbsp;<a href="http://yunpan.cn/QUKfE3xQtBzhi">下载地址</a></li>
 </ul>
-<br>  <a class="ym-button" href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">more</a>
-<!--
-        <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1622">
-    2013-09-28
-    <center><h3><a href="/2013/9/28/Windows-multi-user-remote-desktop.html">windows多用户远程桌面</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>软件名称： Universal Termsrv.dll Patch (远程桌面多用户同时连接数破解通用补丁)<br />操作系统： Windows XP SP2 SP3; Vista SP1 SP2/Windows 7, 32bit(x86)/64bit(x64)<br />原理：　　破解 termsrv.dll, 解除远程桌面多用户同时连接（会话）数限制。<br />下载：　　<a href="http://yunpan.cn/QGiiFPBQ866ut">http://yunpan.cn/QGiiFPBQ866ut</a></p>
-<p>由于 Windows XP/Vista 的许可限制，在一台电脑上同一时间只允许一个用户登录（会话）。<br />如果有第二个用户通过远程桌面服务登录本机，那么在此之前本地已登录的用户、或远程已登录的用户将被踢出。<br />本补丁的功能就是去除这个限制，允许多人多用户同时并行访问登录XP/Vista，拥有一个终端服务器的功能。<br />通用补丁，适合所有语言的Windows！</p>
-<p>说明：<br />1, 请根据你的系统以管理员运行对应的程序：右键点程序，选择以管理员身份运行。<br />&nbsp; &nbsp; 32位系统请运行 UniversalTermsrvPatch-x86.exe;<br />&nbsp; &nbsp; 64位系统请运行 UniversalTermsrvPatch-x64.exe。<br />　 注：1重启生效，2备份文件： \windows\system32\termsrv.dll.backup。<br />2, 导入相应注册表文件，vista及以后的版本导入vista.reg，xp导入xp.reg<br />3, 用户必须拥有"Remote Desktop Users"或&ldquo;Administrators&rdquo;组的权限。</p>
-<!--
-        <a href="/2013/9/28/Windows-multi-user-remote-desktop.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1621">
-    2013-09-27
-    <center><h3><a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">Windows下网络数据包的监听和拦截技术</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <div class="main_l_content_title">
-<h4>基于Windows个人防火墙下的网络数据包拦截技术概览</h4>
-</div>
-<div class="main_l_content_note">2009-08-09 15:46 &nbsp;来源:watchstor.com &nbsp; &nbsp;<a href="http://tech.watchstor.com/storage-network-115067.htm#pinglun"><br /></a></div>
-<div class="main_l_content_note1">
+<p>逆向工程的目的是把mysql数据库中的表结构导入到PowerDesigner中，以便于基于现有的表来使用PowerDesigner做设计。需要这样操作的原因有两个，第一是数据库的设计模型（cdm或pdm）搞丢了或者一时找不到，另一种情况是之前的表没有使用PowerDesigner设计。这时就需要把数据库表转换为设计模型。上面4个软件包中，前两个应该已经安装好了（不然也不会考虑逆向的问题），后两个就是逆向操作需要的驱动程序。<br />安装完成后，</p>
 <ul>
-<li>摘要：本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。</li>
-<li>标签：<a href="http://www.watchstor.com/php/search.php?keyword=%CD%F8%C2%E7%CA%FD%BE%DD%B0%FC%C0%B9%BD%D8%BC%BC%CA%F5" target="_blank">网络数据包拦截技术</a></li>
+<li>打开PowerDesigner，依次点开&rdquo;File -&gt; Reverse Engineer -&gt; Database...&ldquo;</li>
+<li>打开"New Physical Data Model"窗口，DBMS选择&ldquo;Mysql 5.0&rdquo;，选择&ldquo;Using a data source&rdquo;，</li>
+<li>点击右边的数据库图标的小按钮，配置好数据库链接，点击确定</li>
+<li>这时应该打开了&ldquo;Database Reverse Engineering&rdquo;窗口，并显示出数据库中的表。</li>
+<li>选择要逆向的表，完成逆向操作，生成pdm。</li>
 </ul>
-</div>
-<div class="main_l_content_main">
-<p>所有基于Windows操作系统的个人防火墙核心技术点在于Windows操作系统下网络数据包拦截技术。本文主要讲述的是Windows操作系统下网络数据包拦截的技术。首先读者应该对Windows网络体系结构有一定了解，并且对开发Windows驱动程序有一定了解。</p>
-<p><strong>Windows 网络驱动程序结构</strong>&nbsp;&nbsp;</p>
-<p>微软和3Com公司在1989年制定了一套开发Windows下网络驱动程序的标准，称为NDIS（ Network Driver Interface Specification）。NDIS为网络驱动的开发提供了一套标准的接口，使得网络驱动程序的跨平台性更好。</p>
-<p><strong>NDIS提供以下几个层次的接口：</strong></p>
-<ol>
-</ol></div><br>  <a class="ym-button" href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">more</a>
 <!--
-        <a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/11/19/Reverse-engineering-PowerDesigner-MySQL.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>
 
-<article class="arc" aid="1619">
-    2013-09-16
-    <center><h3><a href="/2013/9/16/The-half-life-of-formula.html">半衰期公式</a></h3><br></center> 
+<article class="arc" aid="1663">
+    2013-11-19
+    <center><h3><a href="/2013/11/19/Pyqt-development-environment.html">pyqt开发环境</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>半衰期定义：半衰期是指某種特定物質的浓度经过某种反应降低到剩下初始时一半所消耗的時間，半衰期是研究反应动力学的一个容易测定的重要参数，数学上可以证明，只有一级反应的半衰期是恒定的数值，且知悉一个一级反应的半衰期便可以计算出该反应的所有动力学参数，所以人们通常只关心一级反应的半衰期。常见的一级反应有：放射性核素的衰变、一级化学反应、药物在体内的吸收和代谢等。(from wiki)</p>
-<p>半衰期的公式：m=M*(1/2)<sup>(t/T)</sup> <br />　　　　　即：T= t/log(m/M, 0.5)</p>
-<p style="margin-left: 30px;">其中M为反应前原子核质量，m为反应后原子核质量，t为反应时间，T为半衰期。</p>
-<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (m M t T)
-  (* M (expt 0.5 (/ t T))))
-(define (T m M t)
-  (let ([loga 
-         (lambda (n base) 
-           (/ (log n) (log base)))])
-  (/ t (loga (/ m M) 0.5))))
-
-(T 25 100 20)
-(m 100 20 10)</pre>
+        <p>python:&nbsp;<a href="http://www.python.org/">http://www.python.org/</a></p>
+<p>PyQt4:&nbsp;<a href="http://www.riverbankcomputing.co.uk">http://www.riverbankcomputing.co.uk</a></p>
+<p>eric5:&nbsp;<a href="http://eric-ide.python-projects.org/eric-download.html">http://eric-ide.python-projects.org/eric-download.html</a></p>
+<p>pyinstaller:&nbsp;<a href="http://www.pyinstaller.org/">http://www.pyinstaller.org/</a>&nbsp;（py2.4-2.7）</p>
+<p>cx-freeze:&nbsp;<a href="http://cx-freeze.sourceforge.net/">http://cx-freeze.sourceforge.net/</a></p>
+<p>&nbsp;</p>
+<p>eric5 依赖于python3, pyqt4/pyqt5.0</p>
+<p>pyinstaller 支持 python2.4-2.7</p>
+<p>&nbsp;</p>
+<p><a href="http://agong.org/2013/eric5-and-cx_freeze-plugin-generate-exe.html">http://agong.org/2013/eric5-and-cx_freeze-plugin-generate-exe.html</a></p>
 <!--
-        <a href="/2013/9/16/The-half-life-of-formula.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/11/19/Pyqt-development-environment.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1662">
+    2013-11-18
+    <center><h3><a href="/2013/11/18/Algorithm-of-Full-Permutation.html">全排列算法</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>&nbsp;</p>
+<p>&nbsp;</p>
+<ul>
+<li><a class="title" href="http://www.coderli.com/datastructure-c-perm" rel="bookmark">数组全排列递归算法 C语言实现</a></li>
+<li><a href="http://my.oschina.net/cpulwt/blog/78213">全排列算法思想</a></li>
+<li><a href="http://mengliao.blog.51cto.com/876134/824079" target="_blank">全排列的六种算法</a></li>
+<li><a href="http://www.quickperm.org/">http://www.quickperm.org/</a></li>
+<li><a href="http://dongxicheng.org/structure/permutation-combination/" rel="bookmark">算法之排列与组合算法</a></li>
+</ul>
+<p>&nbsp;</p>
+<br>  <a class="ym-button" href="/2013/11/18/Algorithm-of-Full-Permutation.html">more</a>
+<!--
+        <a href="/2013/11/18/Algorithm-of-Full-Permutation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1657">
+    2013-11-06
+    <center><h3><a href="/2013/11/6/Simulated-login-script-are.html">模拟登录的脚本们</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>模拟登录这个功能使用场景有很多，这里做一些技术的总结和分享。</p>
+<p>最开始的时候想找一个perl的，但是找了几个试了试，都没成功。最后发现了这个python的，成功登录。</p>
+<p>一、python<a href="http://softidy.com/2013/11/1/Alimama_login.py.html">示例</a></p>
+<p>python的urllib2提供的cookie自动管理机制使得实现起来容易多了，不用理会多次请求之间cookie的接力问题。这个问题在用nodejs重写的时候费了我不少脑细胞。但是python也有让人不爽的地方，就是正则表达式。perl在这方面是老大，它的$1,$2用着很方便。但python的一直没找到相应方法，对python不太熟悉啊。</p>
+<p>二、nodejs<a href="http://softidy.com/2013/11/6/Alimama_login.js.html">示例</a></p>
+<p>js的正则使用起来挺舒服的，可是也有让人头疼的，比如上面提到的cookie问题，还有异步的问题。关于异步，js有一些方案，如continuation模块。但试用了几个，都挺麻烦的，最后没用使用这些东西。http请求使用了httpreq，使得代码简洁了一些。cookie需要从responses中自己处理一下，也不算太麻烦，一个for搞定。</p>
+<p>三、perl<a href="http://softidy.com/2013/11/22/Alimama_login.pl.html">示例</a></p>
+<p>这个我折腾了半天，还是不好使。怀疑是<span>SendTE头的问题，强行去掉也没成功，哪位大侠搞定了教教我啊：D</span></p>
+<p>&nbsp;</p>
+<!--
+        <a href="/2013/11/6/Simulated-login-script-are.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1646">
+    2013-10-25
+    <center><h3><a href="/2013/10/25/Agile-development-and-project-management.html">敏捷开发与项目管理</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><a href="http://agilemanifesto.org/iso/zhchs/">敏捷软件开发宣言</a></p>
+<p><a href="http://agilemanifesto.org/iso/zhchs/principles.html">敏捷宣言遵循的原则</a></p>
+<p>&nbsp;</p>
+<p>XP, Scrum, Lean, ASD, FDD, DSDM</p>
+<p><a href="http://www.ibm.com/developerworks/cn/rational/r-cn-agileadaption/">敏捷开发与项目管理实战之引入敏捷开发的技术先决条件</a></p>
+<ul>
+<li>自动化测试工具</li>
+<li>软件架构支持与架构看护</li>
+<li>模块化打包与服务端热部署支持</li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="http://wenku.baidu.com/view/005553d6b9f3f90f76c61b5c.html">敏捷开发管理以及构件技术相关资料整理</a></p>
+<p><a href="http://www.infoq.com/cn/news/2013/05/leadership-self-organized-teams">自组织敏捷团队的领导关系</a></p>
+<p><a href="http://blog.csdn.net/cheny_com/article/details/6179203">同行压力（兼谈敏捷团队，绩效管理，自组织团队）</a></p>
+<!--
+        <a href="/2013/10/25/Agile-development-and-project-management.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>
