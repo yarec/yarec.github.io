@@ -73,155 +73,189 @@
         <div class="ym-wbox">
             <section class="ym-grid linearize-level-1">
                 
-<article class="arc" aid="1645">
-    2013-10-24
-    <center><h3><a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html">使用cloudera快速部署hadoop环境</a></h3><br></center> 
+<article class="arc" aid="1621">
+    2013-09-27
+    <center><h3><a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">Windows下网络数据包的监听和拦截技术</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <h4>一、依赖资源</h4>
-<p>centos镜像:&nbsp;CentOS-6</p>
-<p>cloudera:</p>
-<p><a href="http://archive.cloudera.com/cdh4/repo-as-tarball/">CDH(Cloudera&rsquo;s Distribution Including Apache Hadoop)</a><br /><a href="http://archive.cloudera.com/cm4/repo-as-tarball/">CM(Cloudera Manager)<br /></a><a href="http://archive.cloudera.com/cm4/installer/">CMI(Cloudera Manager Installer)<br /></a><a href="http://archive.cloudera.com/impala/">Impala</a><a href="http://archive.cloudera.com/cm4/installer/"><br /></a></p>
-<p><a href="http://www.cloudera.com/content/support/en/documentation.html">Cloudera Documentation</a></p>
-<h4>二、安装配置centos</h4>
-<p>选择最小安装，共２０４个包，其它需要的软件在系统安装好之后使用脚本一次安装。</p>
-<p>我选择的<a href="http://softidy.com/2013/11/7/Fast-installation-CentOS.html">安装方法</a>为网络安装，其好处是安装速度快。系统镜像是放到一个http服务器上，被装机器只要能启动安装内核，其它安装包通过网络（内网）在线下载比读光盘要快多了。</p>
-<p>系统配置：</p>
-<ol>
-<li>关闭SELinux</li>
-<li>配置yum源</li>
-<li>配置网络</li>
-<li>安装需要的软件包</li>
-</ol>
-<p>操作写在了一个</p><br>  <a class="ym-button" href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html">more</a>
-<!--
-        <a href="/2013/10/24/The-use-of-cloudera-rapid-deployment-in-Hadoop-environment.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1642">
-    2013-10-23
-    <center><h3><a href="/2013/10/23/Reading.html">读书</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p align="left">由于一个偶然的机会，促使我对读书这个事情产生一些疑问和想法。读书的目的是什么？在生活中占有怎么样的地位？一生当中要花多少时间？去读哪些书？次序性是怎样的？是否每天都安排固定的时间去读书？</p>
-<p align="left">摘录一些网上整理的&ldquo;<span style="text-decoration: underline;"><a href="http://softidy.com/2013/10/24/On-the-reading-of-famous-quotes.html"><span style="color: #000000; text-decoration: underline;">关于读书的名人名言</span></a></span>&rdquo;，从这些言语中总能发现一些让人决心去读书的冲动。这种冲动在很久以前产生过，但由于三分钟热度一过就丟在一边了。这一次有机会重新确认读书的重要性，必须坚持下去。</p>
-<!--
-        <a href="/2013/10/23/Reading.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1639">
-    2013-10-20
-    <center><h3><a href="/2013/10/20/Sublime-text-configuration.html">sublime text配置</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <h4 class="entry-title public">安装Package Control</h4>
-<p class="entry-title public"><strong><a class="js-current-repository js-repo-home-link" href="https://github.com/wbond/sublime_package_control">sublime_package_control</a>：　</strong>A full-featured package manager for Sublime Text　<a href="https://sublime.wbond.net">https://sublime.wbond.net</a></p>
-<p class="entry-title public">Ctrl+`调出python控制台，输入下面代码并回车。</p>
-<pre class="brush: python; fontsize: 100; first-line: 1; toolbar: false; ">import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())</pre>
-<h4 class="entry-title public">安装插件：</h4>
-<p>ctrl+shift+p 打开Package Control组件，输入install 调出 Install Package 选项并回车，然后输入要安装的插件名称（如：jsformat）即可。</p>
-<br>  <a class="ym-button" href="/2013/10/20/Sublime-text-configuration.html">more</a>
-<!--
-        <a href="/2013/10/20/Sublime-text-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1638">
-    2013-10-18
-    <center><h3><a href="/2013/10/18/Commonly-used-windows-commands.html">windows常用命令</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>查看进程信息：tasklist /V<br />查看占用８０端口的进程号：Netstat -ano|findstr "80"<br />查看进程号为４２５２的进程信息：tasklist|findstr "4252"<br /><br /><span>建立一个用户：<span>net&nbsp;user uname upass /add<br /><span>删除一个用户：<span>net&nbsp;user&nbsp;uname /del<br /><span>把用户添加到管理员：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /add<br /><span>把用户从管理员组删除：<span>net&nbsp;localgroup&nbsp;administrators&nbsp;uname /del</span></span></span></span></span></span></span></span><br /><span>查看所有用户账户：<span>net&nbsp;user<br />查看当前用户：whoami |&nbsp;echo %username%<br />查看远程用户：query user（需要管理员身份）<br /><br />设置订单任务：schtasks /create /sc minute /mo 1 /tn &nbsp;"time test" /tr c:\test.bat<br /><br /><span>编辑文件：copy&nbsp;con&nbsp;test.bat (<span>CTRL+Z 保存退出</span>)</span><br /></span></span></p>
-<!--
-        <a href="/2013/10/18/Commonly-used-windows-commands.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1636">
-    2013-10-15
-    <center><h3><a href="/2013/10/15/The-Linux-view-hardware-information.html">linux查看硬件信息</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>linux查看硬件信息的命令</p>
-<h4>软件类：</h4>
-<p>用硬件检测程序kuduz探测新硬件：service kudzu start ( or restart)<br />查看系统硬盘信息和使用情况：fdisk &amp; disk - l &amp; df &amp;&nbsp;hdparm -I /dev/sda&nbsp;<br />dmidecode查看硬件信息，包括bios、cpu、内存等信息<br />dmesg | more 查看硬件信息<br />lshw(<a class="external text" style="font-size: 10px;" href="http://ezix.org/project/wiki/HardwareLiSter" rel="nofollow" target="_blank">Hardware Lister</a>可以把硬件的详细信息导出</p>
-<h4>proc信息类：</h4>
-<p>查看CPU信息：cat /proc/cpuinfo<br />查看板卡信息：</p>
-<ol>
-<li>cat /proc/pci</li>
-<li>lspci (相比cat /proc/pci更直观） 例子： lspci |grep Ethernet 查看网卡型号</li>
-</ol>
-<p>查看内存信息：cat /proc/meminfo<br />查看USB设备：</p>
-<ol>
-<li>cat /proc/bus/usb/devices</li>
-<li>lsusb</li>
-</ol>
-<p>查看键盘和鼠标:cat /proc/bus/input/devices<br />查看各设备的中断请求(IRQ):cat /proc/interrupts</p>
-<h4>OS信息类：</h4>
-<p>查看系统体系结构：uname -a<br />查看当前操作系统发行版信息：cat /etc/issue<br />查看系统位数（32/64）：getconf LONG_BIT<br />查看系统负载：cat /proc/loadavg</p>
-<!--
-        <a href="/2013/10/15/The-Linux-view-hardware-information.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
--->
-    </div>
-</article>
-
-<article class="arc" aid="1631">
-    2013-10-02
-    <center><h3><a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">ubuntu拨号上网和wifi共享</a></h3><br></center> 
-    <div class="ym-gbox-left ym-clearfix inner" >
-        <p>ubuntu的网络管理器和windows没多大差异，挺方便的。但是我遇到两个问题（可能只是少数人的需求）：</p>
-<ol>
-<li>拨号上网</li>
-<li>共享wifi</li>
-</ol>
-<p>解决方法<br />一、拨号上网的方法： pppoeconf</p>
-<ol>
-<li>打开终端，Ctrl+Alt+t</li>
-<li>以root身份启动，执行 sudo pppoeconf</li>
-<li>启动后会提示一些问题，一路选&ldquo;Yes"即可，直到要求输入ADSL账号，填好账号，下一步是密码，再之后一路"Yes"就ok了</li>
-<li>其中最后一步是设置是否开机自动拨号，如果不想自动拨就选&ldquo;No&rdquo;，手动拨号的命令是&nbsp;pon dsl-provider</li>
-</ol>
-<p>我一直是用的这个方法，另外网上有人说有图形操作的方法： 系统-》首选项-》网络连接 选择 DSL 然后添加 输入用户名和密码 勾上自动连接 在点应用 就OK 了<br />这个方法我试了不好使，不知道是不是得重启电脑才行，前一种方法已经满足我了，不折腾了。<br />pppoeconf和NetworkManager是相冲突的，用过pppoeconf的想要换为nm需要下面的设置（此方法我没有试成功，大家可以试试）：</p>
-<ol>
-<li>更改/etc/NetworkManager/NetworkManager.conf中的managed＝true</li>
-<li>更改/etc/network/interfaces，只保留<br />auto lo<br />iface lo inet loopback</li>
-<li>删除，rm /etc/resolv.conf</li>
-<li>重启nm，sudo /etc/init.d/network-manager restart （如果面板没有nm图标，ALT+F2然后输入nm-applet回车）</li>
-</ol>
-<p>一些命令：</p>
+        <div class="main_l_content_title">
+<h4>基于Windows个人防火墙下的网络数据包拦截技术概览</h4>
+</div>
+<div class="main_l_content_note">2009-08-09 15:46 &nbsp;来源:watchstor.com &nbsp; &nbsp;<a href="http://tech.watchstor.com/storage-network-115067.htm#pinglun"><br /></a></div>
+<div class="main_l_content_note1">
 <ul>
-<li>Ubuntu ADSL手工断线：sudo poff</li>
-<li>查看连接情况：sudo plog</li>
-<li>可查询本机的上网IP: sudo ifconfig ppp0</li>
+<li>摘要：本文重点描述了在WindowsNT/2000/xp下个人防火墙核心技术-网络数据包拦截技术，分析了各种可能的方法以及各种方法的优缺点，实际上许多个人防火墙结合了几种不同的技术来在不同层面上进行网络数据包拦截。</li>
+<li>标签：<a href="http://www.watchstor.com/php/search.php?keyword=%CD%F8%C2%E7%CA%FD%BE%DD%B0%FC%C0%B9%BD%D8%BC%BC%CA%F5" target="_blank">网络数据包拦截技术</a></li>
 </ul>
-<br>  <a class="ym-button" href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html">more</a>
+</div>
+<div class="main_l_content_main">
+<p>所有基于Windows操作系统的个人防火墙核心技术点在于Windows操作系统下网络数据包拦截技术。本文主要讲述的是Windows操作系统下网络数据包拦截的技术。首先读者应该对Windows网络体系结构有一定了解，并且对开发Windows驱动程序有一定了解。</p>
+<p><strong>Windows 网络驱动程序结构</strong>&nbsp;&nbsp;</p>
+<p>微软和3Com公司在1989年制定了一套开发Windows下网络驱动程序的标准，称为NDIS（ Network Driver Interface Specification）。NDIS为网络驱动的开发提供了一套标准的接口，使得网络驱动程序的跨平台性更好。</p>
+<p><strong>NDIS提供以下几个层次的接口：</strong></p>
+<ol>
+</ol></div><br>  <a class="ym-button" href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html">more</a>
 <!--
-        <a href="/2013/10/2/Ubuntu-dial-up-and-WiFi-share.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/9/27/Network-data-packets-under-Windows-monitoring-and-interception-technology.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>
 
-<article class="arc" aid="1630">
-    2013-10-01
-    <center><h3><a href="/2013/10/1/Access-log-statistical-analysis.html">访问日志统计分析</a></h3><br></center> 
+<article class="arc" aid="1619">
+    2013-09-16
+    <center><h3><a href="/2013/9/16/The-half-life-of-formula.html">半衰期公式</a></h3><br></center> 
     <div class="ym-gbox-left ym-clearfix inner" >
-        <p>目标：</p>
-<ul>
-<li>访问统计</li>
-<li>业务统计</li>
-</ul>
-<p><span>日志中各个ip访问页面的次数</span></p>
-<p><span>&nbsp;</span></p>
-<p><span>&nbsp;</span></p>
-<p><span><span>linux下用awk统计日志中各个ip访问页面的次数<br />awk '{a[$1]+=1;}END{for(i in a){print a[i]" "i;}}' a.log<br /></span></span></p>
-<p><span><span>&nbsp;</span></span></p>
-<p><span><span><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-awstats-nginx/">使用 awstats 分析 Nginx 的访问日志</a></span></span></p>
-<p><a id="thread_subject" href="http://www.dzend.com/forum.php?mod=viewthread&amp;tid=36">用HBase如何设计全新的日志统计系统</a></p>
-<p>&nbsp;</p>
-<p><span><span><a href="http://awstats.sourceforge.net/#COMPARISON">http://awstats.sourceforge.net</a><a href="http://www.webalizer.org/"><br /></a><a href="http://www.webalizer.org">http://www.webalizer.org<br /></a><a href="http://goaccess.prosoftcorp.com/">http://goaccess.prosoftcorp.com/</a><a href="http://www.webalizer.org"><br /></a></span></span></p>
+        <p>半衰期定义：半衰期是指某種特定物質的浓度经过某种反应降低到剩下初始时一半所消耗的時間，半衰期是研究反应动力学的一个容易测定的重要参数，数学上可以证明，只有一级反应的半衰期是恒定的数值，且知悉一个一级反应的半衰期便可以计算出该反应的所有动力学参数，所以人们通常只关心一级反应的半衰期。常见的一级反应有：放射性核素的衰变、一级化学反应、药物在体内的吸收和代谢等。(from wiki)</p>
+<p>半衰期的公式：m=M*(1/2)<sup>(t/T)</sup> <br />　　　　　即：T= t/log(m/M, 0.5)</p>
+<p style="margin-left: 30px;">其中M为反应前原子核质量，m为反应后原子核质量，t为反应时间，T为半衰期。</p>
+<pre class="brush: scheme; fontsize: 100; first-line: 1; toolbar: false; ">(define (m M t T)
+  (* M (expt 0.5 (/ t T))))
+(define (T m M t)
+  (let ([loga 
+         (lambda (n base) 
+           (/ (log n) (log base)))])
+  (/ t (loga (/ m M) 0.5))))
+
+(T 25 100 20)
+(m 100 20 10)</pre>
 <!--
-        <a href="/2013/10/1/Access-log-statistical-analysis.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+        <a href="/2013/9/16/The-half-life-of-formula.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1607">
+    2013-08-28
+    <center><h3><a href="/2013/8/28/CPS-(Continuation-Passing-Style).html">CPS（Continuation-Passing-Style）</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h3>&nbsp;</h3>
+<h3 id="sec-1"><span class="section-number-2">1、</span>什么是Continuation-passing Style:</h3>
+<div id="text-1" class="outline-text-2">
+<p style="margin-left: 30px;">Continuation-passing style(CPS)是指将控制流(Control flow)<sup><a class="footref" name="fnr.1" href="http://blog.csdn.net/cnnzp/article/details/7832106#fn.1"></a></sup>显式的当做参数传递的编程风格。 函数的返回不在通过return语句，而是将返回值当做参数，调用控制流。<br />CPS风格的函数都会有一个额外的参数k，显式的表示了continuation（可以理解成控制流的流向，what comes next）。当CPS函数需要返回的时候，调用k，并将返回值作为k的参数。</p>
+<h3>２、CPS程序与普通程序相比有如下明显的不同：</h3>
+<p style="margin-left: 30px;">CPS函数都有一个额外的参数&nbsp;<em>k</em>&nbsp;，表示控制流。函数需要返回，必须显式的调用&nbsp;<em>k</em>&nbsp;.<br />在函数的末尾调用了另外一个函数，这种调用称为尾调用，tail call。相应的在尾部递归调用，称之为尾递归，tail recursion。&nbsp;<strong>CPS所有函数都是尾调用。</strong></p>
+<h3>３、具有突出表现的场景</h3>
+<p style="margin-left: 30px;">使用CPS最初主要用于<span style="color: #ff0000;">编译高级语言</span>时一种中间代码表示，有了这种中间代码，编译器的复杂度大大降低。<br />现在发现CPS在<span style="color: #ff0000;">异步编程</span>里，<span style="color: #ff0000;">分布式编程</span>里大显身手。<</p></div><br>  <a class="ym-button" href="/2013/8/28/CPS-(Continuation-Passing-Style).html">more</a>
+<!--
+        <a href="/2013/8/28/CPS-(Continuation-Passing-Style).html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1605">
+    2013-08-26
+    <center><h3><a href="/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html">shell常用命令-快捷键-配置</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <h3 class="entry-title public">常用命令：</h3>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">以文件中的关键字搜索：cat orders |xargs -I{} ack {} 2013-04-*
+# 列出文件大小并排序：
+du -sh *|sort -h -r
+
+# 简单循环：
+for ((i=2; i&lt;=10; i++)); do  或 for i in $(seq 2 10); do
+
+# 基于日期循环：
+function dojob {
+  echo $1
+}
+b=$1
+e=$2
+while [ $b -le $e ]; do
+  dojob $b
+  b=`date -d "$b UTC +1 day" +"%Y%m%d"`
+done
+
+# 从标准输入找出正则匹配的内容并输出
+perl -e 'undef $/; $_=&lt;&gt;; if(/.*pre.*?\&gt;(.*)\&lt;\/pre.*/msi){print $1;}'
+
+# 替换文本
+sed 's@&amp;gt;@&gt;@g'
+
+# 下载镜像目录
+wget -A rpm,gz,xml,asc, -r -m -p -E -k -K -np http://archive.cloudera.com/impala/redhat/6/x86_64/impala/1.2.1/
+
+删除第N行：
+sed -i 'Nd' filename 
+
+删除第M到N行：
+sed -i 'M,Nd' filename
+
+</pre>
+<h3 class="entry-title public">快捷键：</h3>
+<h4 style="margin-left: 30px;">编辑命令</h4>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Ctrl + a ：移到命令行首</li>
+<li>Ctrl + e ：移到命令行尾</li>
+<li>Ctrl + f ：按字符前移（右向）</li>
+<li>Ctrl + b ：按字符后移（左向）</li>
+<li>Alt + f ：按单词前移（右向）</li>
+</ul></ul><br>  <a class="ym-button" href="/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html">more</a>
+<!--
+        <a href="/2013/8/26/Shell-commonly-used-command-shortcuts-configuration.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1593">
+    2013-08-06
+    <center><h3><a href="/2013/8/6/Knowledge-discovery-(turn).html">知识发现（转）</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><span>知识发现（Knowledge Discovery）</span></p>
+<h3>知识发现的概述</h3>
+<p>　　基于数据库的知识发现(KDD)和<a title="数据挖掘" href="http://wiki.mbalib.com/wiki/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98">数据挖掘</a>还存在着混淆，通常这两个术语替换使用。KDD表示将低层数据转换为高层知识的整个过程。可以将KDD简单定义为：KDD是确定数据中有效的、新颖的、潜在有用的、基本可理解的模式的特定过程。而数据挖掘可认为是观察数据中模式或模型的抽取，这是对数据挖掘的一般解释。虽然数据挖掘是知识发现过程的核心，但它通常仅占KDD的一部分(大约是15％ 到25％) 。因此数据挖掘仅仅是整个KDD过程的一个步骤，对于到底有多少步以及哪一步必须包括在KDD过程中没有确切的定义。然而，通用的过程应该接收原始数据输入，选择重要的数据项，缩减、预处理和浓缩数据组，将数据转换为合适的格式，从数据中找到模式，评价解释发现结果。</p>
+<div class="editsection"><span style="font-size: 1.5em;">知识发现的基本任务</span></div>
+<p>　　1)数据分类。分类是数据挖掘研究的重要分支之一，是一种有效的<a title="数据分析" href="http://wiki.mbalib.com/wiki/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90">数据分析</a>方法。分类的目标是通过分析训练数据集，构造一个分类模型(即分类器)，该模型能够把数据库中的数据记录映射到一个给定的类别，从而可以l立用于数据预测。</p>
+<p>　　2)数据聚类。当要分析的数据缺乏必要的描述信息，或者根本就无法组织成任何分类模式时，利用聚类函数把一组个体按照相似性归成若干类，这样就可以自动找到类。<a title="聚类" href="http://wiki.mbalib.com/wiki/%E8%81%9A%E7%B1%BB">聚类</a>和分类类似，都是将数据进行分组。但与分类不同的是，聚类中的组不是预先定义的，而是根据实际数据的特征按照数据之间的相似性来定义的。</p>
+<br>  <a class="ym-button" href="/2013/8/6/Knowledge-discovery-(turn).html">more</a>
+<!--
+        <a href="/2013/8/6/Knowledge-discovery-(turn).html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1586">
+    2013-07-26
+    <center><h3><a href="/2013/7/26/Non-root-node-installation.html">非root安装node</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p>通常的linux环境是不会直接提供root用户，这种情况下想要安装node其实也很简单。只要在configure里指定PREFIX就可以了。<br />下面是完整的安装命令：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">git clone https://github.com/joyent/node.git -b master
+cd node
+mkdir ~/opt
+export PREFIX=~/opt; ./configure
+make
+make install
+echo 'export PATH=~/opt/bin:${PATH}' &gt;&gt; ~/.bashrc
+source ~/.bashrc</pre>
+<p>&nbsp;测试一下：</p>
+<pre class="brush: bash; fontsize: 100; first-line: 1; toolbar: false; ">$ node -v
+v0.11.5-pre
+$ npm -v
+1.3.4</pre>
+<p>再测试一下webapp，以下代码保存到app.js</p>
+<pre class="brush: jscript; fontsize: 100; first-line: 1; toolbar: false; ">var http = require('http');
+server = http.createServer(function (req, res) {
+res.writeHeader(200, {"Content-Type": "text/plain"});
+res.end("Hello Node");
+})
+server.listen(3000);</pre>
+<p>执行：node app.js<br />在浏览器中访问 <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a><a href="http://ip:3000"><br /></a>显示&ldquo;Hello Node&rdquo;说明一切正常。</p>
+<p>试用Express:</p>
+<br>  <a class="ym-button" href="/2013/7/26/Non-root-node-installation.html">more</a>
+<!--
+        <a href="/2013/7/26/Non-root-node-installation.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
+-->
+    </div>
+</article>
+
+<article class="arc" aid="1581">
+    2013-07-15
+    <center><h3><a href="/2013/7/15/Eight-Queens-sicp.html">SICP的八皇后实现</a></h3><br></center> 
+    <div class="ym-gbox-left ym-clearfix inner" >
+        <p><a href="http://zh.wikipedia.org/wiki/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98">八皇后问题</a>：</p>
+<br>  <a class="ym-button" href="/2013/7/15/Eight-Queens-sicp.html">more</a>
+<!--
+        <a href="/2013/7/15/Eight-Queens-sicp.html#disqus_thread" class="ym-button" style="float: right;">comments</a> 
 -->
     </div>
 </article>

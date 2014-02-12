@@ -85,7 +85,10 @@ svn log -r 724:HEAD -v|egrep '\.php|\.js|\.css|\.jpg|\.png|\.gif'|sort|uniq|sed 
 # check out trunk from github 
 svn co --depth empty https://github.com/${username}/${project}
 cd ${project}
-svn up trunk</pre>
+svn up trunk
+
+# 忽略spoorl目录下的所有文件
+svn propset svn:ignore '*' spool</pre>
     </div>
 </article>
 
